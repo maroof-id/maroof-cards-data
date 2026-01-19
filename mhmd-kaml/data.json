@@ -1,6 +1,6 @@
 {
-  "NAME": "محمد كامل",
-  "JOB_TITLE": "مدير العالم ",
+  "NAME": "محمد كامل 2",
+  "JOB_TITLE": "رائس العالم ",
   "COMPANY": "Contracting company",
   "PHONE": "0540601467",
   "PHONE2": "0540065464",
@@ -17,10 +17,10 @@
   "BIO": "f;ksdojlihfudhg",
   "PHOTO": "./photo.jpg",
   "CV": "./cv.pdf",
-  "template": "classic",
+  "template": "professional",
   "created_at": "2026-01-19T23:56:51.957598",
   "source": "admin",
-  "status": "printed",
+  "status": "modified",
   "print_count": 1,
   "print_history": [
     {
