@@ -1,0 +1,63 @@
+{
+  "formatVersion": 1,
+  "passTypeIdentifier": "pass.com.maroof.card",
+  "serialNumber": "mhmd-abdallh",
+  "teamIdentifier": "MAROOF",
+  "organizationName": "Maroof Digital Cards",
+  "description": "محمد عبدالله",
+  "backgroundColor": "rgb(0, 0, 0)",
+  "foregroundColor": "rgb(255, 255, 255)",
+  "labelColor": "rgb(200, 200, 200)",
+  "logoText": "MAROOF",
+  "generic": {
+    "primaryFields": [
+      {
+        "key": "name",
+        "label": "",
+        "value": "محمد عبدالله",
+        "textAlignment": "PKTextAlignmentLeft"
+      }
+    ],
+    "secondaryFields": [
+      {
+        "key": "title",
+        "label": "TITLE",
+        "value": "سائق تكسي",
+        "textAlignment": "PKTextAlignmentLeft"
+      },
+      {
+        "key": "company",
+        "label": "COMPANY",
+        "value": "جني",
+        "textAlignment": "PKTextAlignmentLeft"
+      }
+    ],
+    "auxiliaryFields": [
+      {
+        "key": "phone",
+        "label": "PHONE",
+        "value": "0540601467",
+        "textAlignment": "PKTextAlignmentLeft"
+      },
+      {
+        "key": "email",
+        "label": "EMAIL",
+        "value": "",
+        "textAlignment": "PKTextAlignmentLeft"
+      }
+    ],
+    "backFields": [
+      {
+        "key": "url",
+        "label": "Digital Card",
+        "value": "https://maroof-id.github.io/maroof-cards-data/mhmd-abdallh/",
+        "textAlignment": "PKTextAlignmentLeft"
+      }
+    ]
+  },
+  "barcode": {
+    "message": "https://maroof-id.github.io/maroof-cards-data/mhmd-abdallh/",
+    "format": "PKBarcodeFormatQR",
+    "messageEncoding": "iso-8859-1"
+  }
+}
