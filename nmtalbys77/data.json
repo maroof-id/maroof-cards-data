@@ -21,11 +21,15 @@
   "created_at": "2026-01-22T19:06:43.615903",
   "source": "admin",
   "status": "printed",
-  "print_count": 1,
+  "print_count": 2,
   "print_history": [
     {
       "date": "2026-01-22T19:07:02.783634",
       "count": 1
+    },
+    {
+      "date": "2026-01-22T20:16:53.695549",
+      "count": 2
     }
   ],
   "NAME_INITIAL": "ن"
