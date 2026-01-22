@@ -17,10 +17,10 @@
   "BIO": "مهندس حاسب آلي ",
   "PHOTO": "./photo.jpg",
   "CV": "./cv.pdf",
-  "template": "professional",
+  "template": "modern",
   "created_at": "2026-01-22T20:32:10.713494",
   "source": "admin",
-  "status": "printed",
+  "status": "modified",
   "print_count": 1,
   "print_history": [
     {
