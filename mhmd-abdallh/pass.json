@@ -22,13 +22,13 @@
       {
         "key": "title",
         "label": "TITLE",
-        "value": "سائق تكسي",
+        "value": "",
         "textAlignment": "PKTextAlignmentLeft"
       },
       {
         "key": "company",
         "label": "COMPANY",
-        "value": "جني",
+        "value": "",
         "textAlignment": "PKTextAlignmentLeft"
       }
     ],

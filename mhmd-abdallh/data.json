@@ -1,7 +1,7 @@
 {
   "NAME": "محمد عبدالله",
-  "JOB_TITLE": "سائق تكسي",
-  "COMPANY": "جني",
+  "JOB_TITLE": "",
+  "COMPANY": "",
   "PHONE": "0540601467",
   "PHONE2": "",
   "EMAIL": "",
@@ -20,7 +20,7 @@
   "template": "classic",
   "created_at": "2026-01-22T20:32:10.713494",
   "source": "admin",
-  "status": "printed",
+  "status": "modified",
   "print_count": 2,
   "print_history": [
     {
