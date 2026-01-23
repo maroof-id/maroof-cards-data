@@ -20,8 +20,8 @@
   "template": "classic",
   "created_at": "2026-01-22T20:32:10.713494",
   "source": "admin",
-  "status": "modified",
-  "print_count": 2,
+  "status": "printed",
+  "print_count": 3,
   "print_history": [
     {
       "date": "2026-01-22T20:32:32.865767",
@@ -30,6 +30,10 @@
     {
       "date": "2026-01-23T00:31:18.328442",
       "count": 2
+    },
+    {
+      "date": "2026-01-23T19:34:32.865097",
+      "count": 3
     }
   ],
   "PHONE_INTL": "966540601467",
