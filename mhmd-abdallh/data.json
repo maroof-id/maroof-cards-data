@@ -21,7 +21,7 @@
   "created_at": "2026-01-22T20:32:10.713494",
   "source": "admin",
   "status": "printed",
-  "print_count": 4,
+  "print_count": 5,
   "print_history": [
     {
       "date": "2026-01-22T20:32:32.865767",
@@ -38,6 +38,10 @@
     {
       "date": "2026-01-23T19:34:57.728230",
       "count": 4
+    },
+    {
+      "date": "2026-01-23T19:40:19.288250",
+      "count": 5
     }
   ],
   "PHONE_INTL": "966540601467",
