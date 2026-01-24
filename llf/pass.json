@@ -4,7 +4,7 @@
   "serialNumber": "llf",
   "teamIdentifier": "MAROOF",
   "organizationName": "Maroof Digital Cards",
-  "description": "للف",
+  "description": "Meshary AlFaraj ",
   "backgroundColor": "rgb(0, 0, 0)",
   "foregroundColor": "rgb(255, 255, 255)",
   "labelColor": "rgb(200, 200, 200)",
@@ -14,7 +14,7 @@
       {
         "key": "name",
         "label": "",
-        "value": "للف",
+        "value": "Meshary AlFaraj ",
         "textAlignment": "PKTextAlignmentLeft"
       }
     ],
@@ -36,13 +36,13 @@
       {
         "key": "phone",
         "label": "PHONE",
-        "value": "",
+        "value": "0538105545",
         "textAlignment": "PKTextAlignmentLeft"
       },
       {
         "key": "email",
         "label": "EMAIL",
-        "value": "",
+        "value": "Meshary.ib@gmail.com",
         "textAlignment": "PKTextAlignmentLeft"
       }
     ],

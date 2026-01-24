@@ -1,6 +1,9 @@
 BEGIN:VCARD
 VERSION:3.0
-FN:للف
-N:للف;;;;
+FN:Meshary AlFaraj 
+N:Meshary AlFaraj ;;;;
+PHOTO;VALUE=URL;TYPE=JPEG:https://maroof-id.github.io/maroof-cards-data/llf/photo.jpg
+TEL;TYPE=CELL:+966538105545
+EMAIL;TYPE=INTERNET:Meshary.ib@gmail.com
 URL:https://maroof-id.github.io/maroof-cards-data/llf/
 END:VCARD

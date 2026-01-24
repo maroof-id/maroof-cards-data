@@ -1,10 +1,10 @@
 {
-  "NAME": "للف",
+  "NAME": "Meshary AlFaraj ",
   "JOB_TITLE": "",
   "COMPANY": "",
-  "PHONE": "",
+  "PHONE": "0538105545",
   "PHONE2": "",
-  "EMAIL": "",
+  "EMAIL": "Meshary.ib@gmail.com",
   "INSTAGRAM": "",
   "LINKEDIN": "",
   "TWITTER": "",
@@ -15,12 +15,12 @@
   "WEBSITE": "",
   "CUSTOM_LINK": "",
   "BIO": "",
-  "PHOTO": "",
+  "PHOTO": "./photo.jpg",
   "CV": "",
-  "template": "Gaming",
+  "template": "it",
   "created_at": "2026-01-25T00:29:04.911416",
   "source": "admin",
-  "status": "printed",
+  "status": "modified",
   "print_count": 1,
   "print_history": [
     {
@@ -28,5 +28,6 @@
       "count": 1
     }
   ],
-  "NAME_INITIAL": "ل"
+  "NAME_INITIAL": "M",
+  "PHONE_INTL": "966538105545"
 }
