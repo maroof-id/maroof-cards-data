@@ -3,14 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="البطاقة التعريفية الرقمية لـ Meshary AlFaraj ">
     <title>Meshary AlFaraj  - معروف</title>
     
-    <!-- Google Fonts: DM Sans (English) + Noto Kufi Arabic (Arabic) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Noto+Kufi+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Font Awesome Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
@@ -21,48 +18,95 @@
         }
         
         :root {
-            --gold: #C5A47E;
-            --gold-dark: #B08968;
-            --green-deep: #2D5A3D;
-            --bg-light: #FFFFFF;
-            --text-dark: #1a1a1a;
-            --text-light: #666666;
-            --border-gold: rgba(197, 164, 126, 0.2);
+            --glass-bg: rgba(255, 255, 255, 0.15);
+            --glass-border: rgba(255, 255, 255, 0.3);
+            --glass-shadow: rgba(0, 0, 0, 0.1);
+            --text-dark: rgba(0, 0, 0, 0.9);
+            --text-light: rgba(0, 0, 0, 0.7);
+            --accent: rgba(139, 92, 246, 0.9);
         }
         
         body {
-            font-family: 'Noto Kufi Arabic', 'DM Sans', sans-serif;
-            background: linear-gradient(135deg, var(--green-deep) 0%, #1a3a2a 100%);
+            font-family: 'Tajawal', sans-serif;
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
             padding: 20px;
-            color: var(--text-dark);
+            position: relative;
+            overflow-x: hidden;
+        }
+        
+        /* خلفية متدرجة ملونة - أخضر وأزرق */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background: linear-gradient(135deg, 
+                #10b981 0%, 
+                #14b8a6 25%, 
+                #06b6d4 50%, 
+                #0ea5e9 75%, 
+                #3b82f6 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            z-index: -2;
+        }
+        
+        /* تأثير الجسيمات */
+        body::after {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: 
+                radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.2) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 40% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+            z-index: -1;
+        }
+        
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
         }
         
         .container {
-            background: var(--bg-light);
-            border-radius: 32px;
-            max-width: 480px;
             width: 100%;
-            padding: 48px 36px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            border: 1px solid var(--border-gold);
+            max-width: 560px;
+            position: relative;
+        }
+        
+        /* البطاقة الزجاجية الرئيسية */
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 32px;
+            border: 2px solid var(--glass-border);
+            box-shadow: 
+                0 8px 32px 0 var(--glass-shadow),
+                inset 0 1px 0 0 rgba(255, 255, 255, 0.5);
+            padding: 48px 40px 44px;
             position: relative;
             overflow: hidden;
         }
         
-        /* Glassmorphism accent at top */
-        .container::before {
+        /* تأثير الضوء المتحرك */
+        .glass-card::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 120px;
-            background: linear-gradient(180deg, rgba(197, 164, 126, 0.1) 0%, transparent 100%);
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            animation: rotate 10s linear infinite;
             pointer-events: none;
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
         }
         
         /* Profile Section */
@@ -72,27 +116,31 @@
             position: relative;
         }
         
-        .profile-photo-wrapper {
-            position: relative;
-            width: 140px;
-            height: 140px;
-            margin: 0 auto 24px;
-        }
-        
         .profile-photo {
-            width: 140px;
-            height: 140px;
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 24px;
             border-radius: 50%;
-            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(10px);
+            border: 3px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 
+                0 12px 40px rgba(0, 0, 0, 0.15),
+                inset 0 2px 0 rgba(255, 255, 255, 0.5),
+                0 0 0 12px rgba(255, 255, 255, 0.1);
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
-            font-size: 56px;
-            font-weight: 700;
             overflow: hidden;
-            box-shadow: 0 12px 32px rgba(197, 164, 126, 0.3);
-            border: 4px solid white;
+            position: relative;
+        }
+        
+        .profile-photo::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.3) 0%, transparent 100%);
         }
         
         .profile-photo img {
@@ -101,383 +149,518 @@
             object-fit: cover;
         }
         
-        /* Gold ring around photo */
-        .profile-photo-wrapper::after {
-            content: '';
-            position: absolute;
-            top: -6px;
-            left: -6px;
-            right: -6px;
-            bottom: -6px;
-            border-radius: 50%;
-            border: 2px solid var(--border-gold);
+        .profile-photo i {
+            font-size: 64px;
+            color: rgba(0, 0, 0, 0.6);
+            position: relative;
+            z-index: 1;
         }
         
         .name {
-            font-size: 32px;
-            font-weight: 700;
-            color: var(--text-dark);
+            font-size: 38px;
+            font-weight: 800;
+            color: rgba(255, 255, 255, 0.95);
             margin-bottom: 12px;
             letter-spacing: -0.5px;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
         }
         
         .bio {
-            font-size: 16px;
-            color: var(--text-light);
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.9);
             line-height: 1.7;
-            max-width: 90%;
-            margin: 0 auto;
+            text-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
         }
         
-        /* English text styling */
-        .name[lang="en"], .bio[lang="en"] {
-            font-family: 'DM Sans', sans-serif;
+        /* 3D SAVE BUTTON - زجاجي */
+        .save-section {
+            margin-bottom: 28px;
         }
         
-        /* Contact Buttons - Glassmorphic style */
-        .contact-section {
-            display: flex;
-            flex-direction: column;
-            gap: 14px;
-            margin-bottom: 36px;
-        }
-        
-        .contact-btn {
+        .save-btn {
             display: flex;
             align-items: center;
-            padding: 18px 22px;
-            background: rgba(255, 255, 255, 0.7);
+            justify-content: center;
+            gap: 14px;
+            width: 100%;
+            padding: 24px 32px;
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            border-radius: 20px;
+            color: rgba(255, 255, 255, 0.95);
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 20px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 
+                0 12px 40px rgba(0, 0, 0, 0.15),
+                inset 0 1px 0 rgba(255, 255, 255, 0.5),
+                inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        
+        .save-btn::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, transparent 100%);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .save-btn::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+            transform: scale(0);
+            transition: transform 0.5s;
+        }
+        
+        .save-btn:hover {
+            background: rgba(255, 255, 255, 0.35);
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 
+                0 20px 60px rgba(0, 0, 0, 0.2),
+                inset 0 2px 0 rgba(255, 255, 255, 0.6);
+        }
+        
+        .save-btn:hover::before {
+            opacity: 1;
+        }
+        
+        .save-btn:hover::after {
+            transform: scale(1);
+        }
+        
+        .save-btn:active {
+            transform: translateY(-2px) scale(1);
+        }
+        
+        .save-icon {
+            font-size: 24px;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-6px); }
+        }
+        
+        /* SPLIT BUTTON - زجاجي */
+        .contact-section {
+            margin-bottom: 28px;
+        }
+        
+        .split-btn {
+            display: flex;
+            height: 82px;
+            border-radius: 18px;
+            overflow: hidden;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+        
+        .split-half {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            backdrop-filter: blur(8px);
+        }
+        
+        .split-half::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(255, 255, 255, 0.1);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .split-half:hover::before {
+            opacity: 1;
+        }
+        
+        .call-side {
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.3) 0%, rgba(22, 163, 74, 0.3) 100%);
+            border-left: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .call-side:hover {
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.4) 0%, rgba(22, 163, 74, 0.4) 100%);
+            transform: translateX(-3px) scale(1.02);
+        }
+        
+        .whatsapp-side {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.3) 0%, rgba(5, 150, 105, 0.3) 100%);
+        }
+        
+        .whatsapp-side:hover {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.4) 0%, rgba(5, 150, 105, 0.4) 100%);
+            transform: translateX(3px) scale(1.02);
+        }
+        
+        .split-icon {
+            font-size: 32px;
+            color: rgba(255, 255, 255, 0.95);
+            filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.2));
+        }
+        
+        .split-text {
+            color: rgba(255, 255, 255, 0.95);
+            text-align: center;
+        }
+        
+        .split-label {
+            font-size: 16px;
+            font-weight: 700;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+        }
+        
+        .split-number {
+            font-size: 14px;
+            font-weight: 600;
+            opacity: 0.9;
+        }
+        
+        /* Social & Email Cards - زجاجية */
+        .info-grid {
+            display: grid;
+            gap: 14px;
+        }
+        
+        .info-card {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.2);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(197, 164, 126, 0.2);
-            border-radius: 18px;
+            border: 1.5px solid rgba(255, 255, 255, 0.35);
+            border-radius: 16px;
             text-decoration: none;
-            color: var(--text-dark);
-            transition: all 0.3s ease;
-            gap: 16px;
+            transition: all 0.3s;
+            box-shadow: 
+                0 4px 16px rgba(0, 0, 0, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.4);
+            position: relative;
+            overflow: hidden;
         }
         
-        .contact-btn:hover {
+        .info-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, transparent 100%);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .info-card:hover {
+            background: rgba(255, 255, 255, 0.3);
             transform: translateY(-3px);
-            box-shadow: 0 8px 24px rgba(197, 164, 126, 0.2);
-            border-color: var(--gold);
-            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 
+                0 8px 32px rgba(0, 0, 0, 0.15),
+                inset 0 1px 0 rgba(255, 255, 255, 0.5);
         }
         
-        .contact-icon {
-            width: 48px;
-            height: 48px;
+        .info-card:hover::before {
+            opacity: 1;
+        }
+        
+        .info-icon {
+            width: 54px;
+            height: 54px;
             border-radius: 14px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 22px;
-            flex-shrink: 0;
-            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
-            color: white;
-            box-shadow: 0 4px 12px rgba(197, 164, 126, 0.25);
-        }
-        
-        .contact-info {
-            flex: 1;
-            text-align: right;
-        }
-        
-        .contact-label {
-            font-size: 13px;
-            color: var(--text-light);
-            margin-bottom: 3px;
-            font-weight: 500;
-        }
-        
-        .contact-value {
-            font-size: 17px;
-            font-weight: 600;
-            color: var(--text-dark);
-            font-family: 'DM Sans', sans-serif;
-        }
-        
-        /* WhatsApp Premium Style */
-        .whatsapp-btn {
-            background: linear-gradient(135deg, var(--green-deep) 0%, #1a3a2a 100%);
-            border: none;
-            color: white;
-        }
-        
-        .whatsapp-btn:hover {
-            background: linear-gradient(135deg, #1a3a2a 0%, var(--green-deep) 100%);
-        }
-        
-        .whatsapp-btn .contact-icon {
-            background: rgba(255, 255, 255, 0.2);
-        }
-        
-        .whatsapp-btn .contact-label,
-        .whatsapp-btn .contact-value {
-            color: white;
-        }
-        
-        /* Social Links - Elegant style */
-        .social-section {
-            display: flex;
-            justify-content: center;
-            gap: 14px;
-            margin-bottom: 28px;
-            flex-wrap: wrap;
-        }
-        
-        .social-btn {
-            width: 56px;
-            height: 56px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
             font-size: 24px;
-            transition: all 0.3s ease;
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid var(--border-gold);
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+            color: rgba(255, 255, 255, 0.95);
+            flex-shrink: 0;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
         
-        .social-btn:hover {
-            transform: translateY(-4px) scale(1.05);
-            box-shadow: 0 8px 24px rgba(197, 164, 126, 0.3);
+        .info-content {
+            flex: 1;
         }
         
-        .instagram-btn {
-            color: #E1306C;
-        }
-        
-        .instagram-btn:hover {
-            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
-            color: white;
-        }
-        
-        .linkedin-btn {
-            color: #0077b5;
-        }
-        
-        .linkedin-btn:hover {
-            background: #0077b5;
-            color: white;
-        }
-        
-        .twitter-btn {
-            color: #1DA1F2;
-        }
-        
-        .twitter-btn:hover {
-            background: #1DA1F2;
-            color: white;
-        }
-        
-        /* Save Contact Button - Luxury Gold */
-        .save-contact {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            width: 100%;
-            padding: 18px;
-            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
-            color: white;
-            text-decoration: none;
-            border-radius: 18px;
+        .info-label {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.85);
             font-weight: 600;
-            font-size: 16px;
-            transition: all 0.3s ease;
-            box-shadow: 0 6px 20px rgba(197, 164, 126, 0.35);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            margin-bottom: 4px;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
         }
         
-        .save-contact:hover {
-            background: linear-gradient(135deg, var(--gold-dark) 0%, var(--gold) 100%);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 28px rgba(197, 164, 126, 0.45);
+        .info-value {
+            font-size: 17px;
+            color: rgba(255, 255, 255, 0.95);
+            font-weight: 700;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
         }
         
-        /* Elegant Divider */
+        /* Divider - زجاجي */
         .divider {
             height: 1px;
-            background: linear-gradient(90deg, transparent 0%, var(--border-gold) 50%, transparent 100%);
+            background: linear-gradient(90deg, 
+                transparent, 
+                rgba(255, 255, 255, 0.3), 
+                transparent);
             margin: 28px 0;
+            position: relative;
+        }
+        
+        .divider::before {
+            content: '';
+            position: absolute;
+            top: -6px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 12px;
+            height: 12px;
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(4px);
+            border-radius: 50%;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
         }
         
         /* Responsive */
-        @media (max-width: 480px) {
-            .container {
-                padding: 40px 28px;
+        @media (max-width: 640px) {
+            .glass-card {
+                padding: 40px 32px 36px;
                 border-radius: 28px;
             }
             
+            .profile-photo {
+                width: 130px;
+                height: 130px;
+            }
+            
+            .profile-photo i {
+                font-size: 56px;
+            }
+            
             .name {
-                font-size: 28px;
+                font-size: 32px;
             }
             
             .bio {
+                font-size: 16px;
+            }
+            
+            .save-btn {
+                padding: 20px 28px;
+                font-size: 18px;
+            }
+            
+            .split-btn {
+                height: 74px;
+            }
+            
+            .split-icon {
+                font-size: 28px;
+            }
+            
+            .split-label {
                 font-size: 15px;
             }
             
-            .profile-photo-wrapper,
-            .profile-photo {
-                width: 120px;
-                height: 120px;
-            }
-            
-            .profile-photo {
-                font-size: 48px;
+            .info-icon {
+                width: 50px;
+                height: 50px;
+                font-size: 22px;
             }
         }
         
         /* Animations */
-        @keyframes fadeInLuxury {
+        @keyframes fadeInScale {
             from {
                 opacity: 0;
-                transform: translateY(20px) scale(0.95);
+                transform: scale(0.95) translateY(20px);
             }
             to {
                 opacity: 1;
-                transform: translateY(0) scale(1);
+                transform: scale(1) translateY(0);
             }
         }
         
         .container {
-            animation: fadeInLuxury 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            animation: fadeInScale 0.8s cubic-bezier(0.4, 0, 0.2, 1);
         }
         
-        /* Accessibility */
-        @media (prefers-reduced-motion: reduce) {
-            *,
-            *::before,
-            *::after {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
+        /* Focus states */
+        .split-half:focus,
+        .info-card:focus,
+        .save-btn:focus {
+            outline: 3px solid rgba(255, 255, 255, 0.5);
+            outline-offset: 3px;
+        }
+        
+        /* تأثيرات إضافية للزجاج */
+        @supports (backdrop-filter: blur(20px)) or (-webkit-backdrop-filter: blur(20px)) {
+            .glass-card {
+                background: rgba(255, 255, 255, 0.18);
+            }
+            
+            .save-btn {
+                background: rgba(255, 255, 255, 0.28);
+            }
+            
+            .info-card {
+                background: rgba(255, 255, 255, 0.22);
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- Profile Section -->
-        <div class="profile-section">
-            <div class="profile-photo-wrapper">
+        <div class="glass-card">
+            
+            <!-- Profile Section -->
+            <div class="profile-section">
                 <div class="profile-photo">
                     
                     <img src="./photo.jpg" alt="Meshary AlFaraj ">
                     
                     
                 </div>
+                
+                <h1 class="name">Meshary AlFaraj </h1>
+                
             </div>
             
-            <h1 class="name">Meshary AlFaraj </h1>
+            <!-- 1️⃣ Save Contact Button -->
+            <div class="save-section">
+                <a href="./contact.vcf" download class="save-btn">
+                    <i class="fas fa-download save-icon"></i>
+                    <span>حفظ جهة الاتصال</span>
+                </a>
+            </div>
             
+            <!-- 2️⃣ Split Button - Call/WhatsApp -->
+            
+            <div class="contact-section">
+                <div class="split-btn">
+                    <a href="tel:966538105545" class="split-half call-side">
+                        <i class="fas fa-phone split-icon"></i>
+                        <div class="split-text">
+                            <div class="split-label">اتصال</div>
+                            <div class="split-number" dir="ltr">0538105545</div>
+                        </div>
+                    </a>
+                    
+                    <a href="https://wa.me/966538105545" class="split-half whatsapp-side" target="_blank">
+                        <i class="fab fa-whatsapp split-icon"></i>
+                        <div class="split-text">
+                            <div class="split-label">واتساب</div>
+                            <div class="split-number">راسلني</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            
+            
+            <!-- Divider -->
+            
+            
+            <!-- 3️⃣ Social Links & 4️⃣ Email -->
+            <div class="info-grid">
+                
+                
+                
+                
+                <a href="https://linkedin.com/in/meshary-al-faraj" class="info-card" target="_blank">
+                    <div class="info-icon">
+                        <i class="fab fa-linkedin"></i>
+                    </div>
+                    <div class="info-content">
+                        <div class="info-label">LinkedIn</div>
+                        <div class="info-value">meshary-al-faraj</div>
+                    </div>
+                </a>
+                
+                
+                
+                
+                
+                <a href="mailto:Meshary.ib@gmail.com" class="info-card">
+                    <div class="info-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="info-content">
+                        <div class="info-label">البريد الإلكتروني</div>
+                        <div class="info-value">Meshary.ib@gmail.com</div>
+                    </div>
+                </a>
+                
+                
+                
+                
+                
+                
+                
+                <a href="https://snapchat.com/add/https://snapchat.com/t/IRow4C35" class="info-card" target="_blank">
+                    <div class="info-icon" style="background: #FFFC00;">
+                        <i class="fab fa-snapchat"></i>
+                    </div>
+                    <div class="info-content">
+                        <div class="info-label">Snapchat</div>
+                        <div class="info-value">@https://snapchat.com/t/IRow4C35</div>
+                    </div>
+                </a>
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                <a href="./cv.pdf" download class="info-card">
+                    <div class="info-icon">
+                        <i class="fas fa-file-pdf"></i>
+                    </div>
+                    <div class="info-content">
+                        <div class="info-label">السيرة الذاتية</div>
+                        <div class="info-value">تحميل</div>
+                    </div>
+                </a>
+                
+                
+                
+                
+                
+                
+            </div>
             
         </div>
-        
-        <!-- Contact Buttons -->
-        <div class="contact-section">
-            
-            <!-- WhatsApp Button -->
-            <a href="https://wa.me/966538105545" class="contact-btn whatsapp-btn" target="_blank">
-                <div class="contact-icon">
-                    <i class="fab fa-whatsapp"></i>
-                </div>
-                <div class="contact-info">
-                    <div class="contact-label">واتساب / WhatsApp</div>
-                    <div class="contact-value" dir="ltr">0538105545</div>
-                </div>
-            </a>
-            
-            <!-- Phone Button -->
-            <a href="tel:+966538105545" class="contact-btn">
-                <div class="contact-icon">
-                    <i class="fas fa-phone"></i>
-                </div>
-                <div class="contact-info">
-                    <div class="contact-label">اتصال / Call</div>
-                    <div class="contact-value" dir="ltr">0538105545</div>
-                </div>
-            </a>
-            
-            
-            
-            <!-- Email Button -->
-            <a href="mailto:Meshary.ib@gmail.com" class="contact-btn">
-                <div class="contact-icon">
-                    <i class="fas fa-envelope"></i>
-                </div>
-                <div class="contact-info">
-                    <div class="contact-label">بريد إلكتروني / Email</div>
-                    <div class="contact-value">Meshary.ib@gmail.com</div>
-                </div>
-            </a>
-            
-        </div>
-        
-        <!-- Social Links -->
-        
-        
-        <div class="social-section">
-            
-            
-            
-            <a href="https://linkedin.com/in/meshary-al-faraj" class="social-btn linkedin-btn" target="_blank" aria-label="LinkedIn">
-                <i class="fab fa-linkedin-in"></i>
-            </a>
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            <a href="https://snapchat.com/add/https://snapchat.com/t/IRow4C35" class="social-btn" style="background: #FFFC00; color: #000;" target="_blank" aria-label="Snapchat">
-                <i class="fab fa-snapchat"></i>
-            </a>
-            
-            
-            
-        </div>
-        
-        <!-- Additional Info Section -->
-        <div style="display: flex; flex-direction: column; gap: 14px; margin-top: 28px;">
-            
-            
-            
-            
-            
-            <a href="./cv.pdf" class="contact-btn" download>
-                <div class="contact-icon">
-                    <i class="fas fa-file-pdf"></i>
-                </div>
-                <div class="contact-info">
-                    <div class="contact-label">السيرة الذاتية</div>
-                    <div class="contact-value">تحميل</div>
-                </div>
-            </a>
-            
-            
-            
-            
-            
-        </div>
-        
-        <!-- Save Contact Button -->
-        <a href="./contact.vcf" download class="save-contact">
-            <i class="fas fa-user-plus"></i>
-            <span>إضافة لجهات الاتصال / Add to Contacts</span>
-        </a>
         
         <!-- Footer -->
-        <div style="text-align: center; margin-top: 24px; padding-top: 24px; border-top: 1px solid rgba(197, 164, 126, 0.2);">
-            <p style="color: #666666; font-size: 13px;">مدعوم بواسطة <a href="https://maroof-id.github.io/maroof-cards/" style="color: #C5A47E; font-weight: 600; text-decoration: none;" target="_blank">معروف</a></p>
+        <div style="background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); padding: 20px; text-align: center; border-top: 1px solid rgba(255, 255, 255, 0.2); margin-top: 0; border-radius: 0 0 32px 32px;">
+            <p style="color: rgba(255, 255, 255, 0.8); font-size: 13px;">مدعوم بواسطة <a href="https://maroof-id.github.io/maroof-cards/" style="color: rgba(255, 255, 255, 0.95); font-weight: 700; text-decoration: none;" target="_blank">معروف</a></p>
         </div>
     </div>
 </body>
