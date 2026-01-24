@@ -3,219 +3,482 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="البطاقة التعريفية الرقمية لـ Meshary AlFaraj ">
     <title>Meshary AlFaraj  - معروف</title>
     
-    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: DM Sans (English) + Noto Kufi Arabic (Arabic) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Noto+Kufi+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        body { font-family: 'Cairo', sans-serif; }
-        .gradient-bg { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
-        .glass { backdrop-filter: blur(10px); background: rgba(255, 255, 255, 0.1); }
-    </style>
-    
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: '#667eea',
-                        secondary: '#764ba2',
-                    }
-                }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --gold: #C5A47E;
+            --gold-dark: #B08968;
+            --green-deep: #2D5A3D;
+            --bg-light: #FFFFFF;
+            --text-dark: #1a1a1a;
+            --text-light: #666666;
+            --border-gold: rgba(197, 164, 126, 0.2);
+        }
+        
+        body {
+            font-family: 'Noto Kufi Arabic', 'DM Sans', sans-serif;
+            background: linear-gradient(135deg, var(--green-deep) 0%, #1a3a2a 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            color: var(--text-dark);
+        }
+        
+        .container {
+            background: var(--bg-light);
+            border-radius: 32px;
+            max-width: 480px;
+            width: 100%;
+            padding: 48px 36px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--border-gold);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* Glassmorphism accent at top */
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 120px;
+            background: linear-gradient(180deg, rgba(197, 164, 126, 0.1) 0%, transparent 100%);
+            pointer-events: none;
+        }
+        
+        /* Profile Section */
+        .profile-section {
+            text-align: center;
+            margin-bottom: 36px;
+            position: relative;
+        }
+        
+        .profile-photo-wrapper {
+            position: relative;
+            width: 140px;
+            height: 140px;
+            margin: 0 auto 24px;
+        }
+        
+        .profile-photo {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 56px;
+            font-weight: 700;
+            overflow: hidden;
+            box-shadow: 0 12px 32px rgba(197, 164, 126, 0.3);
+            border: 4px solid white;
+        }
+        
+        .profile-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        /* Gold ring around photo */
+        .profile-photo-wrapper::after {
+            content: '';
+            position: absolute;
+            top: -6px;
+            left: -6px;
+            right: -6px;
+            bottom: -6px;
+            border-radius: 50%;
+            border: 2px solid var(--border-gold);
+        }
+        
+        .name {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 12px;
+            letter-spacing: -0.5px;
+        }
+        
+        .bio {
+            font-size: 16px;
+            color: var(--text-light);
+            line-height: 1.7;
+            max-width: 90%;
+            margin: 0 auto;
+        }
+        
+        /* English text styling */
+        .name[lang="en"], .bio[lang="en"] {
+            font-family: 'DM Sans', sans-serif;
+        }
+        
+        /* Contact Buttons - Glassmorphic style */
+        .contact-section {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            margin-bottom: 36px;
+        }
+        
+        .contact-btn {
+            display: flex;
+            align-items: center;
+            padding: 18px 22px;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(197, 164, 126, 0.2);
+            border-radius: 18px;
+            text-decoration: none;
+            color: var(--text-dark);
+            transition: all 0.3s ease;
+            gap: 16px;
+        }
+        
+        .contact-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(197, 164, 126, 0.2);
+            border-color: var(--gold);
+            background: rgba(255, 255, 255, 0.9);
+        }
+        
+        .contact-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            flex-shrink: 0;
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+            color: white;
+            box-shadow: 0 4px 12px rgba(197, 164, 126, 0.25);
+        }
+        
+        .contact-info {
+            flex: 1;
+            text-align: right;
+        }
+        
+        .contact-label {
+            font-size: 13px;
+            color: var(--text-light);
+            margin-bottom: 3px;
+            font-weight: 500;
+        }
+        
+        .contact-value {
+            font-size: 17px;
+            font-weight: 600;
+            color: var(--text-dark);
+            font-family: 'DM Sans', sans-serif;
+        }
+        
+        /* WhatsApp Premium Style */
+        .whatsapp-btn {
+            background: linear-gradient(135deg, var(--green-deep) 0%, #1a3a2a 100%);
+            border: none;
+            color: white;
+        }
+        
+        .whatsapp-btn:hover {
+            background: linear-gradient(135deg, #1a3a2a 0%, var(--green-deep) 100%);
+        }
+        
+        .whatsapp-btn .contact-icon {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .whatsapp-btn .contact-label,
+        .whatsapp-btn .contact-value {
+            color: white;
+        }
+        
+        /* Social Links - Elegant style */
+        .social-section {
+            display: flex;
+            justify-content: center;
+            gap: 14px;
+            margin-bottom: 28px;
+            flex-wrap: wrap;
+        }
+        
+        .social-btn {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 24px;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid var(--border-gold);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+        }
+        
+        .social-btn:hover {
+            transform: translateY(-4px) scale(1.05);
+            box-shadow: 0 8px 24px rgba(197, 164, 126, 0.3);
+        }
+        
+        .instagram-btn {
+            color: #E1306C;
+        }
+        
+        .instagram-btn:hover {
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+            color: white;
+        }
+        
+        .linkedin-btn {
+            color: #0077b5;
+        }
+        
+        .linkedin-btn:hover {
+            background: #0077b5;
+            color: white;
+        }
+        
+        .twitter-btn {
+            color: #1DA1F2;
+        }
+        
+        .twitter-btn:hover {
+            background: #1DA1F2;
+            color: white;
+        }
+        
+        /* Save Contact Button - Luxury Gold */
+        .save-contact {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 18px;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 20px rgba(197, 164, 126, 0.35);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .save-contact:hover {
+            background: linear-gradient(135deg, var(--gold-dark) 0%, var(--gold) 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 28px rgba(197, 164, 126, 0.45);
+        }
+        
+        /* Elegant Divider */
+        .divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent 0%, var(--border-gold) 50%, transparent 100%);
+            margin: 28px 0;
+        }
+        
+        /* Responsive */
+        @media (max-width: 480px) {
+            .container {
+                padding: 40px 28px;
+                border-radius: 28px;
+            }
+            
+            .name {
+                font-size: 28px;
+            }
+            
+            .bio {
+                font-size: 15px;
+            }
+            
+            .profile-photo-wrapper,
+            .profile-photo {
+                width: 120px;
+                height: 120px;
+            }
+            
+            .profile-photo {
+                font-size: 48px;
             }
         }
-    </script>
+        
+        /* Animations */
+        @keyframes fadeInLuxury {
+            from {
+                opacity: 0;
+                transform: translateY(20px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+        
+        .container {
+            animation: fadeInLuxury 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        /* Accessibility */
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
 </head>
-<body class="bg-gradient-to-br from-purple-50 via-pink-50 to-blue-50 min-h-screen flex items-center justify-center p-4">
-    
-    <div class="w-full max-w-md">
-        
-        <!-- Header بالتدرج -->
-        <div class="gradient-bg rounded-t-3xl p-8 text-center relative overflow-hidden">
-            <div class="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -mr-32 -mt-32"></div>
-            <div class="absolute bottom-0 left-0 w-48 h-48 bg-white/10 rounded-full -ml-24 -mb-24"></div>
-            
-            <div class="relative z-10">
-                <!-- صورة أو أيقونة -->
-                <div class="w-32 h-32 mx-auto mb-4 bg-white rounded-full flex items-center justify-center shadow-2xl ring-4 ring-white/30">
+<body>
+    <div class="container">
+        <!-- Profile Section -->
+        <div class="profile-section">
+            <div class="profile-photo-wrapper">
+                <div class="profile-photo">
                     
-                    <img src="./photo.jpg" alt="Meshary AlFaraj " class="w-full h-full rounded-full object-cover">
+                    <img src="./photo.jpg" alt="Meshary AlFaraj ">
                     
-                    <i class="fas fa-user text-6xl text-primary"></i>
                     
                 </div>
-                
-                <h1 class="text-4xl font-black text-white mb-2">Meshary AlFaraj </h1>
-                <p class="text-white/90 text-lg font-semibold"></p>
             </div>
+            
+            <h1 class="name">Meshary AlFaraj </h1>
+            
+            
         </div>
         
-        <!-- Body - معلومات الاتصال -->
-        <div class="bg-white rounded-b-3xl shadow-2xl p-6 space-y-3">
+        <!-- Contact Buttons -->
+        <div class="contact-section">
             
-            <!-- رقم الجوال -->
+            <!-- WhatsApp Button -->
+            <a href="https://wa.me/966538105545" class="contact-btn whatsapp-btn" target="_blank">
+                <div class="contact-icon">
+                    <i class="fab fa-whatsapp"></i>
+                </div>
+                <div class="contact-info">
+                    <div class="contact-label">واتساب / WhatsApp</div>
+                    <div class="contact-value" dir="ltr">0538105545</div>
+                </div>
+            </a>
             
-            <a href="tel:0538105545" 
-               class="flex items-center gap-4 p-4 bg-gradient-to-r from-green-50 to-emerald-50 rounded-2xl hover:shadow-lg transition-all duration-300 hover:scale-[1.02] group border border-green-100">
-                <div class="w-14 h-14 bg-gradient-to-br from-green-400 to-green-600 rounded-xl flex items-center justify-center group-hover:shadow-xl transition-shadow">
-                    <i class="fas fa-phone text-white text-xl"></i>
+            <!-- Phone Button -->
+            <a href="tel:+966538105545" class="contact-btn">
+                <div class="contact-icon">
+                    <i class="fas fa-phone"></i>
                 </div>
-                <div class="flex-1 text-right">
-                    <p class="text-gray-500 text-sm font-semibold">اتصل بي</p>
-                    <p class="text-gray-900 font-bold text-lg" dir="ltr">0538105545</p>
+                <div class="contact-info">
+                    <div class="contact-label">اتصال / Call</div>
+                    <div class="contact-value" dir="ltr">0538105545</div>
                 </div>
-                <i class="fas fa-chevron-left text-gray-300 group-hover:text-green-500 transition-colors"></i>
             </a>
             
             
-            <!-- WhatsApp -->
             
-            <a href="https://wa.me/966538105545" 
-               target="_blank"
-               class="flex items-center gap-4 p-4 bg-gradient-to-r from-emerald-50 to-teal-50 rounded-2xl hover:shadow-lg transition-all duration-300 hover:scale-[1.02] group border border-emerald-100">
-                <div class="w-14 h-14 bg-gradient-to-br from-emerald-400 to-teal-600 rounded-xl flex items-center justify-center group-hover:shadow-xl transition-shadow">
-                    <i class="fab fa-whatsapp text-white text-2xl"></i>
+            <!-- Email Button -->
+            <a href="mailto:Meshary.ib@gmail.com" class="contact-btn">
+                <div class="contact-icon">
+                    <i class="fas fa-envelope"></i>
                 </div>
-                <div class="flex-1 text-right">
-                    <p class="text-gray-500 text-sm font-semibold">واتساب</p>
-                    <p class="text-gray-900 font-bold">راسلني</p>
+                <div class="contact-info">
+                    <div class="contact-label">بريد إلكتروني / Email</div>
+                    <div class="contact-value">Meshary.ib@gmail.com</div>
                 </div>
-                <i class="fas fa-chevron-left text-gray-300 group-hover:text-emerald-500 transition-colors"></i>
             </a>
-            
-            
-            <!-- البريد الإلكتروني -->
-            
-            <a href="mailto:Meshary.ib@gmail.com" 
-               class="flex items-center gap-4 p-4 bg-gradient-to-r from-red-50 to-pink-50 rounded-2xl hover:shadow-lg transition-all duration-300 hover:scale-[1.02] group border border-red-100">
-                <div class="w-14 h-14 bg-gradient-to-br from-red-400 to-pink-600 rounded-xl flex items-center justify-center group-hover:shadow-xl transition-shadow">
-                    <i class="fas fa-envelope text-white text-xl"></i>
-                </div>
-                <div class="flex-1 text-right">
-                    <p class="text-gray-500 text-sm font-semibold">البريد الإلكتروني</p>
-                    <p class="text-gray-900 font-semibold text-sm break-all">Meshary.ib@gmail.com</p>
-                </div>
-                <i class="fas fa-chevron-left text-gray-300 group-hover:text-red-500 transition-colors"></i>
-            </a>
-            
-            
-            <!-- Instagram -->
-            
-            
-            <!-- LinkedIn -->
-            
-            <a href="https://linkedin.com/in/meshary-al-faraj" 
-               target="_blank"
-               class="flex items-center gap-4 p-4 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl hover:shadow-lg transition-all duration-300 hover:scale-[1.02] group border border-blue-100">
-                <div class="w-14 h-14 bg-gradient-to-br from-blue-500 to-indigo-700 rounded-xl flex items-center justify-center group-hover:shadow-xl transition-shadow">
-                    <i class="fab fa-linkedin text-white text-xl"></i>
-                </div>
-                <div class="flex-1 text-right">
-                    <p class="text-gray-500 text-sm font-semibold">LinkedIn</p>
-                    <p class="text-gray-900 font-bold">meshary-al-faraj</p>
-                </div>
-                <i class="fas fa-chevron-left text-gray-300 group-hover:text-blue-500 transition-colors"></i>
-            </a>
-            
-            
-            <!-- Twitter/X -->
-            
-            
-            <!-- YouTube -->
-            
-            
-            <!-- TikTok -->
-            
-            
-            <!-- Snapchat -->
-            
-            <a href="https://snapchat.com/add/https://snapchat.com/t/IRow4C35" 
-               target="_blank"
-               class="flex items-center gap-4 p-4 bg-gradient-to-r from-yellow-50 to-amber-50 rounded-2xl hover:shadow-lg transition-all duration-300 hover:scale-[1.02] group border border-yellow-100">
-                <div class="w-14 h-14 bg-gradient-to-br from-yellow-400 to-yellow-600 rounded-xl flex items-center justify-center group-hover:shadow-xl transition-shadow">
-                    <i class="fab fa-snapchat text-white text-xl"></i>
-                </div>
-                <div class="flex-1 text-right">
-                    <p class="text-gray-500 text-sm font-semibold">Snapchat</p>
-                    <p class="text-gray-900 font-bold">@https://snapchat.com/t/IRow4C35</p>
-                </div>
-                <i class="fas fa-chevron-left text-gray-300 group-hover:text-yellow-500 transition-colors"></i>
-            </a>
-            
-            
-            <!-- GitHub -->
-            
-            
-            <!-- Website -->
-            
-            
-            <!-- Custom Link -->
-            
-            
-            <!-- CV Download -->
-            
-            <a href="./cv.pdf" 
-               download
-               class="flex items-center gap-4 p-4 bg-gradient-to-r from-orange-50 to-red-50 rounded-2xl hover:shadow-lg transition-all duration-300 hover:scale-[1.02] group border border-orange-100">
-                <div class="w-14 h-14 bg-gradient-to-br from-orange-500 to-red-600 rounded-xl flex items-center justify-center group-hover:shadow-xl transition-shadow">
-                    <i class="fas fa-file-pdf text-white text-xl"></i>
-                </div>
-                <div class="flex-1 text-right">
-                    <p class="text-gray-500 text-sm font-semibold">السيرة الذاتية</p>
-                    <p class="text-gray-900 font-bold">تحميل</p>
-                </div>
-                <i class="fas fa-chevron-left text-gray-300 group-hover:text-orange-500 transition-colors"></i>
-            </a>
-            
-            
-            <!-- Job Title -->
-            
-            
-            <!-- Company -->
-            
-            
-            <!-- زر حفظ جهة الاتصال -->
-            <button onclick="saveContact()" 
-                    class="w-full bg-gradient-to-r from-primary to-secondary text-white font-bold py-4 rounded-2xl hover:shadow-2xl transition-all duration-300 hover:scale-[1.02] mt-6 flex items-center justify-center gap-2">
-                <i class="fas fa-download"></i>
-                <span>حفظ جهة الاتصال</span>
-            </button>
             
         </div>
+        
+        <!-- Social Links -->
+        
+        
+        <div class="social-section">
+            
+            
+            
+            <a href="https://linkedin.com/in/meshary-al-faraj" class="social-btn linkedin-btn" target="_blank" aria-label="LinkedIn">
+                <i class="fab fa-linkedin-in"></i>
+            </a>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <a href="https://snapchat.com/add/https://snapchat.com/t/IRow4C35" class="social-btn" style="background: #FFFC00; color: #000;" target="_blank" aria-label="Snapchat">
+                <i class="fab fa-snapchat"></i>
+            </a>
+            
+            
+            
+        </div>
+        
+        <!-- Additional Info Section -->
+        <div style="display: flex; flex-direction: column; gap: 14px; margin-top: 28px;">
+            
+            
+            
+            
+            
+            <a href="./cv.pdf" class="contact-btn" download>
+                <div class="contact-icon">
+                    <i class="fas fa-file-pdf"></i>
+                </div>
+                <div class="contact-info">
+                    <div class="contact-label">السيرة الذاتية</div>
+                    <div class="contact-value">تحميل</div>
+                </div>
+            </a>
+            
+            
+            
+            
+            
+        </div>
+        
+        <!-- Save Contact Button -->
+        <a href="./contact.vcf" download class="save-contact">
+            <i class="fas fa-user-plus"></i>
+            <span>إضافة لجهات الاتصال / Add to Contacts</span>
+        </a>
         
         <!-- Footer -->
-        <div class="text-center mt-6 pb-4">
-            <p class="text-gray-500 text-sm">مدعوم بواسطة <a href="https://maroof-id.github.io/maroof-cards/" style="color: #667eea; font-weight: 700; text-decoration: none;" target="_blank">معروف</a></p>
+        <div style="text-align: center; margin-top: 24px; padding-top: 24px; border-top: 1px solid rgba(197, 164, 126, 0.2);">
+            <p style="color: #666666; font-size: 13px;">مدعوم بواسطة <a href="https://maroof-id.github.io/maroof-cards/" style="color: #C5A47E; font-weight: 600; text-decoration: none;" target="_blank">معروف</a></p>
         </div>
-        
     </div>
-    
-    <script>
-        function saveContact() {
-            const vcard = `BEGIN:VCARD
-VERSION:3.0
-FN:Meshary AlFaraj 
-TEL;TYPE=CELL:0538105545
-EMAIL:Meshary.ib@gmail.com
-
-
-END:VCARD`;
-            
-            const blob = new Blob([vcard], { type: 'text/vcard;charset=utf-8' });
-            const url = URL.createObjectURL(blob);
-            const link = document.createElement('a');
-            link.href = url;
-            link.download = 'Meshary AlFaraj .vcf';
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-            URL.revokeObjectURL(url);
-        }
-    </script>
-    
 </body>
 </html>
