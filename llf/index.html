@@ -7,7 +7,7 @@
     <title>Meshary AlFaraj  - معروف</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Archivo+Black&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
@@ -18,101 +18,122 @@
         }
         
         :root {
-            --glass-bg: rgba(255, 255, 255, 0.15);
-            --glass-border: rgba(255, 255, 255, 0.3);
-            --glass-shadow: rgba(0, 0, 0, 0.1);
-            --text-dark: rgba(0, 0, 0, 0.9);
-            --text-light: rgba(0, 0, 0, 0.7);
-            --accent: rgba(139, 92, 246, 0.9);
+            --retro-orange: #E36414;
+            --retro-yellow: #F4A259;
+            --retro-brown: #8B4513;
+            --retro-cream: #FFF4E6;
+            --retro-darkbrown: #3D2817;
+            --retro-mustard: #D4A373;
+            --retro-red: #C1440E;
         }
         
         body {
-            font-family: 'Tajawal', sans-serif;
+            font-family: 'Bebas Neue', 'Arial Black', sans-serif;
+            background: linear-gradient(135deg, var(--retro-mustard) 0%, var(--retro-cream) 100%);
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
             padding: 20px;
             position: relative;
-            overflow-x: hidden;
         }
         
-        /* خلفية متدرجة ملونة - أخضر وأزرق */
+        /* Retro Circles Pattern */
         body::before {
             content: '';
             position: fixed;
             inset: 0;
-            background: linear-gradient(135deg, 
-                #10b981 0%, 
-                #14b8a6 25%, 
-                #06b6d4 50%, 
-                #0ea5e9 75%, 
-                #3b82f6 100%);
-            background-size: 400% 400%;
-            animation: gradientShift 15s ease infinite;
-            z-index: -2;
+            background-image: 
+                radial-gradient(circle at 15% 25%, rgba(227, 100, 20, 0.15) 0%, transparent 15%),
+                radial-gradient(circle at 85% 75%, rgba(193, 68, 14, 0.15) 0%, transparent 15%),
+                radial-gradient(circle at 50% 50%, rgba(244, 162, 89, 0.1) 0%, transparent 20%);
+            z-index: 0;
         }
         
-        /* تأثير الجسيمات */
+        /* Film Grain */
         body::after {
             content: '';
             position: fixed;
             inset: 0;
-            background-image: 
-                radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.2) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.15) 0%, transparent 50%),
-                radial-gradient(circle at 40% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
-            z-index: -1;
-        }
-        
-        @keyframes gradientShift {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 300 300' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.12;
+            pointer-events: none;
+            z-index: 1;
         }
         
         .container {
             width: 100%;
             max-width: 560px;
             position: relative;
+            z-index: 2;
         }
         
-        /* البطاقة الزجاجية الرئيسية */
-        .glass-card {
-            background: var(--glass-bg);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-radius: 32px;
-            border: 2px solid var(--glass-border);
-            box-shadow: 
-                0 8px 32px 0 var(--glass-shadow),
-                inset 0 1px 0 0 rgba(255, 255, 255, 0.5);
-            padding: 48px 40px 44px;
+        /* Main Card - Retro Japanese Style */
+        .retro-card {
+            background: var(--retro-cream);
+            padding: 0;
             position: relative;
-            overflow: hidden;
+            box-shadow: 
+                12px 12px 0 var(--retro-brown),
+                12px 12px 0 2px var(--retro-darkbrown);
         }
         
-        /* تأثير الضوء المتحرك */
-        .glass-card::before {
+        /* Thick Border Stripes */
+        .border-top,
+        .border-bottom {
+            height: 16px;
+            background: repeating-linear-gradient(
+                90deg,
+                var(--retro-orange),
+                var(--retro-orange) 20px,
+                var(--retro-yellow) 20px,
+                var(--retro-yellow) 40px,
+                var(--retro-red) 40px,
+                var(--retro-red) 60px
+            );
+        }
+        
+        .border-top {
+            border-bottom: 4px solid var(--retro-darkbrown);
+        }
+        
+        .border-bottom {
+            border-top: 4px solid var(--retro-darkbrown);
+        }
+        
+        /* Content Area */
+        .content-area {
+            padding: 36px 32px;
+            position: relative;
+        }
+        
+        /* Decorative Corners */
+        .content-area::before,
+        .content-area::after {
             content: '';
             position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
-            animation: rotate 10s linear infinite;
-            pointer-events: none;
+            width: 40px;
+            height: 40px;
+            background: var(--retro-orange);
+            border: 4px solid var(--retro-darkbrown);
         }
         
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
+        .content-area::before {
+            top: 20px;
+            right: 20px;
+            clip-path: polygon(0 0, 100% 0, 100% 100%);
+        }
+        
+        .content-area::after {
+            bottom: 20px;
+            left: 20px;
+            clip-path: polygon(0 0, 0 100%, 100% 100%);
         }
         
         /* Profile Section */
         .profile-section {
             text-align: center;
-            margin-bottom: 36px;
+            margin-bottom: 32px;
             position: relative;
         }
         
@@ -120,155 +141,144 @@
             width: 150px;
             height: 150px;
             margin: 0 auto 24px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.25);
-            backdrop-filter: blur(10px);
-            border: 3px solid rgba(255, 255, 255, 0.4);
+            border: 6px solid var(--retro-orange);
             box-shadow: 
-                0 12px 40px rgba(0, 0, 0, 0.15),
-                inset 0 2px 0 rgba(255, 255, 255, 0.5),
-                0 0 0 12px rgba(255, 255, 255, 0.1);
+                6px 6px 0 var(--retro-brown),
+                6px 6px 0 2px var(--retro-darkbrown);
             display: flex;
             align-items: center;
             justify-content: center;
             overflow: hidden;
+            background: linear-gradient(135deg, var(--retro-yellow) 0%, var(--retro-mustard) 100%);
             position: relative;
-        }
-        
-        .profile-photo::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            border-radius: 50%;
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.3) 0%, transparent 100%);
+            clip-path: polygon(
+                10% 0%, 90% 0%, 100% 10%, 100% 90%, 90% 100%, 10% 100%, 0% 90%, 0% 10%
+            );
         }
         
         .profile-photo img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            filter: sepia(0.3) contrast(1.15) brightness(1.05) saturate(1.2);
         }
         
         .profile-photo i {
             font-size: 64px;
-            color: rgba(0, 0, 0, 0.6);
-            position: relative;
-            z-index: 1;
+            color: var(--retro-brown);
         }
         
         .name {
-            font-size: 38px;
-            font-weight: 800;
-            color: rgba(255, 255, 255, 0.95);
-            margin-bottom: 12px;
-            letter-spacing: -0.5px;
-            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+            font-family: 'Archivo Black', 'Impact', sans-serif;
+            font-size: 42px;
+            font-weight: 900;
+            color: var(--retro-darkbrown);
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 
+                4px 4px 0 var(--retro-orange),
+                8px 8px 0 var(--retro-yellow);
+            line-height: 1.1;
+            position: relative;
         }
         
         .bio {
-            font-size: 18px;
-            color: rgba(255, 255, 255, 0.9);
-            line-height: 1.7;
-            text-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 22px;
+            color: var(--retro-brown);
+            line-height: 1.4;
+            letter-spacing: 1px;
+            max-width: 90%;
+            margin: 0 auto;
         }
         
-        /* 3D SAVE BUTTON - زجاجي */
+        /* Retro Divider */
+        .retro-divider {
+            height: 8px;
+            background: var(--retro-orange);
+            margin: 28px 0;
+            box-shadow: 
+                0 4px 0 var(--retro-brown),
+                0 4px 0 2px var(--retro-darkbrown);
+            position: relative;
+        }
+        
+        .retro-divider::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 24px;
+            height: 24px;
+            background: var(--retro-red);
+            border: 4px solid var(--retro-darkbrown);
+            rotate: 45deg;
+        }
+        
+        /* Save Button - Bold Retro */
         .save-section {
-            margin-bottom: 28px;
+            margin-bottom: 24px;
         }
         
         .save-btn {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 14px;
+            gap: 12px;
             width: 100%;
-            padding: 24px 32px;
-            background: rgba(255, 255, 255, 0.25);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 2px solid rgba(255, 255, 255, 0.4);
-            border-radius: 20px;
-            color: rgba(255, 255, 255, 0.95);
+            padding: 18px 28px;
+            background: var(--retro-orange);
+            border: 5px solid var(--retro-darkbrown);
+            color: var(--retro-cream);
             text-decoration: none;
-            font-weight: 800;
-            font-size: 20px;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: 
-                0 12px 40px rgba(0, 0, 0, 0.15),
-                inset 0 1px 0 rgba(255, 255, 255, 0.5),
-                inset 0 -1px 0 rgba(0, 0, 0, 0.1);
-            position: relative;
-            overflow: hidden;
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 24px;
+            font-weight: 900;
+            text-transform: uppercase;
             cursor: pointer;
-        }
-        
-        .save-btn::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, transparent 100%);
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-        
-        .save-btn::after {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
-            transform: scale(0);
-            transition: transform 0.5s;
+            transition: all 0.2s;
+            box-shadow: 
+                6px 6px 0 var(--retro-brown),
+                6px 6px 0 2px var(--retro-darkbrown);
+            position: relative;
+            letter-spacing: 2px;
+            text-shadow: 3px 3px 0 var(--retro-darkbrown);
         }
         
         .save-btn:hover {
-            background: rgba(255, 255, 255, 0.35);
-            transform: translateY(-4px) scale(1.02);
+            background: var(--retro-red);
+            transform: translate(-2px, -2px);
             box-shadow: 
-                0 20px 60px rgba(0, 0, 0, 0.2),
-                inset 0 2px 0 rgba(255, 255, 255, 0.6);
-        }
-        
-        .save-btn:hover::before {
-            opacity: 1;
-        }
-        
-        .save-btn:hover::after {
-            transform: scale(1);
+                8px 8px 0 var(--retro-brown),
+                8px 8px 0 2px var(--retro-darkbrown);
         }
         
         .save-btn:active {
-            transform: translateY(-2px) scale(1);
+            transform: translate(3px, 3px);
+            box-shadow: 
+                3px 3px 0 var(--retro-brown),
+                3px 3px 0 2px var(--retro-darkbrown);
         }
         
         .save-icon {
-            font-size: 24px;
-            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
-            animation: float 3s ease-in-out infinite;
+            font-size: 26px;
         }
         
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-6px); }
-        }
-        
-        /* SPLIT BUTTON - زجاجي */
+        /* Split Button - Retro Style */
         .contact-section {
-            margin-bottom: 28px;
+            margin-bottom: 24px;
         }
         
         .split-btn {
             display: flex;
-            height: 82px;
-            border-radius: 18px;
+            height: 80px;
+            border: 5px solid var(--retro-darkbrown);
+            box-shadow: 
+                6px 6px 0 var(--retro-brown),
+                6px 6px 0 2px var(--retro-darkbrown);
             overflow: hidden;
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(10px);
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
         }
         
         .split-half {
@@ -277,69 +287,56 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 8px;
+            gap: 6px;
             text-decoration: none;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.2s;
             position: relative;
-            backdrop-filter: blur(8px);
-        }
-        
-        .split-half::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: rgba(255, 255, 255, 0.1);
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-        
-        .split-half:hover::before {
-            opacity: 1;
+            font-family: 'Bebas Neue', sans-serif;
         }
         
         .call-side {
-            background: linear-gradient(135deg, rgba(34, 197, 94, 0.3) 0%, rgba(22, 163, 74, 0.3) 100%);
-            border-left: 1px solid rgba(255, 255, 255, 0.3);
+            background: linear-gradient(135deg, #6B8E23 0%, #556B2F 100%);
+            border-left: 3px solid var(--retro-darkbrown);
         }
         
         .call-side:hover {
-            background: linear-gradient(135deg, rgba(34, 197, 94, 0.4) 0%, rgba(22, 163, 74, 0.4) 100%);
-            transform: translateX(-3px) scale(1.02);
+            background: linear-gradient(135deg, #556B2F 0%, #3D5018 100%);
         }
         
         .whatsapp-side {
-            background: linear-gradient(135deg, rgba(16, 185, 129, 0.3) 0%, rgba(5, 150, 105, 0.3) 100%);
+            background: linear-gradient(135deg, #8FBC8F 0%, #6B8E6B 100%);
         }
         
         .whatsapp-side:hover {
-            background: linear-gradient(135deg, rgba(16, 185, 129, 0.4) 0%, rgba(5, 150, 105, 0.4) 100%);
-            transform: translateX(3px) scale(1.02);
+            background: linear-gradient(135deg, #6B8E6B 0%, #556B55 100%);
         }
         
         .split-icon {
             font-size: 32px;
-            color: rgba(255, 255, 255, 0.95);
-            filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.2));
+            color: var(--retro-cream);
+            text-shadow: 3px 3px 0 rgba(0, 0, 0, 0.3);
         }
         
         .split-text {
-            color: rgba(255, 255, 255, 0.95);
+            color: var(--retro-cream);
             text-align: center;
         }
         
         .split-label {
-            font-size: 16px;
+            font-size: 18px;
             font-weight: 700;
-            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+            text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
         
         .split-number {
             font-size: 14px;
             font-weight: 600;
-            opacity: 0.9;
+            letter-spacing: 0.5px;
         }
         
-        /* Social & Email Cards - زجاجية */
+        /* Info Cards - Bold Blocks */
         .info-grid {
             display: grid;
             gap: 14px;
@@ -348,57 +345,45 @@
         .info-card {
             display: flex;
             align-items: center;
-            gap: 16px;
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1.5px solid rgba(255, 255, 255, 0.35);
-            border-radius: 16px;
+            gap: 14px;
+            padding: 16px;
+            background: var(--retro-yellow);
+            border: 4px solid var(--retro-darkbrown);
             text-decoration: none;
-            transition: all 0.3s;
+            transition: all 0.2s;
             box-shadow: 
-                0 4px 16px rgba(0, 0, 0, 0.1),
-                inset 0 1px 0 rgba(255, 255, 255, 0.4);
+                4px 4px 0 var(--retro-brown),
+                4px 4px 0 2px var(--retro-darkbrown);
             position: relative;
-            overflow: hidden;
-        }
-        
-        .info-card::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, transparent 100%);
-            opacity: 0;
-            transition: opacity 0.3s;
         }
         
         .info-card:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: translateY(-3px);
+            background: var(--retro-mustard);
+            transform: translate(-2px, -2px);
             box-shadow: 
-                0 8px 32px rgba(0, 0, 0, 0.15),
-                inset 0 1px 0 rgba(255, 255, 255, 0.5);
+                6px 6px 0 var(--retro-brown),
+                6px 6px 0 2px var(--retro-darkbrown);
         }
         
-        .info-card:hover::before {
-            opacity: 1;
+        .info-card:active {
+            transform: translate(2px, 2px);
+            box-shadow: 
+                2px 2px 0 var(--retro-brown),
+                2px 2px 0 2px var(--retro-darkbrown);
         }
         
         .info-icon {
-            width: 54px;
-            height: 54px;
-            border-radius: 14px;
+            width: 50px;
+            height: 50px;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 24px;
-            color: rgba(255, 255, 255, 0.95);
+            background: var(--retro-orange);
+            border: 3px solid var(--retro-darkbrown);
             flex-shrink: 0;
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(8px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            color: var(--retro-cream);
+            box-shadow: 3px 3px 0 var(--retro-brown);
         }
         
         .info-content {
@@ -406,51 +391,26 @@
         }
         
         .info-label {
-            font-size: 13px;
-            color: rgba(255, 255, 255, 0.85);
-            font-weight: 600;
+            font-size: 14px;
+            color: var(--retro-brown);
+            font-weight: 700;
             margin-bottom: 4px;
-            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
         
         .info-value {
-            font-size: 17px;
-            color: rgba(255, 255, 255, 0.95);
+            font-size: 20px;
+            color: var(--retro-darkbrown);
             font-weight: 700;
-            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
-        }
-        
-        /* Divider - زجاجي */
-        .divider {
-            height: 1px;
-            background: linear-gradient(90deg, 
-                transparent, 
-                rgba(255, 255, 255, 0.3), 
-                transparent);
-            margin: 28px 0;
-            position: relative;
-        }
-        
-        .divider::before {
-            content: '';
-            position: absolute;
-            top: -6px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 12px;
-            height: 12px;
-            background: rgba(255, 255, 255, 0.4);
-            backdrop-filter: blur(4px);
-            border-radius: 50%;
-            border: 2px solid rgba(255, 255, 255, 0.5);
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            font-family: 'Bebas Neue', sans-serif;
+            letter-spacing: 0.5px;
         }
         
         /* Responsive */
         @media (max-width: 640px) {
-            .glass-card {
-                padding: 40px 32px 36px;
-                border-radius: 28px;
+            .content-area {
+                padding: 28px 24px;
             }
             
             .profile-photo {
@@ -463,20 +423,23 @@
             }
             
             .name {
-                font-size: 32px;
+                font-size: 34px;
+                text-shadow: 
+                    3px 3px 0 var(--retro-orange),
+                    6px 6px 0 var(--retro-yellow);
             }
             
             .bio {
-                font-size: 16px;
+                font-size: 20px;
             }
             
             .save-btn {
-                padding: 20px 28px;
-                font-size: 18px;
+                padding: 16px 24px;
+                font-size: 20px;
             }
             
             .split-btn {
-                height: 74px;
+                height: 72px;
             }
             
             .split-icon {
@@ -484,184 +447,204 @@
             }
             
             .split-label {
-                font-size: 15px;
+                font-size: 16px;
+            }
+            
+            .split-number {
+                font-size: 13px;
             }
             
             .info-icon {
-                width: 50px;
-                height: 50px;
+                width: 46px;
+                height: 46px;
                 font-size: 22px;
+            }
+            
+            .info-label {
+                font-size: 13px;
+            }
+            
+            .info-value {
+                font-size: 18px;
+            }
+            
+            .border-top,
+            .border-bottom {
+                height: 12px;
             }
         }
         
-        /* Animations */
-        @keyframes fadeInScale {
-            from {
+        /* Pop In Animation */
+        @keyframes popIn {
+            0% {
                 opacity: 0;
-                transform: scale(0.95) translateY(20px);
+                transform: scale(0.8) rotate(-2deg);
             }
-            to {
+            60% {
+                transform: scale(1.05) rotate(1deg);
+            }
+            100% {
                 opacity: 1;
-                transform: scale(1) translateY(0);
+                transform: scale(1) rotate(0deg);
             }
         }
         
         .container {
-            animation: fadeInScale 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            animation: popIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
         
         /* Focus states */
         .split-half:focus,
         .info-card:focus,
         .save-btn:focus {
-            outline: 3px solid rgba(255, 255, 255, 0.5);
-            outline-offset: 3px;
-        }
-        
-        /* تأثيرات إضافية للزجاج */
-        @supports (backdrop-filter: blur(20px)) or (-webkit-backdrop-filter: blur(20px)) {
-            .glass-card {
-                background: rgba(255, 255, 255, 0.18);
-            }
-            
-            .save-btn {
-                background: rgba(255, 255, 255, 0.28);
-            }
-            
-            .info-card {
-                background: rgba(255, 255, 255, 0.22);
-            }
+            outline: 4px solid var(--retro-darkbrown);
+            outline-offset: 4px;
         }
     </style>
 </head>
 <body>
+    
     <div class="container">
-        <div class="glass-card">
+        <div class="retro-card">
             
-            <!-- Profile Section -->
-            <div class="profile-section">
-                <div class="profile-photo">
+            <!-- Top Border Stripe -->
+            <div class="border-top"></div>
+            
+            <!-- Content Area -->
+            <div class="content-area">
+                
+                <!-- Profile Section -->
+                <div class="profile-section">
+                    <div class="profile-photo">
+                        
+                        <img src="./photo.jpg" alt="Meshary AlFaraj ">
+                        
+                        
+                    </div>
                     
-                    <img src="./photo.jpg" alt="Meshary AlFaraj ">
+                    <h1 class="name">Meshary AlFaraj </h1>
+                    
+                </div>
+                
+                <div class="retro-divider"></div>
+                
+                <!-- 1️⃣ Save Contact Button -->
+                <div class="save-section">
+                    <a href="./contact.vcf" download class="save-btn">
+                        <i class="fas fa-download save-icon"></i>
+                        <span>حفظ</span>
+                    </a>
+                </div>
+                
+                <!-- 2️⃣ Split Button -->
+                
+                <div class="contact-section">
+                    <div class="split-btn">
+                        <a href="tel:966538105545" class="split-half call-side">
+                            <i class="fas fa-phone split-icon"></i>
+                            <div class="split-text">
+                                <div class="split-label">اتصال</div>
+                                <div class="split-number" dir="ltr">0538105545</div>
+                            </div>
+                        </a>
+                        
+                        <a href="https://wa.me/966538105545" class="split-half whatsapp-side" target="_blank">
+                            <i class="fab fa-whatsapp split-icon"></i>
+                            <div class="split-text">
+                                <div class="split-label">واتساب</div>
+                                <div class="split-number">WhatsApp</div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                
+                
+                <!-- Divider -->
+                
+                
+                <!-- 3️⃣ Social Links & 4️⃣ Email -->
+                <div class="info-grid">
+                    
+                    
+                    
+                    
+                    <a href="https://linkedin.com/in/meshary-al-faraj" class="info-card" target="_blank">
+                        <div class="info-icon">
+                            <i class="fab fa-linkedin"></i>
+                        </div>
+                        <div class="info-content">
+                            <div class="info-label">LinkedIn</div>
+                            <div class="info-value">meshary-al-faraj</div>
+                        </div>
+                    </a>
+                    
+                    
+                    
+                    
+                    
+                    <a href="mailto:Meshary.ib@gmail.com" class="info-card">
+                        <div class="info-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="info-content">
+                            <div class="info-label">البريد الإلكتروني</div>
+                            <div class="info-value">Meshary.ib@gmail.com</div>
+                        </div>
+                    </a>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    <a href="https://snapchat.com/add/https://snapchat.com/t/IRow4C35" class="info-card" target="_blank">
+                        <div class="info-icon">
+                            <i class="fab fa-snapchat"></i>
+                        </div>
+                        <div class="info-content">
+                            <div class="info-label">Snapchat</div>
+                            <div class="info-value">@https://snapchat.com/t/IRow4C35</div>
+                        </div>
+                    </a>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    <a href="./cv.pdf" download class="info-card">
+                        <div class="info-icon">
+                            <i class="fas fa-file-pdf"></i>
+                        </div>
+                        <div class="info-content">
+                            <div class="info-label">السيرة الذاتية</div>
+                            <div class="info-value">تحميل</div>
+                        </div>
+                    </a>
+                    
+                    
+                    
+                    
                     
                     
                 </div>
                 
-                <h1 class="name">Meshary AlFaraj </h1>
-                
-            </div>
-            
-            <!-- 1️⃣ Save Contact Button -->
-            <div class="save-section">
-                <a href="./contact.vcf" download class="save-btn">
-                    <i class="fas fa-download save-icon"></i>
-                    <span>حفظ جهة الاتصال</span>
-                </a>
-            </div>
-            
-            <!-- 2️⃣ Split Button - Call/WhatsApp -->
-            
-            <div class="contact-section">
-                <div class="split-btn">
-                    <a href="tel:966538105545" class="split-half call-side">
-                        <i class="fas fa-phone split-icon"></i>
-                        <div class="split-text">
-                            <div class="split-label">اتصال</div>
-                            <div class="split-number" dir="ltr">0538105545</div>
-                        </div>
-                    </a>
-                    
-                    <a href="https://wa.me/966538105545" class="split-half whatsapp-side" target="_blank">
-                        <i class="fab fa-whatsapp split-icon"></i>
-                        <div class="split-text">
-                            <div class="split-label">واتساب</div>
-                            <div class="split-number">راسلني</div>
-                        </div>
-                    </a>
+                <!-- Footer -->
+                <div style="text-align: center; margin-top: 24px; padding-top: 20px; border-top: 4px solid var(--retro-orange); color: var(--retro-brown);">
+                    <p style="font-size: 14px; font-weight: 700;">مدعوم بواسطة <a href="https://maroof-id.github.io/maroof-cards/" style="color: var(--retro-orange); text-decoration: none; text-shadow: 2px 2px 0 var(--retro-yellow);" target="_blank">معروف</a></p>
                 </div>
-            </div>
-            
-            
-            <!-- Divider -->
-            
-            
-            <!-- 3️⃣ Social Links & 4️⃣ Email -->
-            <div class="info-grid">
-                
-                
-                
-                
-                <a href="https://linkedin.com/in/meshary-al-faraj" class="info-card" target="_blank">
-                    <div class="info-icon">
-                        <i class="fab fa-linkedin"></i>
-                    </div>
-                    <div class="info-content">
-                        <div class="info-label">LinkedIn</div>
-                        <div class="info-value">meshary-al-faraj</div>
-                    </div>
-                </a>
-                
-                
-                
-                
-                
-                <a href="mailto:Meshary.ib@gmail.com" class="info-card">
-                    <div class="info-icon">
-                        <i class="fas fa-envelope"></i>
-                    </div>
-                    <div class="info-content">
-                        <div class="info-label">البريد الإلكتروني</div>
-                        <div class="info-value">Meshary.ib@gmail.com</div>
-                    </div>
-                </a>
-                
-                
-                
-                
-                
-                
-                
-                <a href="https://snapchat.com/add/https://snapchat.com/t/IRow4C35" class="info-card" target="_blank">
-                    <div class="info-icon" style="background: #FFFC00;">
-                        <i class="fab fa-snapchat"></i>
-                    </div>
-                    <div class="info-content">
-                        <div class="info-label">Snapchat</div>
-                        <div class="info-value">@https://snapchat.com/t/IRow4C35</div>
-                    </div>
-                </a>
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                <a href="./cv.pdf" download class="info-card">
-                    <div class="info-icon">
-                        <i class="fas fa-file-pdf"></i>
-                    </div>
-                    <div class="info-content">
-                        <div class="info-label">السيرة الذاتية</div>
-                        <div class="info-value">تحميل</div>
-                    </div>
-                </a>
-                
-                
-                
-                
-                
                 
             </div>
             
-        </div>
-        
-        <!-- Footer -->
-        <div style="background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); padding: 20px; text-align: center; border-top: 1px solid rgba(255, 255, 255, 0.2); margin-top: 0; border-radius: 0 0 32px 32px;">
-            <p style="color: rgba(255, 255, 255, 0.8); font-size: 13px;">مدعوم بواسطة <a href="https://maroof-id.github.io/maroof-cards/" style="color: rgba(255, 255, 255, 0.95); font-weight: 700; text-decoration: none;" target="_blank">معروف</a></p>
+            <!-- Bottom Border Stripe -->
+            <div class="border-bottom"></div>
+            
         </div>
     </div>
+    
 </body>
 </html>
