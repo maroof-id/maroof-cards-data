@@ -1,0 +1,63 @@
+{
+  "formatVersion": 1,
+  "passTypeIdentifier": "pass.com.maroof.card",
+  "serialNumber": "llf",
+  "teamIdentifier": "MAROOF",
+  "organizationName": "Maroof Digital Cards",
+  "description": "للف",
+  "backgroundColor": "rgb(0, 0, 0)",
+  "foregroundColor": "rgb(255, 255, 255)",
+  "labelColor": "rgb(200, 200, 200)",
+  "logoText": "MAROOF",
+  "generic": {
+    "primaryFields": [
+      {
+        "key": "name",
+        "label": "",
+        "value": "للف",
+        "textAlignment": "PKTextAlignmentLeft"
+      }
+    ],
+    "secondaryFields": [
+      {
+        "key": "title",
+        "label": "TITLE",
+        "value": "",
+        "textAlignment": "PKTextAlignmentLeft"
+      },
+      {
+        "key": "company",
+        "label": "COMPANY",
+        "value": "",
+        "textAlignment": "PKTextAlignmentLeft"
+      }
+    ],
+    "auxiliaryFields": [
+      {
+        "key": "phone",
+        "label": "PHONE",
+        "value": "",
+        "textAlignment": "PKTextAlignmentLeft"
+      },
+      {
+        "key": "email",
+        "label": "EMAIL",
+        "value": "",
+        "textAlignment": "PKTextAlignmentLeft"
+      }
+    ],
+    "backFields": [
+      {
+        "key": "url",
+        "label": "Digital Card",
+        "value": "https://maroof-id.github.io/maroof-cards-data/llf/",
+        "textAlignment": "PKTextAlignmentLeft"
+      }
+    ]
+  },
+  "barcode": {
+    "message": "https://maroof-id.github.io/maroof-cards-data/llf/",
+    "format": "PKBarcodeFormatQR",
+    "messageEncoding": "iso-8859-1"
+  }
+}
