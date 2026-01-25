@@ -1,0 +1,1232 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maroof - تسجيل بطاقة</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #1a3a2e 0%, #2c3e50 50%, #1e3a5f 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+        
+        body::before,
+        body::after {
+            content: '';
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: 0.15;
+            animation: float 25s ease-in-out infinite;
+            pointer-events: none;
+        }
+        
+        body::before {
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, #4a9d6f 0%, transparent 70%);
+            top: -250px;
+            right: -250px;
+        }
+        
+        body::after {
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, #3498db 0%, transparent 70%);
+            bottom: -300px;
+            left: -300px;
+            animation-delay: -12s;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(40px, -40px) scale(1.05); }
+            66% { transform: translate(-30px, 30px) scale(0.95); }
+        }
+        
+        .container {
+            max-width: 750px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Server Status Banner */
+        .server-status {
+            background: rgba(76, 175, 80, 0.2);
+            border: 2px solid rgba(76, 175, 80, 0.5);
+            border-radius: 18px;
+            padding: 15px 20px;
+            margin-bottom: 25px;
+            text-align: center;
+            color: #fff;
+            display: none;
+        }
+        
+        .server-status.show {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+        
+        .server-status.online {
+            background: rgba(76, 175, 80, 0.2);
+            border-color: rgba(76, 175, 80, 0.5);
+        }
+        
+        .server-status.searching {
+            background: rgba(255, 152, 0, 0.2);
+            border-color: rgba(255, 152, 0, 0.5);
+            animation: pulse 2s infinite;
+        }
+        
+        .server-status.offline {
+            background: rgba(244, 67, 54, 0.2);
+            border-color: rgba(244, 67, 54, 0.5);
+        }
+        
+        /* Offline Banner */
+        .offline-banner {
+            display: none;
+            background: rgba(255, 152, 0, 0.2);
+            border: 2px solid rgba(255, 152, 0, 0.5);
+            border-radius: 18px;
+            padding: 20px;
+            margin-bottom: 25px;
+            text-align: center;
+            color: #fff;
+            animation: pulse 2s infinite;
+        }
+        
+        .offline-banner.show {
+            display: block;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        
+        .offline-banner i {
+            font-size: 32px;
+            margin-bottom: 12px;
+            display: block;
+            color: #ffa726;
+        }
+        
+        /* Pending Badge */
+        .pending-badge {
+            display: none;
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 152, 0, 0.95);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 25px;
+            font-weight: 600;
+            box-shadow: 0 4px 16px rgba(255, 152, 0, 0.4);
+            z-index: 9999;
+            cursor: pointer;
+            animation: bounce 1s infinite;
+        }
+        
+        .pending-badge.show {
+            display: block;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+        
+        .glass-card {
+            background: rgba(30, 40, 50, 0.85);
+            backdrop-filter: blur(25px) saturate(180%);
+            -webkit-backdrop-filter: blur(25px) saturate(180%);
+            border-radius: 32px;
+            border: 2px solid rgba(255, 255, 255, 0.12);
+            box-shadow: 
+                0 16px 48px 0 rgba(0, 0, 0, 0.5),
+                inset 0 1px 0 0 rgba(255, 255, 255, 0.15),
+                0 0 0 1px rgba(0, 0, 0, 0.3);
+            padding: 50px 45px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, 
+                transparent, 
+                rgba(74, 157, 111, 0.6), 
+                rgba(52, 152, 219, 0.6), 
+                transparent);
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 45px;
+        }
+        
+        .header-icon {
+            font-size: 72px;
+            margin-bottom: 24px;
+            filter: drop-shadow(0 6px 12px rgba(0,0,0,0.4));
+            animation: headerFloat 3s ease-in-out infinite;
+        }
+        
+        @keyframes headerFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+        }
+        
+        .header h1 {
+            color: #ffffff;
+            font-size: 38px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            text-shadow: 0 3px 12px rgba(0,0,0,0.4);
+            letter-spacing: -0.5px;
+        }
+        
+        .header p {
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 17px;
+            font-weight: 400;
+            text-shadow: 0 2px 6px rgba(0,0,0,0.3);
+        }
+        
+        .notice {
+            background: rgba(74, 157, 111, 0.15);
+            border: 2px solid rgba(74, 157, 111, 0.35);
+            border-radius: 18px;
+            padding: 22px 26px;
+            margin-bottom: 35px;
+            color: #ffffff;
+            text-align: center;
+            font-size: 15.5px;
+            line-height: 1.7;
+            box-shadow: 
+                0 6px 20px rgba(0,0,0,0.2),
+                inset 0 1px 0 rgba(255,255,255,0.08);
+        }
+        
+        .notice i {
+            font-size: 28px;
+            display: block;
+            margin-bottom: 14px;
+            color: #4a9d6f;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+        }
+        
+        .notice strong {
+            color: #5dcea6;
+        }
+        
+        .section-title {
+            color: #ffffff;
+            font-size: 21px;
+            font-weight: 600;
+            margin: 40px 0 24px;
+            padding-bottom: 14px;
+            border-bottom: 2px solid rgba(74, 157, 111, 0.3);
+            text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .section-title i {
+            color: #4a9d6f;
+            font-size: 24px;
+        }
+        
+        .form-group {
+            margin-bottom: 22px;
+            position: relative;
+        }
+        
+        .form-group label {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 15.5px;
+            font-weight: 500;
+            margin-bottom: 11px;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .form-group label i {
+            font-size: 19px;
+            width: 28px;
+            text-align: center;
+            color: rgba(74, 157, 111, 0.85);
+            transition: all 0.3s ease;
+        }
+        
+        input, textarea {
+            width: 100%;
+            padding: 16px 20px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 2px solid rgba(255, 255, 255, 0.12);
+            border-radius: 14px;
+            color: #ffffff;
+            font-size: 16px;
+            font-family: inherit;
+            transition: all 0.3s ease;
+            box-shadow: inset 0 2px 6px rgba(0,0,0,0.1);
+        }
+        
+        input:focus, textarea:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 0.12);
+            border-color: rgba(74, 157, 111, 0.6);
+            box-shadow: 
+                inset 0 2px 6px rgba(0,0,0,0.1),
+                0 0 0 4px rgba(74, 157, 111, 0.15);
+        }
+        
+        input::placeholder, textarea::placeholder {
+            color: rgba(255, 255, 255, 0.4);
+        }
+        
+        textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+        
+        .file-input-wrapper {
+            position: relative;
+            overflow: hidden;
+            display: inline-block;
+            width: 100%;
+        }
+        
+        .file-input-wrapper input[type=file] {
+            position: absolute;
+            left: 0;
+            top: 0;
+            opacity: 0;
+            cursor: pointer;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .file-input-label {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 2px dashed rgba(74, 157, 111, 0.4);
+            border-radius: 14px;
+            color: rgba(255, 255, 255, 0.75);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+        
+        .file-input-label:hover {
+            background: rgba(255, 255, 255, 0.12);
+            border-color: rgba(74, 157, 111, 0.6);
+        }
+        
+        .file-input-label i {
+            font-size: 24px;
+            color: #4a9d6f;
+        }
+        
+        .photo-preview {
+            margin-top: 18px;
+            text-align: center;
+            display: none;
+        }
+        
+        .photo-preview img {
+            width: 140px;
+            height: 140px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 4px solid rgba(74, 157, 111, 0.5);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+        }
+        
+        .template-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+            gap: 14px;
+            margin-top: 20px;
+        }
+        
+        .template-card {
+            background: rgba(255, 255, 255, 0.06);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 18px 14px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .template-card:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(74, 157, 111, 0.5);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        }
+        
+        .template-card.selected {
+            background: rgba(74, 157, 111, 0.25);
+            border-color: rgba(74, 157, 111, 0.7);
+            box-shadow: 
+                0 6px 20px rgba(74, 157, 111, 0.3),
+                inset 0 0 0 1px rgba(74, 157, 111, 0.5);
+        }
+        
+        .template-preview {
+            width: 100%;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 12px;
+            background: rgba(0,0,0,0.15);
+            border-radius: 10px;
+        }
+        
+        .template-icon {
+            font-size: 40px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        .template-name {
+            color: #ffffff;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        .template-check {
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            width: 28px;
+            height: 28px;
+            background: #4a9d6f;
+            border-radius: 50%;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+        }
+        
+        .template-card.selected .template-check {
+            display: flex;
+        }
+        
+        .btn {
+            width: 100%;
+            padding: 18px 32px;
+            background: linear-gradient(135deg, #4a9d6f 0%, #3d8a5c 100%);
+            color: white;
+            border: none;
+            border-radius: 14px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 
+                0 6px 20px rgba(74, 157, 111, 0.4),
+                inset 0 1px 0 rgba(255,255,255,0.2);
+            margin-top: 30px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .btn:hover {
+            background: linear-gradient(135deg, #55b47c 0%, #4a9d6f 100%);
+            transform: translateY(-2px);
+            box-shadow: 
+                0 10px 30px rgba(74, 157, 111, 0.5),
+                inset 0 1px 0 rgba(255,255,255,0.3);
+        }
+        
+        .btn:active {
+            transform: translateY(0);
+            box-shadow: 0 4px 12px rgba(74, 157, 111, 0.4);
+        }
+        
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 50px 0;
+        }
+        
+        .spinner {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 24px;
+            border: 5px solid rgba(255, 255, 255, 0.2);
+            border-top-color: #4a9d6f;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        .loading p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 18px;
+        }
+        
+        .success-card {
+            display: none;
+            text-align: center;
+            padding: 60px 40px;
+        }
+        
+        .success-card .success-icon {
+            font-size: 100px;
+            color: #4a9d6f;
+            margin-bottom: 30px;
+            filter: drop-shadow(0 8px 16px rgba(0,0,0,0.3));
+            animation: scaleIn 0.5s ease-out;
+        }
+        
+        @keyframes scaleIn {
+            from {
+                transform: scale(0);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+        
+        .success-card h2 {
+            color: #ffffff;
+            font-size: 32px;
+            margin-bottom: 16px;
+            text-shadow: 0 3px 10px rgba(0,0,0,0.3);
+        }
+        
+        .success-card p {
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 17px;
+            line-height: 1.7;
+            margin-bottom: 35px;
+        }
+        
+        .success-card .btn {
+            max-width: 280px;
+            margin: 0 auto;
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 15px;
+            }
+            
+            .glass-card {
+                padding: 35px 25px;
+            }
+            
+            .header h1 {
+                font-size: 30px;
+            }
+            
+            .template-gallery {
+                grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Server Status -->
+        <div id="serverStatus" class="server-status">
+            <i class="fas fa-circle-notch fa-spin"></i>
+            <span id="serverStatusText">جاري البحث عن الخادم...</span>
+        </div>
+        
+        <!-- Offline Banner -->
+        <div id="offlineBanner" class="offline-banner">
+            <i class="fas fa-wifi"></i>
+            <h3>📡 الخادم غير متصل</h3>
+            <p>تم حفظ بياناتك محلياً<br>سيتم الإرسال تلقائياً عند عودة الاتصال</p>
+        </div>
+        
+        <!-- Pending Badge -->
+        <div id="pendingBadge" class="pending-badge" onclick="retryPending()">
+            <i class="fas fa-clock"></i>
+            <span id="pendingCount">0</span> قيد الانتظار
+        </div>
+        
+        <!-- Main Card -->
+        <div class="glass-card">
+            <div id="registerForm">
+                <div class="header">
+                    <div class="header-icon">📇</div>
+                    <h1>تسجيل بطاقة جديدة</h1>
+                    <p>أنشئ بطاقتك الرقمية الآن</p>
+                </div>
+                
+                <div class="notice">
+                    <i class="fas fa-info-circle"></i>
+                    <strong>ملاحظة:</strong> املأ البيانات بعناية. سيتم حفظ بياناتك محلياً حتى يتم رفعها للخادم.
+                </div>
+                
+                <form id="mainForm">
+                    <!-- Personal Info -->
+                    <div class="section-title">
+                        <i class="fas fa-user"></i>
+                        معلومات شخصية
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>
+                            <i class="fas fa-signature"></i>
+                            الاسم الكامل *
+                        </label>
+                        <input type="text" name="name" required placeholder="محمد أحمد">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>
+                            <i class="fas fa-briefcase"></i>
+                            المسمى الوظيفي
+                        </label>
+                        <input type="text" name="job_title" placeholder="مدير تسويق">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>
+                            <i class="fas fa-building"></i>
+                            الشركة
+                        </label>
+                        <input type="text" name="company" placeholder="شركة معروف">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>
+                            <i class="fas fa-image"></i>
+                            الصورة الشخصية
+                        </label>
+                        <div class="file-input-wrapper">
+                            <input type="file" id="photoInput" accept="image/*">
+                            <div class="file-input-label">
+                                <i class="fas fa-camera"></i>
+                                <span>اختر صورة</span>
+                            </div>
+                        </div>
+                        <div id="photoPreview" class="photo-preview">
+                            <img id="previewImage" src="" alt="Preview">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>
+                            <i class="fas fa-align-right"></i>
+                            نبذة تعريفية
+                        </label>
+                        <textarea name="bio" placeholder="نبذة قصيرة عنك..."></textarea>
+                    </div>
+                    
+                    <!-- Contact Info -->
+                    <div class="section-title">
+                        <i class="fas fa-address-book"></i>
+                        معلومات التواصل
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>
+                            <i class="fas fa-phone"></i>
+                            رقم الجوال
+                        </label>
+                        <input type="tel" name="phone" placeholder="0501234567">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>
+                            <i class="fas fa-phone-alt"></i>
+                            رقم جوال إضافي
+                        </label>
+                        <input type="tel" name="phone2" placeholder="0507654321">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>
+                            <i class="fas fa-envelope"></i>
+                            البريد الإلكتروني
+                        </label>
+                        <input type="email" name="email" placeholder="example@email.com">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>
+                            <i class="fas fa-globe"></i>
+                            الموقع الإلكتروني
+                        </label>
+                        <input type="url" name="website" placeholder="https://example.com">
+                    </div>
+                    
+                    <!-- Social Media -->
+                    <div class="section-title">
+                        <i class="fas fa-share-alt"></i>
+                        حسابات التواصل الاجتماعي
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>
+                            <i class="fab fa-instagram"></i>
+                            إنستقرام
+                        </label>
+                        <input type="text" name="instagram" placeholder="username">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>
+                            <i class="fab fa-linkedin"></i>
+                            لينكد إن
+                        </label>
+                        <input type="text" name="linkedin" placeholder="username">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>
+                            <i class="fab fa-twitter"></i>
+                            تويتر (X)
+                        </label>
+                        <input type="text" name="twitter" placeholder="username">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>
+                            <i class="fab fa-youtube"></i>
+                            يوتيوب
+                        </label>
+                        <input type="text" name="youtube" placeholder="channel">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>
+                            <i class="fab fa-tiktok"></i>
+                            تيك توك
+                        </label>
+                        <input type="text" name="tiktok" placeholder="username">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>
+                            <i class="fab fa-snapchat"></i>
+                            سناب شات
+                        </label>
+                        <input type="text" name="snapchat" placeholder="username">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>
+                            <i class="fab fa-github"></i>
+                            GitHub
+                        </label>
+                        <input type="text" name="github" placeholder="username">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>
+                            <i class="fas fa-link"></i>
+                            رابط مخصص
+                        </label>
+                        <input type="url" name="custom_link" placeholder="https://custom-link.com">
+                    </div>
+                    
+                    <!-- CV Upload -->
+                    <div class="section-title">
+                        <i class="fas fa-file-pdf"></i>
+                        السيرة الذاتية (اختياري)
+                    </div>
+                    
+                    <div class="form-group">
+                        <div class="file-input-wrapper">
+                            <input type="file" id="cvInput" accept=".pdf">
+                            <div class="file-input-label">
+                                <i class="fas fa-file-upload"></i>
+                                <span>اختر ملف PDF</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Template Selection -->
+                    <div class="section-title">
+                        <i class="fas fa-palette"></i>
+                        اختر تصميم البطاقة
+                    </div>
+                    
+                    <div id="templateGallery" class="template-gallery"></div>
+                    <input type="hidden" id="selectedTemplate" name="template" value="professional">
+                    
+                    <button type="submit" class="btn">
+                        <i class="fas fa-paper-plane"></i>
+                        إرسال التسجيل
+                    </button>
+                </form>
+            </div>
+            
+            <div id="loading" class="loading">
+                <div class="spinner"></div>
+                <p>جاري معالجة طلبك...</p>
+            </div>
+        </div>
+        
+        <!-- Success Card -->
+        <div id="successCard" class="glass-card success-card">
+            <div class="success-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h2>تم التسجيل بنجاح!</h2>
+            <p>
+                تم حفظ بياناتك وسيتم معالجتها قريباً.<br>
+                شكراً لاستخدامك بطاقات معروف الرقمية!
+            </p>
+            <button class="btn" onclick="location.reload()">
+                <i class="fas fa-plus"></i>
+                تسجيل بطاقة جديدة
+            </button>
+        </div>
+    </div>
+    
+    <script>
+    const STORAGE_KEY = 'maroof_pending_registrations';
+    let DISCOVERED_ENDPOINT = null;
+    let SERVER_STATUS = 'searching'; // searching, online, offline
+    
+    // ========== LocalStorage Functions ==========
+    
+    function getPendingRegistrations() {
+        try {
+            const data = localStorage.getItem(STORAGE_KEY);
+            return data ? JSON.parse(data) : [];
+        } catch {
+            return [];
+        }
+    }
+    
+    function savePendingRegistration(data) {
+        const pending = getPendingRegistrations();
+        pending.push({
+            data: data,
+            timestamp: Date.now(),
+            id: Date.now() + Math.random()
+        });
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(pending));
+        updatePendingBadge();
+    }
+    
+    function removePendingRegistration(id) {
+        const pending = getPendingRegistrations();
+        const filtered = pending.filter(item => item.id !== id);
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(filtered));
+        updatePendingBadge();
+    }
+    
+    function updatePendingBadge() {
+        const pending = getPendingRegistrations();
+        const badge = document.getElementById('pendingBadge');
+        const count = document.getElementById('pendingCount');
+        
+        if (pending.length > 0) {
+            count.textContent = pending.length;
+            badge.classList.add('show');
+        } else {
+            badge.classList.remove('show');
+        }
+    }
+    
+    // ========== Server Discovery ==========
+    
+    async function discoverPiServer() {
+        const tryEndpoints = [
+            'http://raspberrypi.local:7070',
+            'http://localhost:7070',
+        ];
+        
+        // Try saved endpoint first
+        const savedEndpoint = localStorage.getItem('maroof_server_endpoint');
+        if (savedEndpoint) {
+            tryEndpoints.unshift(savedEndpoint);
+        }
+        
+        for (const base of tryEndpoints) {
+            try {
+                const controller = new AbortController();
+                const timeout = setTimeout(() => controller.abort(), 2000);
+                
+                const response = await fetch(base + '/api/server-info', {
+                    signal: controller.signal
+                });
+                
+                clearTimeout(timeout);
+                
+                if (response.ok) {
+                    const info = await response.json();
+                    
+                    // ✅ FIX: Check for local_ip or ip
+                    if (info.success && (info.local_ip || info.ip)) {
+                        DISCOVERED_ENDPOINT = 'http://' + (info.local_ip || info.ip) + ':' + (info.port || 7070);
+                        localStorage.setItem('maroof_server_endpoint', DISCOVERED_ENDPOINT);
+                        console.log('✅ Pi discovered:', DISCOVERED_ENDPOINT);
+                        return DISCOVERED_ENDPOINT;
+                    } else if (info.success) {
+                        // Fallback if local_ip is not present
+                        DISCOVERED_ENDPOINT = base;
+                        localStorage.setItem('maroof_server_endpoint', DISCOVERED_ENDPOINT);
+                        console.log('✅ Pi discovered (fallback):', DISCOVERED_ENDPOINT);
+                        return DISCOVERED_ENDPOINT;
+                    }
+                }
+            } catch (e) {
+                console.log(`❌ Failed to reach ${base}:`, e.message);
+                continue;
+            }
+        }
+        
+        return null;
+    }
+    
+    async function testServerConnection() {
+        // Test cached endpoint first
+        if (DISCOVERED_ENDPOINT) {
+            try {
+                const controller = new AbortController();
+                const timeout = setTimeout(() => controller.abort(), 2000);
+                
+                const response = await fetch(DISCOVERED_ENDPOINT + '/api/templates', {
+                    signal: controller.signal
+                });
+                
+                clearTimeout(timeout);
+                
+                if (response.ok) {
+                    updateServerStatus('online');
+                    return DISCOVERED_ENDPOINT + '/api/register';
+                }
+            } catch (e) {
+                console.log('Cached endpoint failed, rediscovering...');
+            }
+        }
+        
+        // Discover new endpoint
+        const discovered = await discoverPiServer();
+        if (discovered) {
+            updateServerStatus('online');
+            return discovered + '/api/register';
+        }
+        
+        updateServerStatus('offline');
+        return null;
+    }
+    
+    function updateServerStatus(status) {
+        SERVER_STATUS = status;
+        const statusDiv = document.getElementById('serverStatus');
+        const statusText = document.getElementById('serverStatusText');
+        
+        statusDiv.classList.remove('searching', 'online', 'offline');
+        statusDiv.classList.add(status);
+        statusDiv.classList.add('show');
+        
+        if (status === 'online') {
+            statusText.innerHTML = '<i class="fas fa-check-circle"></i> متصل بالخادم';
+        } else if (status === 'offline') {
+            statusText.innerHTML = '<i class="fas fa-exclamation-triangle"></i> الخادم غير متاح - سيتم الحفظ محلياً';
+        } else {
+            statusText.innerHTML = '<i class="fas fa-circle-notch fa-spin"></i> جاري البحث عن الخادم...';
+        }
+    }
+    
+    async function sendToServer(data, endpoint) {
+        const response = await fetch(endpoint, {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(data),
+            mode: 'cors'
+        });
+        
+        if (!response.ok) {
+            throw new Error('Server error: ' + response.status);
+        }
+        
+        return await response.json();
+    }
+    
+    // ========== Template Functions ==========
+    
+    const TEMPLATE_METADATA = {
+        professional: { nameAr: 'احترافي', icon: 'fa-briefcase' },
+        friendly: { nameAr: 'ودي', icon: 'fa-smile' },
+        luxury: { nameAr: 'فاخر', icon: 'fa-gem' },
+        modern: { nameAr: 'عصري', icon: 'fa-rocket' },
+        classic: { nameAr: 'كلاسيكي', icon: 'fa-crown' },
+        Gaming: { nameAr: 'ألعاب', icon: 'fa-gamepad' },
+        Japan70s: { nameAr: 'ياباني', icon: 'fa-torii-gate' },
+        it: { nameAr: 'تقني', icon: 'fa-code' },
+        minimal: { nameAr: 'بسيط', icon: 'fa-minus' },
+        Website: { nameAr: 'موقع', icon: 'fa-globe' }
+    };
+
+    function selectTemplate(template) {
+        document.querySelectorAll('.template-card').forEach(c => c.classList.remove('selected'));
+        const card = document.querySelector(`[data-template="${template}"]`);
+        if (card) {
+            card.classList.add('selected');
+            document.getElementById('selectedTemplate').value = template;
+        }
+    }
+
+    async function loadTemplates() {
+        const gallery = document.getElementById('templateGallery');
+        let templates = Object.keys(TEMPLATE_METADATA);
+        
+        gallery.innerHTML = '';
+        
+        templates.forEach(template => {
+            const meta = TEMPLATE_METADATA[template] || { nameAr: template, icon: 'fa-file' };
+            const card = document.createElement('div');
+            card.className = 'template-card';
+            card.dataset.template = template;
+            if (template === 'professional') card.classList.add('selected');
+            
+            card.innerHTML = `
+                <div class="template-preview">
+                    <i class="fas ${meta.icon} template-icon"></i>
+                </div>
+                <div class="template-name">${meta.nameAr}</div>
+                <div class="template-check">
+                    <i class="fas fa-check" style="color:white;font-size:14px;"></i>
+                </div>
+            `;
+            
+            card.onclick = () => selectTemplate(template);
+            gallery.appendChild(card);
+        });
+    }
+    
+    // ========== File Handling ==========
+    
+    function fileToBase64(file) {
+        return new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.onload = () => resolve(reader.result);
+            reader.onerror = reject;
+            reader.readAsDataURL(file);
+        });
+    }
+    
+    document.getElementById('photoInput').addEventListener('change', function(e) {
+        const file = e.target.files[0];
+        if (file) {
+            if (file.size > 5 * 1024 * 1024) {
+                alert('الصورة كبيرة جداً! (الحد الأقصى 5MB)');
+                e.target.value = '';
+                document.getElementById('photoPreview').style.display = 'none';
+                return;
+            }
+            
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                document.getElementById('previewImage').src = event.target.result;
+                document.getElementById('photoPreview').style.display = 'block';
+            };
+            reader.readAsDataURL(file);
+        } else {
+            document.getElementById('photoPreview').style.display = 'none';
+        }
+    });
+    
+    // ========== Form Submission ==========
+    
+    async function submitRegistration(data, showOfflineMessage = true) {
+        const endpoint = await testServerConnection();
+        
+        if (!endpoint) {
+            if (showOfflineMessage) {
+                savePendingRegistration(data);
+                
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('offlineBanner').classList.add('show');
+                
+                setTimeout(function() {
+                    document.querySelector('.glass-card').style.display = 'none';
+                    document.getElementById('successCard').style.display = 'block';
+                    document.querySelector('.success-card h2').textContent = 
+                        'تم حفظ بياناتك محلياً!';
+                    document.querySelector('.success-card p').textContent = 
+                        'سيتم إرسال بياناتك تلقائياً عند عودة الاتصال';
+                }, 1000);
+            }
+            return false;
+        }
+        
+        try {
+            const result = await sendToServer(data, endpoint);
+            
+            if (result.success) {
+                return true;
+            } else {
+                throw new Error(result.error || 'Unknown error');
+            }
+        } catch (error) {
+            console.error('Send error:', error);
+            if (showOfflineMessage) {
+                savePendingRegistration(data);
+                document.getElementById('offlineBanner').classList.add('show');
+            }
+            return false;
+        }
+    }
+    
+    async function autoRetryPending() {
+        const endpoint = await testServerConnection();
+        if (endpoint && getPendingRegistrations().length > 0) {
+            await retryPending();
+        }
+    }
+    
+    async function retryPending() {
+        const pending = getPendingRegistrations();
+        
+        if (pending.length === 0) return;
+        
+        const badge = document.getElementById('pendingBadge');
+        badge.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري الإرسال...';
+        
+        let successCount = 0;
+        
+        for (let i = 0; i < pending.length; i++) {
+            const item = pending[i];
+            const success = await submitRegistration(item.data, false);
+            if (success) {
+                removePendingRegistration(item.id);
+                successCount++;
+            }
+        }
+        
+        if (successCount > 0) {
+            alert('تم إرسال ' + successCount + ' طلب بنجاح! ✅');
+            
+            if (getPendingRegistrations().length === 0) {
+                document.getElementById('offlineBanner').classList.remove('show');
+                updateServerStatus('online');
+            }
+        } else {
+            alert('لا يزال الخادم غير متاح ❌');
+        }
+        
+        updatePendingBadge();
+    }
+    
+    document.getElementById('mainForm').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        const formData = new FormData(e.target);
+        
+        // Handle photo
+        const photoFile = document.getElementById('photoInput').files[0];
+        let photoBase64 = '';
+        
+        if (photoFile) {
+            if (photoFile.size > 5 * 1024 * 1024) {
+                alert('الصورة كبيرة جداً!');
+                return;
+            }
+            
+            try {
+                photoBase64 = await fileToBase64(photoFile);
+            } catch (error) {
+                alert('فشل قراءة الصورة');
+                return;
+            }
+        }
+        
+        // Handle CV
+        const cvFile = document.getElementById('cvInput').files[0];
+        let cvBase64 = '';
+        
+        if (cvFile) {
+            if (cvFile.size > 5 * 1024 * 1024) {
+                alert('ملف CV كبير جداً!');
+                return;
+            }
+            
+            try {
+                cvBase64 = await fileToBase64(cvFile);
+            } catch (error) {
+                alert('فشل قراءة CV');
+                return;
+            }
+        }
+        
+        const data = Object.fromEntries(formData);
+        
+        if (photoBase64) data.photo = photoBase64;
+        if (cvBase64) data.cv = cvBase64;
+        
+        document.getElementById('registerForm').style.display = 'none';
+        document.getElementById('loading').style.display = 'block';
+
+        const success = await submitRegistration(data);
+        
+        document.getElementById('loading').style.display = 'none';
+
+        if (success) {
+            document.querySelector('.glass-card').style.display = 'none';
+            document.getElementById('successCard').style.display = 'block';
+        } else {
+            document.getElementById('registerForm').style.display = 'block';
+        }
+    });
+    
+    // ========== Initialization ==========
+    
+    window.addEventListener('load', async function() {
+        loadTemplates();
+        updatePendingBadge();
+        
+        // Initial server check
+        updateServerStatus('searching');
+        await testServerConnection();
+        
+        // Auto-retry pending registrations after 2 seconds
+        setTimeout(autoRetryPending, 2000);
+    });
+    
+    // Periodic retry
+    setInterval(autoRetryPending, 30000); // Every 30 seconds
+    </script>
+</body>
+</html>
