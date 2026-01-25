@@ -1,0 +1,7 @@
+BEGIN:VCARD
+VERSION:3.0
+FN:Test User
+N:Test User;;;;
+TEL;TYPE=CELL:+966501234567
+URL:https://maroof-id.github.io/maroof-cards-data/test-user/
+END:VCARD
