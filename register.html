@@ -62,19 +62,14 @@
             z-index: 1;
         }
         
-        /* Server Status Banner */
         .server-status {
-            background: rgba(76, 175, 80, 0.2);
-            border: 2px solid rgba(76, 175, 80, 0.5);
+            background: rgba(255, 152, 0, 0.2);
+            border: 2px solid rgba(255, 152, 0, 0.5);
             border-radius: 18px;
             padding: 15px 20px;
             margin-bottom: 25px;
             text-align: center;
             color: #fff;
-            display: none;
-        }
-        
-        .server-status.show {
             display: flex;
             align-items: center;
             justify-content: center;
@@ -86,52 +81,11 @@
             border-color: rgba(76, 175, 80, 0.5);
         }
         
-        .server-status.searching {
-            background: rgba(255, 152, 0, 0.2);
-            border-color: rgba(255, 152, 0, 0.5);
-            animation: pulse 2s infinite;
-        }
-        
-        .server-status.offline {
-            background: rgba(244, 67, 54, 0.2);
-            border-color: rgba(244, 67, 54, 0.5);
-        }
-        
-        /* Offline Banner */
-        .offline-banner {
-            display: none;
-            background: rgba(255, 152, 0, 0.2);
-            border: 2px solid rgba(255, 152, 0, 0.5);
-            border-radius: 18px;
-            padding: 20px;
-            margin-bottom: 25px;
-            text-align: center;
-            color: #fff;
-            animation: pulse 2s infinite;
-        }
-        
-        .offline-banner.show {
-            display: block;
-        }
-        
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.7; }
-        }
-        
-        .offline-banner i {
-            font-size: 32px;
-            margin-bottom: 12px;
-            display: block;
-            color: #ffa726;
-        }
-        
-        /* Pending Badge */
         .pending-badge {
             display: none;
             position: fixed;
             top: 20px;
-            right: 20px;
+            left: 20px;
             background: rgba(255, 152, 0, 0.95);
             color: white;
             padding: 12px 20px;
@@ -315,63 +269,6 @@
             min-height: 120px;
         }
         
-        .file-input-wrapper {
-            position: relative;
-            overflow: hidden;
-            display: inline-block;
-            width: 100%;
-        }
-        
-        .file-input-wrapper input[type=file] {
-            position: absolute;
-            left: 0;
-            top: 0;
-            opacity: 0;
-            cursor: pointer;
-            width: 100%;
-            height: 100%;
-        }
-        
-        .file-input-label {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.08);
-            border: 2px dashed rgba(74, 157, 111, 0.4);
-            border-radius: 14px;
-            color: rgba(255, 255, 255, 0.75);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-align: center;
-        }
-        
-        .file-input-label:hover {
-            background: rgba(255, 255, 255, 0.12);
-            border-color: rgba(74, 157, 111, 0.6);
-        }
-        
-        .file-input-label i {
-            font-size: 24px;
-            color: #4a9d6f;
-        }
-        
-        .photo-preview {
-            margin-top: 18px;
-            text-align: center;
-            display: none;
-        }
-        
-        .photo-preview img {
-            width: 140px;
-            height: 140px;
-            object-fit: cover;
-            border-radius: 50%;
-            border: 4px solid rgba(74, 157, 111, 0.5);
-            box-shadow: 0 8px 24px rgba(0,0,0,0.4);
-        }
-        
         .template-gallery {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
@@ -477,6 +374,12 @@
             box-shadow: 0 4px 12px rgba(74, 157, 111, 0.4);
         }
         
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
         .loading {
             display: none;
             text-align: center;
@@ -570,21 +473,14 @@
     <div class="container">
         <!-- Server Status -->
         <div id="serverStatus" class="server-status">
-            <i class="fas fa-circle-notch fa-spin"></i>
-            <span id="serverStatusText">جاري البحث عن الخادم...</span>
-        </div>
-        
-        <!-- Offline Banner -->
-        <div id="offlineBanner" class="offline-banner">
-            <i class="fas fa-wifi"></i>
-            <h3>📡 الخادم غير متصل</h3>
-            <p>تم حفظ بياناتك محلياً<br>سيتم الإرسال تلقائياً عند عودة الاتصال</p>
+            <i class="fas fa-info-circle"></i>
+            <span>البيانات تُحفظ محلياً - سنرسلها عند الاتصال بالخادم</span>
         </div>
         
         <!-- Pending Badge -->
-        <div id="pendingBadge" class="pending-badge" onclick="retryPending()">
+        <div id="pendingBadge" class="pending-badge" onclick="showPendingList()">
             <i class="fas fa-clock"></i>
-            <span id="pendingCount">0</span> قيد الانتظار
+            <span id="pendingCount">0</span> في الانتظار
         </div>
         
         <!-- Main Card -->
@@ -598,7 +494,7 @@
                 
                 <div class="notice">
                     <i class="fas fa-info-circle"></i>
-                    <strong>ملاحظة:</strong> املأ البيانات بعناية. سيتم حفظ بياناتك محلياً حتى يتم رفعها للخادم.
+                    <strong>ملاحظة:</strong> سيتم حفظ بياناتك محلياً وإرسالها تلقائياً عند الاتصال بالخادم
                 </div>
                 
                 <form id="mainForm">
@@ -634,23 +530,6 @@
                     
                     <div class="form-group">
                         <label>
-                            <i class="fas fa-image"></i>
-                            الصورة الشخصية
-                        </label>
-                        <div class="file-input-wrapper">
-                            <input type="file" id="photoInput" accept="image/*">
-                            <div class="file-input-label">
-                                <i class="fas fa-camera"></i>
-                                <span>اختر صورة</span>
-                            </div>
-                        </div>
-                        <div id="photoPreview" class="photo-preview">
-                            <img id="previewImage" src="" alt="Preview">
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label>
                             <i class="fas fa-align-right"></i>
                             نبذة تعريفية
                         </label>
@@ -666,9 +545,9 @@
                     <div class="form-group">
                         <label>
                             <i class="fas fa-phone"></i>
-                            رقم الجوال
+                            رقم الجوال *
                         </label>
-                        <input type="tel" name="phone" placeholder="0501234567">
+                        <input type="tel" name="phone" required placeholder="0501234567">
                     </div>
                     
                     <div class="form-group">
@@ -765,22 +644,6 @@
                         <input type="url" name="custom_link" placeholder="https://custom-link.com">
                     </div>
                     
-                    <!-- CV Upload -->
-                    <div class="section-title">
-                        <i class="fas fa-file-pdf"></i>
-                        السيرة الذاتية (اختياري)
-                    </div>
-                    
-                    <div class="form-group">
-                        <div class="file-input-wrapper">
-                            <input type="file" id="cvInput" accept=".pdf">
-                            <div class="file-input-label">
-                                <i class="fas fa-file-upload"></i>
-                                <span>اختر ملف PDF</span>
-                            </div>
-                        </div>
-                    </div>
-                    
                     <!-- Template Selection -->
                     <div class="section-title">
                         <i class="fas fa-palette"></i>
@@ -790,7 +653,7 @@
                     <div id="templateGallery" class="template-gallery"></div>
                     <input type="hidden" id="selectedTemplate" name="template" value="professional">
                     
-                    <button type="submit" class="btn">
+                    <button type="submit" class="btn" id="submitBtn">
                         <i class="fas fa-paper-plane"></i>
                         إرسال التسجيل
                     </button>
@@ -799,7 +662,7 @@
             
             <div id="loading" class="loading">
                 <div class="spinner"></div>
-                <p>جاري معالجة طلبك...</p>
+                <p>جاري حفظ بياناتك...</p>
             </div>
         </div>
         
@@ -808,9 +671,10 @@
             <div class="success-icon">
                 <i class="fas fa-check-circle"></i>
             </div>
-            <h2>تم التسجيل بنجاح!</h2>
+            <h2>تم الحفظ بنجاح!</h2>
             <p>
-                تم حفظ بياناتك وسيتم معالجتها قريباً.<br>
+                تم حفظ بياناتك محلياً.<br>
+                سيتم إرسالها تلقائياً عند الاتصال بالخادم.<br>
                 شكراً لاستخدامك بطاقات معروف الرقمية!
             </p>
             <button class="btn" onclick="location.reload()">
@@ -822,11 +686,9 @@
     
     <script>
     const STORAGE_KEY = 'maroof_pending_registrations';
-    let DISCOVERED_ENDPOINT = null;
-    let SERVER_STATUS = 'searching'; // searching, online, offline
+    const WEBHOOK_URL = 'https://webhook.site/YOUR-UNIQUE-ID'; // سيتم تحديثه
     
-    // ========== LocalStorage Functions ==========
-    
+    // ========== LocalStorage ==========
     function getPendingRegistrations() {
         try {
             const data = localStorage.getItem(STORAGE_KEY);
@@ -867,125 +729,56 @@
         }
     }
     
-    // ========== Server Discovery ==========
+    function showPendingList() {
+        const pending = getPendingRegistrations();
+        if (pending.length === 0) return;
+        
+        const names = pending.map(p => p.data.name || 'غير محدد').join('\n');
+        alert('الطلبات في الانتظار:\n\n' + names);
+    }
     
-    async function discoverPiServer() {
-        const tryEndpoints = [
-            'http://raspberrypi.local:7070',
-            'http://localhost:7070',
-        ];
-        
-        // Try saved endpoint first
-        const savedEndpoint = localStorage.getItem('maroof_server_endpoint');
-        if (savedEndpoint) {
-            tryEndpoints.unshift(savedEndpoint);
+    // ========== Webhook ==========
+    async function sendToWebhook(data) {
+        try {
+            const response = await fetch(WEBHOOK_URL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    event: 'registration',
+                    timestamp: new Date().toISOString(),
+                    data: data
+                })
+            });
+            
+            return response.ok;
+        } catch (error) {
+            console.error('Webhook error:', error);
+            return false;
         }
+    }
+    
+    async function retryPending() {
+        const pending = getPendingRegistrations();
+        if (pending.length === 0) return;
         
-        for (const base of tryEndpoints) {
-            try {
-                const controller = new AbortController();
-                const timeout = setTimeout(() => controller.abort(), 2000);
-                
-                const response = await fetch(base + '/api/server-info', {
-                    signal: controller.signal
-                });
-                
-                clearTimeout(timeout);
-                
-                if (response.ok) {
-                    const info = await response.json();
-                    
-                    // ✅ FIX: Check for local_ip or ip
-                    if (info.success && (info.local_ip || info.ip)) {
-                        DISCOVERED_ENDPOINT = 'http://' + (info.local_ip || info.ip) + ':' + (info.port || 7070);
-                        localStorage.setItem('maroof_server_endpoint', DISCOVERED_ENDPOINT);
-                        console.log('✅ Pi discovered:', DISCOVERED_ENDPOINT);
-                        return DISCOVERED_ENDPOINT;
-                    } else if (info.success) {
-                        // Fallback if local_ip is not present
-                        DISCOVERED_ENDPOINT = base;
-                        localStorage.setItem('maroof_server_endpoint', DISCOVERED_ENDPOINT);
-                        console.log('✅ Pi discovered (fallback):', DISCOVERED_ENDPOINT);
-                        return DISCOVERED_ENDPOINT;
-                    }
-                }
-            } catch (e) {
-                console.log(`❌ Failed to reach ${base}:`, e.message);
-                continue;
+        let successCount = 0;
+        
+        for (const item of pending) {
+            const success = await sendToWebhook(item.data);
+            if (success) {
+                removePendingRegistration(item.id);
+                successCount++;
             }
         }
         
-        return null;
-    }
-    
-    async function testServerConnection() {
-        // Test cached endpoint first
-        if (DISCOVERED_ENDPOINT) {
-            try {
-                const controller = new AbortController();
-                const timeout = setTimeout(() => controller.abort(), 2000);
-                
-                const response = await fetch(DISCOVERED_ENDPOINT + '/api/templates', {
-                    signal: controller.signal
-                });
-                
-                clearTimeout(timeout);
-                
-                if (response.ok) {
-                    updateServerStatus('online');
-                    return DISCOVERED_ENDPOINT + '/api/register';
-                }
-            } catch (e) {
-                console.log('Cached endpoint failed, rediscovering...');
-            }
-        }
-        
-        // Discover new endpoint
-        const discovered = await discoverPiServer();
-        if (discovered) {
-            updateServerStatus('online');
-            return discovered + '/api/register';
-        }
-        
-        updateServerStatus('offline');
-        return null;
-    }
-    
-    function updateServerStatus(status) {
-        SERVER_STATUS = status;
-        const statusDiv = document.getElementById('serverStatus');
-        const statusText = document.getElementById('serverStatusText');
-        
-        statusDiv.classList.remove('searching', 'online', 'offline');
-        statusDiv.classList.add(status);
-        statusDiv.classList.add('show');
-        
-        if (status === 'online') {
-            statusText.innerHTML = '<i class="fas fa-check-circle"></i> متصل بالخادم';
-        } else if (status === 'offline') {
-            statusText.innerHTML = '<i class="fas fa-exclamation-triangle"></i> الخادم غير متاح - سيتم الحفظ محلياً';
-        } else {
-            statusText.innerHTML = '<i class="fas fa-circle-notch fa-spin"></i> جاري البحث عن الخادم...';
+        if (successCount > 0) {
+            console.log(`Sent ${successCount} registrations`);
         }
     }
     
-    async function sendToServer(data, endpoint) {
-        const response = await fetch(endpoint, {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify(data),
-            mode: 'cors'
-        });
-        
-        if (!response.ok) {
-            throw new Error('Server error: ' + response.status);
-        }
-        
-        return await response.json();
-    }
-    
-    // ========== Template Functions ==========
-    
+    // ========== Templates ==========
     const TEMPLATE_METADATA = {
         professional: { nameAr: 'احترافي', icon: 'fa-briefcase' },
         friendly: { nameAr: 'ودي', icon: 'fa-smile' },
@@ -1008,7 +801,7 @@
         }
     }
 
-    async function loadTemplates() {
+    function loadTemplates() {
         const gallery = document.getElementById('templateGallery');
         let templates = Object.keys(TEMPLATE_METADATA);
         
@@ -1036,197 +829,52 @@
         });
     }
     
-    // ========== File Handling ==========
-    
-    function fileToBase64(file) {
-        return new Promise((resolve, reject) => {
-            const reader = new FileReader();
-            reader.onload = () => resolve(reader.result);
-            reader.onerror = reject;
-            reader.readAsDataURL(file);
-        });
-    }
-    
-    document.getElementById('photoInput').addEventListener('change', function(e) {
-        const file = e.target.files[0];
-        if (file) {
-            if (file.size > 5 * 1024 * 1024) {
-                alert('الصورة كبيرة جداً! (الحد الأقصى 5MB)');
-                e.target.value = '';
-                document.getElementById('photoPreview').style.display = 'none';
-                return;
-            }
-            
-            const reader = new FileReader();
-            reader.onload = function(event) {
-                document.getElementById('previewImage').src = event.target.result;
-                document.getElementById('photoPreview').style.display = 'block';
-            };
-            reader.readAsDataURL(file);
-        } else {
-            document.getElementById('photoPreview').style.display = 'none';
-        }
-    });
-    
     // ========== Form Submission ==========
-    
-    async function submitRegistration(data, showOfflineMessage = true) {
-        const endpoint = await testServerConnection();
-        
-        if (!endpoint) {
-            if (showOfflineMessage) {
-                savePendingRegistration(data);
-                
-                document.getElementById('loading').style.display = 'none';
-                document.getElementById('offlineBanner').classList.add('show');
-                
-                setTimeout(function() {
-                    document.querySelector('.glass-card').style.display = 'none';
-                    document.getElementById('successCard').style.display = 'block';
-                    document.querySelector('.success-card h2').textContent = 
-                        'تم حفظ بياناتك محلياً!';
-                    document.querySelector('.success-card p').textContent = 
-                        'سيتم إرسال بياناتك تلقائياً عند عودة الاتصال';
-                }, 1000);
-            }
-            return false;
-        }
-        
-        try {
-            const result = await sendToServer(data, endpoint);
-            
-            if (result.success) {
-                return true;
-            } else {
-                throw new Error(result.error || 'Unknown error');
-            }
-        } catch (error) {
-            console.error('Send error:', error);
-            if (showOfflineMessage) {
-                savePendingRegistration(data);
-                document.getElementById('offlineBanner').classList.add('show');
-            }
-            return false;
-        }
-    }
-    
-    async function autoRetryPending() {
-        const endpoint = await testServerConnection();
-        if (endpoint && getPendingRegistrations().length > 0) {
-            await retryPending();
-        }
-    }
-    
-    async function retryPending() {
-        const pending = getPendingRegistrations();
-        
-        if (pending.length === 0) return;
-        
-        const badge = document.getElementById('pendingBadge');
-        badge.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري الإرسال...';
-        
-        let successCount = 0;
-        
-        for (let i = 0; i < pending.length; i++) {
-            const item = pending[i];
-            const success = await submitRegistration(item.data, false);
-            if (success) {
-                removePendingRegistration(item.id);
-                successCount++;
-            }
-        }
-        
-        if (successCount > 0) {
-            alert('تم إرسال ' + successCount + ' طلب بنجاح! ✅');
-            
-            if (getPendingRegistrations().length === 0) {
-                document.getElementById('offlineBanner').classList.remove('show');
-                updateServerStatus('online');
-            }
-        } else {
-            alert('لا يزال الخادم غير متاح ❌');
-        }
-        
-        updatePendingBadge();
-    }
-    
     document.getElementById('mainForm').addEventListener('submit', async function(e) {
         e.preventDefault();
         
         const formData = new FormData(e.target);
-        
-        // Handle photo
-        const photoFile = document.getElementById('photoInput').files[0];
-        let photoBase64 = '';
-        
-        if (photoFile) {
-            if (photoFile.size > 5 * 1024 * 1024) {
-                alert('الصورة كبيرة جداً!');
-                return;
-            }
-            
-            try {
-                photoBase64 = await fileToBase64(photoFile);
-            } catch (error) {
-                alert('فشل قراءة الصورة');
-                return;
-            }
-        }
-        
-        // Handle CV
-        const cvFile = document.getElementById('cvInput').files[0];
-        let cvBase64 = '';
-        
-        if (cvFile) {
-            if (cvFile.size > 5 * 1024 * 1024) {
-                alert('ملف CV كبير جداً!');
-                return;
-            }
-            
-            try {
-                cvBase64 = await fileToBase64(cvFile);
-            } catch (error) {
-                alert('فشل قراءة CV');
-                return;
-            }
-        }
-        
         const data = Object.fromEntries(formData);
-        
-        if (photoBase64) data.photo = photoBase64;
-        if (cvBase64) data.cv = cvBase64;
         
         document.getElementById('registerForm').style.display = 'none';
         document.getElementById('loading').style.display = 'block';
-
-        const success = await submitRegistration(data);
+        
+        // حفظ محلياً
+        savePendingRegistration(data);
+        
+        // محاولة الإرسال
+        await sendToWebhook(data);
         
         document.getElementById('loading').style.display = 'none';
-
-        if (success) {
-            document.querySelector('.glass-card').style.display = 'none';
-            document.getElementById('successCard').style.display = 'block';
-        } else {
-            document.getElementById('registerForm').style.display = 'block';
-        }
+        document.querySelector('.glass-card').style.display = 'none';
+        document.getElementById('successCard').style.display = 'block';
+        
+        // محاولة رفع الطلبات القديمة
+        setTimeout(retryPending, 2000);
     });
     
-    // ========== Initialization ==========
-    
-    window.addEventListener('load', async function() {
+    // ========== Init ==========
+    window.addEventListener('load', function() {
         loadTemplates();
         updatePendingBadge();
         
-        // Initial server check
-        updateServerStatus('searching');
-        await testServerConnection();
+        // محاولة رفع الطلبات المعلقة
+        setTimeout(retryPending, 3000);
         
-        // Auto-retry pending registrations after 2 seconds
-        setTimeout(autoRetryPending, 2000);
+        // تعبئة من URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const form = document.getElementById('mainForm');
+        
+        urlParams.forEach((value, key) => {
+            const input = form.elements[key];
+            if (input) {
+                input.value = decodeURIComponent(value);
+            }
+        });
     });
     
-    // Periodic retry
-    setInterval(autoRetryPending, 30000); // Every 30 seconds
+    // فحص دوري
+    setInterval(retryPending, 60000); // كل دقيقة
     </script>
 </body>
 </html>
