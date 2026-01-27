@@ -1,0 +1,10 @@
+BEGIN:VCARD
+VERSION:3.0
+FN:Khalid alshahwan
+N:Khalid alshahwan;;;;
+PHOTO;VALUE=URL;TYPE=JPEG:https://maroof-id.github.io/maroof-cards-data/khalid-alshahwan/photo.jpg
+TEL;TYPE=CELL:+966596974387
+EMAIL;TYPE=INTERNET:khalidalshahwaan@gmail.com
+URL;TYPE=LinkedIn:https://linkedin.com/in/khalid-alshahwan
+URL:https://maroof-id.github.io/maroof-cards-data/khalid-alshahwan/
+END:VCARD
