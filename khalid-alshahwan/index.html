@@ -3,11 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="البطاقة التعريفية الرقمية لـ Khalid alshahwan">
     <title>Khalid alshahwan - معروف</title>
     
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Kufi+Arabic:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
@@ -18,120 +21,80 @@
         }
         
         :root {
-            --glass-bg: rgba(255, 255, 255, 0.15);
-            --glass-border: rgba(255, 255, 255, 0.3);
-            --glass-shadow: rgba(0, 0, 0, 0.1);
-            --text-dark: rgba(0, 0, 0, 0.9);
-            --text-light: rgba(0, 0, 0, 0.7);
-            --accent: rgba(139, 92, 246, 0.9);
+            --bg-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --bg-light: #f8f9fa;
+            --text-dark: #1a1a2e;
+            --text-light: #6c757d;
+            --accent-coral: #E07A5F;
+            --whatsapp-green: #25D366;
+            --call-blue: #4A90E2;
+            --card-bg: #FFFFFF;
+            --shadow-strong: 0 20px 60px rgba(0, 0, 0, 0.3);
+            --shadow-medium: 0 10px 30px rgba(0, 0, 0, 0.15);
+            --shadow-soft: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
         
         body {
-            font-family: 'Tajawal', sans-serif;
+            font-family: 'Noto Kufi Arabic', 'Inter', sans-serif;
+            background: var(--bg-light);
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
             padding: 20px;
+            color: var(--text-dark);
             position: relative;
-            overflow-x: hidden;
         }
         
-        /* خلفية متدرجة ملونة - أخضر وأزرق */
+        /* Animated Background */
         body::before {
             content: '';
             position: fixed;
-            inset: 0;
-            background: linear-gradient(135deg, 
-                #10b981 0%, 
-                #14b8a6 25%, 
-                #06b6d4 50%, 
-                #0ea5e9 75%, 
-                #3b82f6 100%);
-            background-size: 400% 400%;
-            animation: gradientShift 15s ease infinite;
-            z-index: -2;
-        }
-        
-        /* تأثير الجسيمات */
-        body::after {
-            content: '';
-            position: fixed;
-            inset: 0;
-            background-image: 
-                radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.2) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.15) 0%, transparent 50%),
-                radial-gradient(circle at 40% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
-            z-index: -1;
-        }
-        
-        @keyframes gradientShift {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-        }
-        
-        .container {
-            width: 100%;
-            max-width: 560px;
-            position: relative;
-        }
-        
-        /* البطاقة الزجاجية الرئيسية */
-        .glass-card {
-            background: var(--glass-bg);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-radius: 32px;
-            border: 2px solid var(--glass-border);
-            box-shadow: 
-                0 8px 32px 0 var(--glass-shadow),
-                inset 0 1px 0 0 rgba(255, 255, 255, 0.5);
-            padding: 48px 40px 44px;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        /* تأثير الضوء المتحرك */
-        .glass-card::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
-            animation: rotate 10s linear infinite;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(102, 126, 234, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(224, 122, 95, 0.1) 0%, transparent 50%);
+            z-index: 0;
             pointer-events: none;
         }
         
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
+        .container {
+            background: var(--card-bg);
+            border-radius: 32px;
+            max-width: 520px;
+            width: 100%;
+            padding: 48px 40px 40px;
+            box-shadow: var(--shadow-medium);
+            position: relative;
+            z-index: 1;
         }
         
         /* Profile Section */
         .profile-section {
             text-align: center;
             margin-bottom: 36px;
-            position: relative;
         }
         
         .profile-photo {
             width: 150px;
             height: 150px;
-            margin: 0 auto 24px;
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.25);
-            backdrop-filter: blur(10px);
-            border: 3px solid rgba(255, 255, 255, 0.4);
-            box-shadow: 
-                0 12px 40px rgba(0, 0, 0, 0.15),
-                inset 0 2px 0 rgba(255, 255, 255, 0.5),
-                0 0 0 12px rgba(255, 255, 255, 0.1);
+            margin: 0 auto 28px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             display: flex;
             align-items: center;
             justify-content: center;
+            color: white;
+            font-size: 64px;
+            font-weight: 800;
             overflow: hidden;
+            box-shadow: 
+                0 15px 40px rgba(102, 126, 234, 0.4),
+                0 0 0 8px rgba(255, 255, 255, 1),
+                0 0 0 12px rgba(102, 126, 234, 0.1);
             position: relative;
         }
         
@@ -140,7 +103,7 @@
             position: absolute;
             inset: 0;
             border-radius: 50%;
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.3) 0%, transparent 100%);
+            background: linear-gradient(135deg, transparent 0%, rgba(255, 255, 255, 0.2) 100%);
         }
         
         .profile-photo img {
@@ -149,126 +112,51 @@
             object-fit: cover;
         }
         
-        .profile-photo i {
-            font-size: 64px;
-            color: rgba(0, 0, 0, 0.6);
-            position: relative;
-            z-index: 1;
-        }
-        
         .name {
-            font-size: 38px;
+            font-size: 36px;
             font-weight: 800;
-            color: rgba(255, 255, 255, 0.95);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             margin-bottom: 12px;
-            letter-spacing: -0.5px;
-            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+            letter-spacing: -1px;
+            line-height: 1.2;
         }
         
         .bio {
-            font-size: 18px;
-            color: rgba(255, 255, 255, 0.9);
+            font-size: 17px;
+            color: var(--text-light);
             line-height: 1.7;
-            text-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+            max-width: 90%;
+            margin: 0 auto 28px;
         }
         
-        /* 3D SAVE BUTTON - زجاجي */
-        .save-section {
-            margin-bottom: 28px;
-        }
-        
-        .save-btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 14px;
-            width: 100%;
-            padding: 24px 32px;
-            background: rgba(255, 255, 255, 0.25);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 2px solid rgba(255, 255, 255, 0.4);
-            border-radius: 20px;
-            color: rgba(255, 255, 255, 0.95);
-            text-decoration: none;
-            font-weight: 800;
-            font-size: 20px;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: 
-                0 12px 40px rgba(0, 0, 0, 0.15),
-                inset 0 1px 0 rgba(255, 255, 255, 0.5),
-                inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+        /* Save Contact Button Section - الأول الآن */
+        .save-contact-section {
+            margin-bottom: 24px;
             position: relative;
-            overflow: hidden;
-            cursor: pointer;
         }
         
-        .save-btn::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, transparent 100%);
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-        
-        .save-btn::after {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
-            transform: scale(0);
-            transition: transform 0.5s;
-        }
-        
-        .save-btn:hover {
-            background: rgba(255, 255, 255, 0.35);
-            transform: translateY(-4px) scale(1.02);
-            box-shadow: 
-                0 20px 60px rgba(0, 0, 0, 0.2),
-                inset 0 2px 0 rgba(255, 255, 255, 0.6);
-        }
-        
-        .save-btn:hover::before {
-            opacity: 1;
-        }
-        
-        .save-btn:hover::after {
-            transform: scale(1);
-        }
-        
-        .save-btn:active {
-            transform: translateY(-2px) scale(1);
-        }
-        
-        .save-icon {
-            font-size: 24px;
-            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
-            animation: float 3s ease-in-out infinite;
-        }
-        
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-6px); }
-        }
-        
-        /* SPLIT BUTTON - زجاجي */
+        /* Contact Section - بعد زر الحفظ */
         .contact-section {
-            margin-bottom: 28px;
+            margin-bottom: 32px;
         }
         
-        .split-btn {
+        /* Email Section - في النهاية */
+        .email-section {
+            margin-bottom: 0;
+        }
+        
+        /* SPLIT BUTTON - الاتصال والواتساب في زر واحد مقسوم */
+        .split-contact-btn {
             display: flex;
-            height: 82px;
-            border-radius: 18px;
+            height: 80px;
+            border-radius: 20px;
             overflow: hidden;
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(10px);
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            box-shadow: var(--shadow-medium);
+            margin-bottom: 0;
+            position: relative;
         }
         
         .split-half {
@@ -277,18 +165,18 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 8px;
+            gap: 6px;
             text-decoration: none;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
-            backdrop-filter: blur(8px);
+            overflow: hidden;
         }
         
         .split-half::before {
             content: '';
             position: absolute;
             inset: 0;
-            background: rgba(255, 255, 255, 0.1);
+            background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.1) 100%);
             opacity: 0;
             transition: opacity 0.3s;
         }
@@ -297,186 +185,305 @@
             opacity: 1;
         }
         
+        .split-half:active {
+            transform: scale(0.98);
+        }
+        
+        /* Left Side - Call */
         .call-side {
-            background: linear-gradient(135deg, rgba(34, 197, 94, 0.3) 0%, rgba(22, 163, 74, 0.3) 100%);
-            border-left: 1px solid rgba(255, 255, 255, 0.3);
+            background: linear-gradient(135deg, #4A90E2 0%, #357ABD 100%);
+            border-right: 2px solid rgba(255, 255, 255, 0.3);
         }
         
         .call-side:hover {
-            background: linear-gradient(135deg, rgba(34, 197, 94, 0.4) 0%, rgba(22, 163, 74, 0.4) 100%);
+            background: linear-gradient(135deg, #357ABD 0%, #2868A8 100%);
             transform: translateX(-3px) scale(1.02);
         }
         
+        /* Right Side - WhatsApp */
         .whatsapp-side {
-            background: linear-gradient(135deg, rgba(16, 185, 129, 0.3) 0%, rgba(5, 150, 105, 0.3) 100%);
+            background: linear-gradient(135deg, var(--whatsapp-green) 0%, #128C7E 100%);
         }
         
         .whatsapp-side:hover {
-            background: linear-gradient(135deg, rgba(16, 185, 129, 0.4) 0%, rgba(5, 150, 105, 0.4) 100%);
+            background: linear-gradient(135deg, #128C7E 0%, #075E54 100%);
             transform: translateX(3px) scale(1.02);
         }
         
         .split-icon {
             font-size: 32px;
-            color: rgba(255, 255, 255, 0.95);
-            filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.2));
+            color: white;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
         }
         
         .split-text {
-            color: rgba(255, 255, 255, 0.95);
-            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: white;
+            line-height: 1.2;
         }
         
         .split-label {
-            font-size: 16px;
+            font-size: 15px;
             font-weight: 700;
-            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
         }
         
         .split-number {
-            font-size: 14px;
-            font-weight: 600;
-            opacity: 0.9;
+            font-size: 13px;
+            font-weight: 500;
+            opacity: 0.95;
+            font-family: 'Inter', sans-serif;
         }
         
-        /* Social & Email Cards - زجاجية */
-        .info-grid {
-            display: grid;
-            gap: 14px;
-        }
-        
-        .info-card {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1.5px solid rgba(255, 255, 255, 0.35);
-            border-radius: 16px;
-            text-decoration: none;
-            transition: all 0.3s;
-            box-shadow: 
-                0 4px 16px rgba(0, 0, 0, 0.1),
-                inset 0 1px 0 rgba(255, 255, 255, 0.4);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .info-card::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, transparent 100%);
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-        
-        .info-card:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: translateY(-3px);
-            box-shadow: 
-                0 8px 32px rgba(0, 0, 0, 0.15),
-                inset 0 1px 0 rgba(255, 255, 255, 0.5);
-        }
-        
-        .info-card:hover::before {
-            opacity: 1;
-        }
-        
-        .info-icon {
-            width: 54px;
-            height: 54px;
-            border-radius: 14px;
+        /* Email Button */
+        .email-btn {
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 24px;
-            color: rgba(255, 255, 255, 0.95);
-            flex-shrink: 0;
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(8px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            gap: 14px;
+            padding: 22px 28px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border: 2px solid #dee2e6;
+            border-radius: 18px;
+            text-decoration: none;
+            color: var(--text-dark);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: var(--shadow-soft);
         }
         
-        .info-content {
-            flex: 1;
+        .email-btn:hover {
+            background: linear-gradient(135deg, #e9ecef 0%, #dee2e6 100%);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-medium);
+            border-color: #adb5bd;
         }
         
-        .info-label {
+        .email-icon {
+            font-size: 26px;
+            color: #3498db;
+        }
+        
+        .email-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+        
+        .email-label {
             font-size: 13px;
-            color: rgba(255, 255, 255, 0.85);
+            color: var(--text-light);
             font-weight: 600;
-            margin-bottom: 4px;
-            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
         }
         
-        .info-value {
-            font-size: 17px;
-            color: rgba(255, 255, 255, 0.95);
+        .email-value {
+            font-size: 16px;
             font-weight: 700;
-            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+            color: var(--text-dark);
         }
         
-        /* Divider - زجاجي */
+        /* 3D SAVE CONTACT BUTTON - زر مميز جداً */
+        .save-contact {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            width: 100%;
+            padding: 26px 32px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 24px;
+            font-weight: 800;
+            font-size: 19px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 
+                0 15px 35px rgba(102, 126, 234, 0.4),
+                0 5px 15px rgba(0, 0, 0, 0.1),
+                inset 0 -3px 0 rgba(0, 0, 0, 0.2),
+                inset 0 2px 0 rgba(255, 255, 255, 0.3);
+            position: relative;
+            overflow: hidden;
+            border: 3px solid rgba(255, 255, 255, 0.4);
+        }
+        
+        /* 3D Effect */
+        .save-contact::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.3) 0%, transparent 50%, rgba(0, 0, 0, 0.1) 100%);
+            opacity: 1;
+        }
+        
+        /* Shine Effect */
+        .save-contact::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent 40%, rgba(255, 255, 255, 0.4) 50%, transparent 60%);
+            transform: translateX(-100%) translateY(-100%) rotate(45deg);
+            transition: transform 0.6s;
+        }
+        
+        .save-contact:hover {
+            transform: translateY(-6px) scale(1.03);
+            box-shadow: 
+                0 25px 50px rgba(102, 126, 234, 0.5),
+                0 10px 25px rgba(0, 0, 0, 0.15),
+                inset 0 -3px 0 rgba(0, 0, 0, 0.3),
+                inset 0 3px 0 rgba(255, 255, 255, 0.4);
+        }
+        
+        .save-contact:hover::after {
+            transform: translateX(100%) translateY(100%) rotate(45deg);
+        }
+        
+        .save-contact:active {
+            transform: translateY(-2px) scale(1);
+            box-shadow: 
+                0 10px 25px rgba(102, 126, 234, 0.4),
+                inset 0 3px 8px rgba(0, 0, 0, 0.3);
+        }
+        
+        .save-icon {
+            font-size: 28px;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+        
+        .save-text {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            position: relative;
+        }
+        
+        .save-main {
+            font-size: 19px;
+            font-weight: 800;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        
+        .save-sub {
+            font-size: 14px;
+            font-weight: 600;
+            opacity: 0.95;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Social Links */
+        .social-section {
+            display: flex;
+            justify-content: center;
+            gap: 18px;
+            flex-wrap: wrap;
+            margin-top: 8px;
+            margin-bottom: 0;
+        }
+        
+        .social-btn {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: white;
+            font-size: 26px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: var(--shadow-soft);
+            position: relative;
+        }
+        
+        .social-btn::before {
+            content: '';
+            position: absolute;
+            inset: -4px;
+            border-radius: 50%;
+            background: inherit;
+            opacity: 0;
+            transition: opacity 0.3s;
+            z-index: -1;
+            filter: blur(8px);
+        }
+        
+        .social-btn:hover {
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: var(--shadow-medium);
+        }
+        
+        .social-btn:hover::before {
+            opacity: 0.6;
+        }
+        
+        .instagram-btn { 
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); 
+        }
+        
+        .linkedin-btn { 
+            background: #0077b5; 
+        }
+        
+        .twitter-btn { 
+            background: #1DA1F2; 
+        }
+        
+        /* Divider */
         .divider {
-            height: 1px;
-            background: linear-gradient(90deg, 
-                transparent, 
-                rgba(255, 255, 255, 0.3), 
-                transparent);
-            margin: 28px 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #dee2e6, transparent);
+            margin: 36px 0;
             position: relative;
         }
         
         .divider::before {
             content: '';
             position: absolute;
-            top: -6px;
+            top: -4px;
             left: 50%;
             transform: translateX(-50%);
             width: 12px;
             height: 12px;
-            background: rgba(255, 255, 255, 0.4);
-            backdrop-filter: blur(4px);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             border-radius: 50%;
-            border: 2px solid rgba(255, 255, 255, 0.5);
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 0 0 4px var(--card-bg), 0 0 0 6px #e9ecef;
         }
         
         /* Responsive */
-        @media (max-width: 640px) {
-            .glass-card {
+        @media (max-width: 480px) {
+            .container {
                 padding: 40px 32px 36px;
                 border-radius: 28px;
+            }
+            
+            .name {
+                font-size: 30px;
+            }
+            
+            .bio {
+                font-size: 15px;
             }
             
             .profile-photo {
                 width: 130px;
                 height: 130px;
-            }
-            
-            .profile-photo i {
                 font-size: 56px;
             }
             
-            .name {
-                font-size: 32px;
-            }
-            
-            .bio {
-                font-size: 16px;
-            }
-            
-            .save-btn {
-                padding: 20px 28px;
-                font-size: 18px;
-            }
-            
-            .split-btn {
-                height: 74px;
+            .split-contact-btn {
+                height: 72px;
             }
             
             .split-icon {
@@ -484,163 +491,180 @@
             }
             
             .split-label {
-                font-size: 15px;
+                font-size: 14px;
             }
             
-            .info-icon {
-                width: 50px;
-                height: 50px;
-                font-size: 22px;
+            .split-number {
+                font-size: 12px;
+            }
+            
+            .save-contact {
+                padding: 22px 28px;
+                font-size: 18px;
+            }
+            
+            .save-main {
+                font-size: 18px;
+            }
+            
+            .save-sub {
+                font-size: 13px;
+            }
+            
+            .social-btn {
+                width: 56px;
+                height: 56px;
+                font-size: 24px;
+            }
+            
+            .email-btn {
+                padding: 20px 24px;
             }
         }
         
         /* Animations */
-        @keyframes fadeInScale {
+        @keyframes fadeInUp {
             from {
                 opacity: 0;
-                transform: scale(0.95) translateY(20px);
+                transform: translateY(30px);
             }
             to {
                 opacity: 1;
-                transform: scale(1) translateY(0);
+                transform: translateY(0);
             }
         }
         
         .container {
-            animation: fadeInScale 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            animation: fadeInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1);
         }
         
-        /* Focus states */
+        /* Accessibility */
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+        
         .split-half:focus,
-        .info-card:focus,
-        .save-btn:focus {
-            outline: 3px solid rgba(255, 255, 255, 0.5);
+        .email-btn:focus,
+        .social-btn:focus,
+        .save-contact:focus {
+            outline: 3px solid #667eea;
             outline-offset: 3px;
-        }
-        
-        /* تأثيرات إضافية للزجاج */
-        @supports (backdrop-filter: blur(20px)) or (-webkit-backdrop-filter: blur(20px)) {
-            .glass-card {
-                background: rgba(255, 255, 255, 0.18);
-            }
-            
-            .save-btn {
-                background: rgba(255, 255, 255, 0.28);
-            }
-            
-            .info-card {
-                background: rgba(255, 255, 255, 0.22);
-            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="glass-card">
+        <!-- Profile Section -->
+        <div class="profile-section">
+            <div class="profile-photo">
+                
+                <img src="./photo.jpg" alt="Khalid alshahwan">
+                
+                
+            </div>
             
-            <!-- Profile Section -->
-            <div class="profile-section">
-                <div class="profile-photo">
-                    
-                    <img src="./photo.jpg" alt="Khalid alshahwan">
-                    
-                    
+            <h1 class="name">Khalid alshahwan</h1>
+            
+            
+        </div>
+        
+        <!-- 1️⃣ 3D SAVE CONTACT BUTTON - الأول والأهم -->
+        <div class="save-contact-section">
+            <a href="./contact.vcf" download class="save-contact">
+                <i class="fas fa-address-card save-icon"></i>
+                <div class="save-text">
+                    <span class="save-main">إضافة لجهات الاتصال</span>
+                    <span class="save-sub">Add to Contacts</span>
                 </div>
+            </a>
+        </div>
+        
+        <!-- 2️⃣ Contact Section - الاتصال والواتساب -->
+        
+        <div class="contact-section">
+            <!-- SPLIT BUTTON - الاتصال والواتساب معاً -->
+            <div class="split-contact-btn">
+                <!-- Left Side: Call -->
+                <a href="tel:+966596974387" class="split-half call-side">
+                    <i class="fas fa-phone split-icon"></i>
+                    <div class="split-text">
+                        <span class="split-label">اتصال</span>
+                        <span class="split-number" dir="ltr">0596974387</span>
+                    </div>
+                </a>
                 
-                <h1 class="name">Khalid alshahwan</h1>
-                
-            </div>
-            
-            <!-- 1️⃣ Save Contact Button -->
-            <div class="save-section">
-                <a href="./contact.vcf" download class="save-btn">
-                    <i class="fas fa-download save-icon"></i>
-                    <span>حفظ جهة الاتصال</span>
+                <!-- Right Side: WhatsApp -->
+                <a href="https://wa.me/966596974387" class="split-half whatsapp-side" target="_blank">
+                    <i class="fab fa-whatsapp split-icon"></i>
+                    <div class="split-text">
+                        <span class="split-label">واتساب</span>
+                        <span class="split-number" dir="ltr">0596974387</span>
+                    </div>
                 </a>
             </div>
+        </div>
+        
+        
+        <!-- 3️⃣ Social Links -->
+        
+        
+        <div class="social-section">
             
-            <!-- 2️⃣ Split Button - Call/WhatsApp -->
             
-            <div class="contact-section">
-                <div class="split-btn">
-                    <a href="tel:966596974387" class="split-half call-side">
-                        <i class="fas fa-phone split-icon"></i>
-                        <div class="split-text">
-                            <div class="split-label">اتصال</div>
-                            <div class="split-number" dir="ltr">0596974387</div>
-                        </div>
-                    </a>
-                    
-                    <a href="https://wa.me/966596974387" class="split-half whatsapp-side" target="_blank">
-                        <i class="fab fa-whatsapp split-icon"></i>
-                        <div class="split-text">
-                            <div class="split-label">واتساب</div>
-                            <div class="split-number">راسلني</div>
-                        </div>
-                    </a>
+            
+            <a href="https://linkedin.com/in/khalid-alshahwan" class="social-btn linkedin-btn" target="_blank" aria-label="LinkedIn">
+                <i class="fab fa-linkedin-in"></i>
+            </a>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+        </div>
+        
+        <!-- 4️⃣ Email Button - في النهاية -->
+        
+        
+        
+        <div class="email-section">
+            <a href="mailto:khalidalshahwaan@gmail.com" class="email-btn">
+                <i class="fas fa-envelope email-icon"></i>
+                <div class="email-info">
+                    <span class="email-label">بريد إلكتروني / Email</span>
+                    <span class="email-value">khalidalshahwaan@gmail.com</span>
                 </div>
-            </div>
+            </a>
+        </div>
+        
+        
+        <!-- Additional Links Section -->
+        <div style="display: flex; flex-direction: column; gap: 12px; margin-top: 24px;">
             
             
-            <!-- Divider -->
             
             
-            <!-- 3️⃣ Social Links & 4️⃣ Email -->
-            <div class="info-grid">
-                
-                
-                
-                
-                <a href="https://linkedin.com/in/khalid-alshahwan" class="info-card" target="_blank">
-                    <div class="info-icon">
-                        <i class="fab fa-linkedin"></i>
-                    </div>
-                    <div class="info-content">
-                        <div class="info-label">LinkedIn</div>
-                        <div class="info-value">khalid-alshahwan</div>
-                    </div>
-                </a>
-                
-                
-                
-                
-                
-                <a href="mailto:khalidalshahwaan@gmail.com" class="info-card">
-                    <div class="info-icon">
-                        <i class="fas fa-envelope"></i>
-                    </div>
-                    <div class="info-content">
-                        <div class="info-label">البريد الإلكتروني</div>
-                        <div class="info-value">khalidalshahwaan@gmail.com</div>
-                    </div>
-                </a>
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-            </div>
+            
+            
+            
+            
             
         </div>
         
         <!-- Footer -->
-        <div style="background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); padding: 20px; text-align: center; border-top: 1px solid rgba(255, 255, 255, 0.2); margin-top: 0; border-radius: 0 0 32px 32px;">
-            <p style="color: rgba(255, 255, 255, 0.8); font-size: 13px;">مدعوم بواسطة <a href="https://maroof-id.github.io/maroof-cards/" style="color: rgba(255, 255, 255, 0.95); font-weight: 700; text-decoration: none;" target="_blank">معروف</a></p>
+        <div style="text-align: center; margin-top: 32px; padding-top: 24px; border-top: 1px solid #dee2e6;">
+            <p style="color: #6c757d; font-size: 14px;">مدعوم بواسطة <a href="https://maroof-id.github.io/maroof-cards/" style="color: #667eea; font-weight: 700; text-decoration: none;" target="_blank">معروف</a></p>
         </div>
     </div>
 </body>
