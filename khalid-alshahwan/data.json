@@ -21,11 +21,15 @@
   "created_at": "2026-01-27T05:54:18.405759",
   "source": "admin",
   "status": "printed",
-  "print_count": 1,
+  "print_count": 2,
   "print_history": [
     {
       "date": "2026-01-28T14:14:03.902720",
       "count": 1
+    },
+    {
+      "date": "2026-01-28T14:16:04.946619",
+      "count": 2
     }
   ],
   "PHONE_INTL": "966596974387",
