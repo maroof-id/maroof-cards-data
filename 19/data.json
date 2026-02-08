@@ -20,8 +20,13 @@
   "template": "it",
   "created_at": "2026-02-09T02:19:16.080694",
   "source": "admin",
-  "status": "pending",
-  "print_count": 0,
-  "print_history": [],
+  "status": "printed",
+  "print_count": 1,
+  "print_history": [
+    {
+      "date": "2026-02-09T02:19:28.936530",
+      "count": 1
+    }
+  ],
   "NAME_INITIAL": "1"
 }
