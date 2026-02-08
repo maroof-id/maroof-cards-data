@@ -4,7 +4,7 @@
   "serialNumber": "khald-akhtbar",
   "teamIdentifier": "MAROOF",
   "organizationName": "Maroof Digital Cards",
-  "description": "خالد اختبار",
+  "description": "محمد اختبار",
   "backgroundColor": "rgb(0, 0, 0)",
   "foregroundColor": "rgb(255, 255, 255)",
   "labelColor": "rgb(200, 200, 200)",
@@ -14,7 +14,7 @@
       {
         "key": "name",
         "label": "",
-        "value": "خالد اختبار",
+        "value": "محمد اختبار",
         "textAlignment": "PKTextAlignmentLeft"
       }
     ],
