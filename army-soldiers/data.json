@@ -1,20 +1,20 @@
 {
   "NAME": "Army soldiers",
-  "JOB_TITLE": "",
+  "JOB_TITLE": "مقاتل قديم ",
   "COMPANY": "",
-  "PHONE": "",
+  "PHONE": "0540601467",
   "PHONE2": "",
-  "EMAIL": "",
+  "EMAIL": "info@maroof-id.com",
   "INSTAGRAM": "",
   "LINKEDIN": "",
-  "TWITTER": "",
+  "TWITTER": "Bmch",
   "YOUTUBE": "",
-  "TIKTOK": "",
+  "TIKTOK": "Gfk",
   "SNAPCHAT": "",
-  "GITHUB": "",
+  "GITHUB": "Moham-alt",
   "WEBSITE": "",
   "CUSTOM_LINK": "",
-  "BIO": "Gg",
+  "BIO": "نبذة تعريفية تجربية ",
   "PHOTO": "./photo.jpg",
   "CV": "",
   "template": "modern",
@@ -28,5 +28,6 @@
       "count": 1
     }
   ],
-  "NAME_INITIAL": "A"
+  "NAME_INITIAL": "A",
+  "PHONE_INTL": "966540601467"
 }

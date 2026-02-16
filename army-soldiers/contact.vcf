@@ -2,7 +2,13 @@ BEGIN:VCARD
 VERSION:3.0
 FN:Army soldiers
 N:Army soldiers;;;;
+TITLE:مقاتل قديم 
 PHOTO;VALUE=URL;TYPE=JPEG:https://maroof-id.github.io/maroof-cards-data/army-soldiers/photo.jpg
+TEL;TYPE=CELL:+966540601467
+EMAIL;TYPE=INTERNET:info@maroof-id.com
+URL;TYPE=Twitter:https://twitter.com/Bmch
+URL;TYPE=TikTok:https://tiktok.com/@Gfk
+URL;TYPE=GitHub:https://github.com/Moham-alt
 URL:https://maroof-id.github.io/maroof-cards-data/army-soldiers/
-NOTE:Gg
+NOTE:نبذة تعريفية تجربية 
 END:VCARD

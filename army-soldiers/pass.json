@@ -22,7 +22,7 @@
       {
         "key": "title",
         "label": "TITLE",
-        "value": "",
+        "value": "مقاتل قديم ",
         "textAlignment": "PKTextAlignmentLeft"
       },
       {
@@ -36,13 +36,13 @@
       {
         "key": "phone",
         "label": "PHONE",
-        "value": "",
+        "value": "0540601467",
         "textAlignment": "PKTextAlignmentLeft"
       },
       {
         "key": "email",
         "label": "EMAIL",
-        "value": "",
+        "value": "info@maroof-id.com",
         "textAlignment": "PKTextAlignmentLeft"
       }
     ],
