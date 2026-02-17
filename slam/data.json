@@ -20,8 +20,13 @@
   "template": "professional",
   "created_at": "2026-02-17T02:46:57.074496",
   "source": "client",
-  "status": "pending",
-  "print_count": 0,
-  "print_history": [],
+  "status": "printed",
+  "print_count": 1,
+  "print_history": [
+    {
+      "date": "2026-02-17T20:42:30.971303",
+      "count": 1
+    }
+  ],
   "NAME_INITIAL": "س"
 }
