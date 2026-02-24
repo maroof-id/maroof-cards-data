@@ -1,0 +1,11 @@
+BEGIN:VCARD
+VERSION:3.0
+FN:محمد عبدالله النملان
+N:محمد عبدالله النملان;;;;
+PHOTO;VALUE=URL;TYPE=JPEG:https://maroof-id.github.io/maroof-cards-data/mhmd-abdallh-alnmlan/photo.jpg
+TEL;TYPE=CELL:+966540601467
+EMAIL;TYPE=INTERNET:mohammed.alnamlan.q@gmail.com
+URL;TYPE=GitHub:https://github.com/https://github.com/MOHAM-ALT
+URL;TYPE=CV:https://maroof-id.github.io/maroof-cards-data/mhmd-abdallh-alnmlan/cv.pdf
+URL:https://maroof-id.github.io/maroof-cards-data/mhmd-abdallh-alnmlan/
+END:VCARD
