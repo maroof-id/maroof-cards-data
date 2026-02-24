@@ -7,7 +7,7 @@
     <title>محمد عبدالله النملان - معروف</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
@@ -18,240 +18,257 @@
         }
         
         :root {
-            --vintage-cream: #F4EBD9;
-            --vintage-brown: #4A3728;
-            --vintage-darkbrown: #2C1810;
-            --vintage-blue: #3D5A80;
-            --vintage-red: #A04747;
-            --vintage-beige: #D4C5B0;
-            --border-gray: #8B7F76;
-            --shadow-color: rgba(0, 0, 0, 0.15);
+            --glass-bg: rgba(255, 255, 255, 0.15);
+            --glass-border: rgba(255, 255, 255, 0.3);
+            --glass-shadow: rgba(0, 0, 0, 0.1);
+            --text-dark: rgba(0, 0, 0, 0.9);
+            --text-light: rgba(0, 0, 0, 0.7);
+            --accent: rgba(139, 92, 246, 0.9);
         }
         
         body {
-            font-family: 'IBM Plex Mono', 'Courier Prime', monospace;
-            background: var(--vintage-cream);
+            font-family: 'Tajawal', sans-serif;
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
             padding: 20px;
             position: relative;
+            overflow-x: hidden;
         }
         
-        /* Paper Texture Overlay */
+        /* خلفية متدرجة ملونة - أخضر وأزرق */
         body::before {
             content: '';
             position: fixed;
             inset: 0;
-            background-image: 
-                repeating-linear-gradient(
-                    0deg,
-                    transparent,
-                    transparent 2px,
-                    rgba(0, 0, 0, 0.03) 2px,
-                    rgba(0, 0, 0, 0.03) 4px
-                );
-            pointer-events: none;
-            z-index: 1;
+            background: linear-gradient(135deg, 
+                #10b981 0%, 
+                #14b8a6 25%, 
+                #06b6d4 50%, 
+                #0ea5e9 75%, 
+                #3b82f6 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            z-index: -2;
         }
         
-        /* Film Grain */
+        /* تأثير الجسيمات */
         body::after {
             content: '';
             position: fixed;
             inset: 0;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-            opacity: 0.08;
-            pointer-events: none;
-            z-index: 1;
+            background-image: 
+                radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.2) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 40% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+            z-index: -1;
+        }
+        
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
         }
         
         .container {
             width: 100%;
-            max-width: 580px;
+            max-width: 560px;
             position: relative;
-            z-index: 2;
         }
         
-        /* Classic Windows Style Card */
-        .vintage-card {
-            background: var(--vintage-beige);
-            border: 3px solid var(--border-gray);
+        /* البطاقة الزجاجية الرئيسية */
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 32px;
+            border: 2px solid var(--glass-border);
             box-shadow: 
-                6px 6px 0 var(--vintage-darkbrown),
-                6px 6px 0 1px var(--border-gray),
-                inset 2px 2px 0 rgba(255, 255, 255, 0.4),
-                inset -2px -2px 0 rgba(0, 0, 0, 0.15);
-            padding: 4px;
+                0 8px 32px 0 var(--glass-shadow),
+                inset 0 1px 0 0 rgba(255, 255, 255, 0.5);
+            padding: 48px 40px 44px;
             position: relative;
+            overflow: hidden;
         }
         
-        /* Title Bar - Windows Style */
-        .title-bar {
-            background: linear-gradient(180deg, var(--vintage-blue) 0%, #2C4660 100%);
-            border: 2px solid var(--border-gray);
-            padding: 8px 12px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            margin-bottom: 4px;
-            box-shadow: inset 1px 1px 0 rgba(255, 255, 255, 0.3);
+        /* تأثير الضوء المتحرك */
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            animation: rotate 10s linear infinite;
+            pointer-events: none;
         }
         
-        .title-icon {
-            width: 18px;
-            height: 18px;
-            background: var(--vintage-red);
-            border: 2px solid var(--border-gray);
-            box-shadow: inset 1px 1px 0 rgba(255, 255, 255, 0.3);
-        }
-        
-        .title-text {
-            flex: 1;
-            font-size: 14px;
-            font-weight: 600;
-            color: #fff;
-            text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.5);
-            letter-spacing: 0.5px;
-        }
-        
-        /* Content Area */
-        .content-area {
-            background: var(--vintage-cream);
-            border: 2px solid var(--border-gray);
-            padding: 32px 28px;
-            box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.1);
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
         }
         
         /* Profile Section */
         .profile-section {
             text-align: center;
-            margin-bottom: 28px;
+            margin-bottom: 36px;
+            position: relative;
         }
         
         .profile-photo {
-            width: 140px;
-            height: 140px;
-            margin: 0 auto 20px;
-            border: 4px solid var(--vintage-brown);
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 24px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(10px);
+            border: 3px solid rgba(255, 255, 255, 0.4);
             box-shadow: 
-                4px 4px 0 var(--vintage-darkbrown),
-                4px 4px 0 1px var(--border-gray),
-                inset 2px 2px 0 rgba(255, 255, 255, 0.2);
+                0 12px 40px rgba(0, 0, 0, 0.15),
+                inset 0 2px 0 rgba(255, 255, 255, 0.5),
+                0 0 0 12px rgba(255, 255, 255, 0.1);
             display: flex;
             align-items: center;
             justify-content: center;
             overflow: hidden;
-            background: var(--vintage-beige);
             position: relative;
         }
         
-        .profile-photo::before {
+        .profile-photo::after {
             content: '';
             position: absolute;
             inset: 0;
-            background: linear-gradient(135deg, transparent 0%, rgba(0, 0, 0, 0.1) 100%);
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.3) 0%, transparent 100%);
         }
         
         .profile-photo img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            filter: sepia(0.15) contrast(1.1) brightness(0.95);
         }
         
         .profile-photo i {
-            font-size: 56px;
-            color: var(--vintage-brown);
-            opacity: 0.6;
+            font-size: 64px;
+            color: rgba(0, 0, 0, 0.6);
+            position: relative;
+            z-index: 1;
         }
         
         .name {
-            font-family: 'Courier Prime', monospace;
-            font-size: 32px;
-            font-weight: 700;
-            color: var(--vintage-darkbrown);
+            font-size: 38px;
+            font-weight: 800;
+            color: rgba(255, 255, 255, 0.95);
             margin-bottom: 12px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            text-shadow: 2px 2px 0 rgba(255, 255, 255, 0.5);
+            letter-spacing: -0.5px;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
         }
         
         .bio {
             font-size: 18px;
-            color: var(--vintage-brown);
+            color: rgba(255, 255, 255, 0.9);
             line-height: 1.7;
-            font-weight: 500;
+            text-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
         }
         
-        /* Classic Divider */
-        .vintage-divider {
-            height: 2px;
-            background: var(--border-gray);
-            margin: 24px 0;
-            box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
-        }
-        
-        /* Windows Button Style */
+        /* 3D SAVE BUTTON - زجاجي */
         .save-section {
-            margin-bottom: 24px;
+            margin-bottom: 28px;
         }
         
         .save-btn {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
+            gap: 14px;
             width: 100%;
-            padding: 14px 24px;
-            background: linear-gradient(180deg, var(--vintage-beige) 0%, var(--vintage-cream) 100%);
-            border: 3px solid var(--border-gray);
-            color: var(--vintage-darkbrown);
+            padding: 24px 32px;
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            border-radius: 20px;
+            color: rgba(255, 255, 255, 0.95);
             text-decoration: none;
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 16px;
-            font-weight: 600;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: all 0.1s;
+            font-weight: 800;
+            font-size: 20px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             box-shadow: 
-                3px 3px 0 var(--vintage-darkbrown),
-                3px 3px 0 1px var(--border-gray),
-                inset 2px 2px 0 rgba(255, 255, 255, 0.6),
-                inset -1px -1px 0 rgba(0, 0, 0, 0.1);
+                0 12px 40px rgba(0, 0, 0, 0.15),
+                inset 0 1px 0 rgba(255, 255, 255, 0.5),
+                inset 0 -1px 0 rgba(0, 0, 0, 0.1);
             position: relative;
-            letter-spacing: 1px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        
+        .save-btn::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, transparent 100%);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .save-btn::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+            transform: scale(0);
+            transition: transform 0.5s;
         }
         
         .save-btn:hover {
-            background: linear-gradient(180deg, #E8DCC8 0%, var(--vintage-beige) 100%);
+            background: rgba(255, 255, 255, 0.35);
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 
+                0 20px 60px rgba(0, 0, 0, 0.2),
+                inset 0 2px 0 rgba(255, 255, 255, 0.6);
+        }
+        
+        .save-btn:hover::before {
+            opacity: 1;
+        }
+        
+        .save-btn:hover::after {
+            transform: scale(1);
         }
         
         .save-btn:active {
-            box-shadow: 
-                1px 1px 0 var(--vintage-darkbrown),
-                inset 2px 2px 4px rgba(0, 0, 0, 0.2);
-            transform: translate(2px, 2px);
+            transform: translateY(-2px) scale(1);
         }
         
         .save-icon {
-            font-size: 18px;
+            font-size: 24px;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+            animation: float 3s ease-in-out infinite;
         }
         
-        /* Split Button - Windows Style */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-6px); }
+        }
+        
+        /* SPLIT BUTTON - زجاجي */
         .contact-section {
-            margin-bottom: 24px;
+            margin-bottom: 28px;
         }
         
         .split-btn {
             display: flex;
-            height: 68px;
-            border: 3px solid var(--border-gray);
-            box-shadow: 
-                3px 3px 0 var(--vintage-darkbrown),
-                3px 3px 0 1px var(--border-gray);
+            height: 82px;
+            border-radius: 18px;
             overflow: hidden;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
         }
         
         .split-half {
@@ -260,116 +277,128 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 6px;
+            gap: 8px;
             text-decoration: none;
-            transition: all 0.1s;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
-            font-family: 'IBM Plex Mono', monospace;
+            backdrop-filter: blur(8px);
+        }
+        
+        .split-half::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(255, 255, 255, 0.1);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .split-half:hover::before {
+            opacity: 1;
         }
         
         .call-side {
-            background: linear-gradient(180deg, #6B8F71 0%, #5A7A61 100%);
-            border-left: 2px solid var(--border-gray);
-            box-shadow: inset 1px 1px 0 rgba(255, 255, 255, 0.3);
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.3) 0%, rgba(22, 163, 74, 0.3) 100%);
+            border-left: 1px solid rgba(255, 255, 255, 0.3);
         }
         
         .call-side:hover {
-            background: linear-gradient(180deg, #5A7A61 0%, #4A6851 100%);
-        }
-        
-        .call-side:active {
-            box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.4) 0%, rgba(22, 163, 74, 0.4) 100%);
+            transform: translateX(-3px) scale(1.02);
         }
         
         .whatsapp-side {
-            background: linear-gradient(180deg, #7FB685 0%, #6FA076 100%);
-            box-shadow: inset 1px 1px 0 rgba(255, 255, 255, 0.3);
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.3) 0%, rgba(5, 150, 105, 0.3) 100%);
         }
         
         .whatsapp-side:hover {
-            background: linear-gradient(180deg, #6FA076 0%, #5F8F66 100%);
-        }
-        
-        .whatsapp-side:active {
-            box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.4) 0%, rgba(5, 150, 105, 0.4) 100%);
+            transform: translateX(3px) scale(1.02);
         }
         
         .split-icon {
-            font-size: 24px;
-            color: var(--vintage-cream);
-            text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.3);
+            font-size: 32px;
+            color: rgba(255, 255, 255, 0.95);
+            filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.2));
         }
         
         .split-text {
-            color: var(--vintage-cream);
+            color: rgba(255, 255, 255, 0.95);
             text-align: center;
         }
         
         .split-label {
-            font-size: 13px;
-            font-weight: 600;
-            text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.3);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
+            font-size: 16px;
+            font-weight: 700;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
         }
         
         .split-number {
-            font-size: 12px;
-            font-weight: 500;
-            opacity: 0.95;
+            font-size: 14px;
+            font-weight: 600;
+            opacity: 0.9;
         }
         
-        /* Info Cards - Windows 95 Style */
+        /* Social & Email Cards - زجاجية */
         .info-grid {
             display: grid;
-            gap: 10px;
+            gap: 14px;
         }
         
         .info-card {
             display: flex;
             align-items: center;
-            gap: 12px;
-            padding: 12px 14px;
-            background: linear-gradient(180deg, var(--vintage-beige) 0%, var(--vintage-cream) 100%);
-            border: 2px solid var(--border-gray);
+            gap: 16px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1.5px solid rgba(255, 255, 255, 0.35);
+            border-radius: 16px;
             text-decoration: none;
-            transition: all 0.1s;
+            transition: all 0.3s;
             box-shadow: 
-                2px 2px 0 var(--vintage-darkbrown),
-                2px 2px 0 1px var(--border-gray),
-                inset 1px 1px 0 rgba(255, 255, 255, 0.5);
+                0 4px 16px rgba(0, 0, 0, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .info-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, transparent 100%);
+            opacity: 0;
+            transition: opacity 0.3s;
         }
         
         .info-card:hover {
-            background: linear-gradient(180deg, #E8DCC8 0%, var(--vintage-beige) 100%);
-            transform: translate(-1px, -1px);
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-3px);
             box-shadow: 
-                3px 3px 0 var(--vintage-darkbrown),
-                3px 3px 0 1px var(--border-gray),
-                inset 1px 1px 0 rgba(255, 255, 255, 0.6);
+                0 8px 32px rgba(0, 0, 0, 0.15),
+                inset 0 1px 0 rgba(255, 255, 255, 0.5);
         }
         
-        .info-card:active {
-            transform: translate(1px, 1px);
-            box-shadow: 
-                1px 1px 0 var(--vintage-darkbrown),
-                inset 2px 2px 4px rgba(0, 0, 0, 0.2);
+        .info-card:hover::before {
+            opacity: 1;
         }
         
         .info-icon {
-            width: 44px;
-            height: 44px;
+            width: 54px;
+            height: 54px;
+            border-radius: 14px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 20px;
-            background: var(--vintage-blue);
-            border: 2px solid var(--border-gray);
-            box-shadow: 
-                2px 2px 0 var(--vintage-darkbrown),
-                inset 1px 1px 0 rgba(255, 255, 255, 0.3);
+            font-size: 24px;
+            color: rgba(255, 255, 255, 0.95);
             flex-shrink: 0;
-            color: var(--vintage-cream);
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
         
         .info-content {
@@ -377,42 +406,64 @@
         }
         
         .info-label {
-            font-size: 11px;
-            color: var(--vintage-brown);
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.85);
             font-weight: 600;
-            margin-bottom: 3px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            opacity: 0.8;
+            margin-bottom: 4px;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
         }
         
         .info-value {
-            font-size: 15px;
-            color: var(--vintage-darkbrown);
-            font-weight: 600;
+            font-size: 17px;
+            color: rgba(255, 255, 255, 0.95);
+            font-weight: 700;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+        }
+        
+        /* Divider - زجاجي */
+        .divider {
+            height: 1px;
+            background: linear-gradient(90deg, 
+                transparent, 
+                rgba(255, 255, 255, 0.3), 
+                transparent);
+            margin: 28px 0;
+            position: relative;
+        }
+        
+        .divider::before {
+            content: '';
+            position: absolute;
+            top: -6px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 12px;
+            height: 12px;
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(4px);
+            border-radius: 50%;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
         }
         
         /* Responsive */
         @media (max-width: 640px) {
-            .vintage-card {
-                padding: 3px;
-            }
-            
-            .content-area {
-                padding: 24px 20px;
+            .glass-card {
+                padding: 40px 32px 36px;
+                border-radius: 28px;
             }
             
             .profile-photo {
-                width: 120px;
-                height: 120px;
+                width: 130px;
+                height: 130px;
             }
             
             .profile-photo i {
-                font-size: 48px;
+                font-size: 56px;
             }
             
             .name {
-                font-size: 26px;
+                font-size: 32px;
             }
             
             .bio {
@@ -420,201 +471,187 @@
             }
             
             .save-btn {
-                padding: 12px 20px;
-                font-size: 14px;
-            }
-            
-            .split-btn {
-                height: 60px;
-            }
-            
-            .split-icon {
-                font-size: 20px;
-            }
-            
-            .split-label {
-                font-size: 12px;
-            }
-            
-            .split-number {
-                font-size: 11px;
-            }
-            
-            .info-icon {
-                width: 40px;
-                height: 40px;
+                padding: 20px 28px;
                 font-size: 18px;
             }
             
-            .info-label {
-                font-size: 10px;
+            .split-btn {
+                height: 74px;
             }
             
-            .info-value {
-                font-size: 14px;
+            .split-icon {
+                font-size: 28px;
+            }
+            
+            .split-label {
+                font-size: 15px;
+            }
+            
+            .info-icon {
+                width: 50px;
+                height: 50px;
+                font-size: 22px;
             }
         }
         
-        /* Fade In Animation */
-        @keyframes fadeIn {
+        /* Animations */
+        @keyframes fadeInScale {
             from {
                 opacity: 0;
-                transform: translateY(10px);
+                transform: scale(0.95) translateY(20px);
             }
             to {
                 opacity: 1;
-                transform: translateY(0);
+                transform: scale(1) translateY(0);
             }
         }
         
         .container {
-            animation: fadeIn 0.5s ease-out;
+            animation: fadeInScale 0.8s cubic-bezier(0.4, 0, 0.2, 1);
         }
         
         /* Focus states */
         .split-half:focus,
         .info-card:focus,
         .save-btn:focus {
-            outline: 2px dotted var(--vintage-darkbrown);
-            outline-offset: 2px;
+            outline: 3px solid rgba(255, 255, 255, 0.5);
+            outline-offset: 3px;
+        }
+        
+        /* تأثيرات إضافية للزجاج */
+        @supports (backdrop-filter: blur(20px)) or (-webkit-backdrop-filter: blur(20px)) {
+            .glass-card {
+                background: rgba(255, 255, 255, 0.18);
+            }
+            
+            .save-btn {
+                background: rgba(255, 255, 255, 0.28);
+            }
+            
+            .info-card {
+                background: rgba(255, 255, 255, 0.22);
+            }
         }
     </style>
 </head>
 <body>
-    
     <div class="container">
-        <div class="vintage-card">
+        <div class="glass-card">
             
-            <!-- Title Bar - Windows Style -->
-            <div class="title-bar">
-                <div class="title-icon"></div>
-                <div class="title-text">معروف - Maroof Digital Card</div>
+            <!-- Profile Section -->
+            <div class="profile-section">
+                <div class="profile-photo">
+                    
+                    <img src="./photo.jpg" alt="محمد عبدالله النملان">
+                    
+                    
+                </div>
+                
+                <h1 class="name">محمد عبدالله النملان</h1>
+                
             </div>
             
-            <!-- Content Area -->
-            <div class="content-area">
+            <!-- 1️⃣ Save Contact Button -->
+            <div class="save-section">
+                <a href="./contact.vcf" download class="save-btn">
+                    <i class="fas fa-download save-icon"></i>
+                    <span>حفظ جهة الاتصال</span>
+                </a>
+            </div>
+            
+            <!-- 2️⃣ Split Button - Call/WhatsApp -->
+            
+            <div class="contact-section">
+                <div class="split-btn">
+                    <a href="tel:966540601467" class="split-half call-side">
+                        <i class="fas fa-phone split-icon"></i>
+                        <div class="split-text">
+                            <div class="split-label">اتصال</div>
+                            <div class="split-number" dir="ltr">0540601467</div>
+                        </div>
+                    </a>
+                    
+                    <a href="https://wa.me/966540601467" class="split-half whatsapp-side" target="_blank">
+                        <i class="fab fa-whatsapp split-icon"></i>
+                        <div class="split-text">
+                            <div class="split-label">واتساب</div>
+                            <div class="split-number">راسلني</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            
+            
+            <!-- Divider -->
+            
+            
+            <!-- 3️⃣ Social Links & 4️⃣ Email -->
+            <div class="info-grid">
                 
-                <!-- Profile Section -->
-                <div class="profile-section">
-                    <div class="profile-photo">
-                        
-                        <img src="./photo.jpg" alt="محمد عبدالله النملان">
-                        
-                        
+                
+                
+                
+                
+                
+                
+                
+                <a href="mailto:mohammed.alnamlan.q@gmail.com" class="info-card">
+                    <div class="info-icon">
+                        <i class="fas fa-envelope"></i>
                     </div>
-                    
-                    <h1 class="name">محمد عبدالله النملان</h1>
-                    
-                </div>
-                
-                <div class="vintage-divider"></div>
-                
-                <!-- 1️⃣ Save Contact Button -->
-                <div class="save-section">
-                    <a href="./contact.vcf" download class="save-btn">
-                        <i class="fas fa-download save-icon"></i>
-                        <span>حفظ جهة الاتصال</span>
-                    </a>
-                </div>
-                
-                <!-- 2️⃣ Split Button -->
-                
-                <div class="contact-section">
-                    <div class="split-btn">
-                        <a href="tel:966540601467" class="split-half call-side">
-                            <i class="fas fa-phone split-icon"></i>
-                            <div class="split-text">
-                                <div class="split-label">اتصال</div>
-                                <div class="split-number" dir="ltr">0540601467</div>
-                            </div>
-                        </a>
-                        
-                        <a href="https://wa.me/966540601467" class="split-half whatsapp-side" target="_blank">
-                            <i class="fab fa-whatsapp split-icon"></i>
-                            <div class="split-text">
-                                <div class="split-label">واتساب</div>
-                                <div class="split-number">WhatsApp</div>
-                            </div>
-                        </a>
+                    <div class="info-content">
+                        <div class="info-label">البريد الإلكتروني</div>
+                        <div class="info-value">mohammed.alnamlan.q@gmail.com</div>
                     </div>
-                </div>
+                </a>
                 
                 
-                <!-- Divider -->
                 
                 
-                <!-- 3️⃣ Social Links & 4️⃣ Email -->
-                <div class="info-grid">
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    <a href="mailto:mohammed.alnamlan.q@gmail.com" class="info-card">
-                        <div class="info-icon">
-                            <i class="fas fa-envelope"></i>
-                        </div>
-                        <div class="info-content">
-                            <div class="info-label">البريد الإلكتروني</div>
-                            <div class="info-value">mohammed.alnamlan.q@gmail.com</div>
-                        </div>
-                    </a>
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    <a href="https://github.com/https://github.com/MOHAM-ALT" class="info-card" target="_blank">
-                        <div class="info-icon">
-                            <i class="fab fa-github"></i>
-                        </div>
-                        <div class="info-content">
-                            <div class="info-label">GitHub</div>
-                            <div class="info-value">https://github.com/MOHAM-ALT</div>
-                        </div>
-                    </a>
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    <a href="./cv.pdf" download class="info-card">
-                        <div class="info-icon">
-                            <i class="fas fa-file-pdf"></i>
-                        </div>
-                        <div class="info-content">
-                            <div class="info-label">السيرة الذاتية</div>
-                            <div class="info-value">تحميل</div>
-                        </div>
-                    </a>
-                    
-                    
-                    
-                    
-                    
-                    
-                </div>
                 
-                <!-- Footer -->
-                <div style="text-align: center; margin-top: 24px; padding-top: 20px; border-top: 2px solid var(--border-gray); color: var(--vintage-brown);">
-                    <p style="font-size: 13px; font-weight: 600;">مدعوم بواسطة <a href="https://maroof-id.github.io/maroof-cards/" style="color: var(--vintage-blue); text-decoration: none; font-weight: 700;" target="_blank">معروف</a></p>
-                </div>
+                
+                
+                
+                
+                <a href="https://github.com/https://github.com/MOHAM-ALT" class="info-card" target="_blank">
+                    <div class="info-icon" style="background: #333333;">
+                        <i class="fab fa-github"></i>
+                    </div>
+                    <div class="info-content">
+                        <div class="info-label">GitHub</div>
+                        <div class="info-value">https://github.com/MOHAM-ALT</div>
+                    </div>
+                </a>
+                
+                
+                
+                
+                
+                
+                
+                <a href="./cv.pdf" download class="info-card">
+                    <div class="info-icon">
+                        <i class="fas fa-file-pdf"></i>
+                    </div>
+                    <div class="info-content">
+                        <div class="info-label">السيرة الذاتية</div>
+                        <div class="info-value">تحميل</div>
+                    </div>
+                </a>
+                
+                
+                
+                
+                
                 
             </div>
             
         </div>
+        
+        <!-- Footer -->
+        <div style="background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); padding: 20px; text-align: center; border-top: 1px solid rgba(255, 255, 255, 0.2); margin-top: 0; border-radius: 0 0 32px 32px;">
+            <p style="color: rgba(255, 255, 255, 0.8); font-size: 13px;">مدعوم بواسطة <a href="https://maroof-id.github.io/maroof-cards/" style="color: rgba(255, 255, 255, 0.95); font-weight: 700; text-decoration: none;" target="_blank">معروف</a></p>
+        </div>
     </div>
-    
 </body>
 </html>
-
-

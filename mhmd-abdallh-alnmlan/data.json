@@ -17,7 +17,7 @@
   "BIO": "",
   "PHOTO": "./photo.jpg",
   "CV": "./cv.pdf",
-  "template": "it",
+  "template": "classic",
   "created_at": "2026-02-24T11:10:18.465699",
   "source": "admin",
   "status": "modified",
