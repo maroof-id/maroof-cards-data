@@ -3,206 +3,714 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="البطاقة التعريفية الرقمية لـ محمد عبدالله النملان">
     <title>محمد عبدالله النملان - معروف</title>
     
-    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter (English) + Noto Kufi Arabic (Arabic) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Kufi+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        body { font-family: 'Cairo', sans-serif; }
-        .gradient-bg { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
-        .glass { backdrop-filter: blur(10px); background: rgba(255, 255, 255, 0.1); }
-    </style>
-    
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: '#667eea',
-                        secondary: '#764ba2',
-                    }
-                }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --bg-warm: #FDFBF7;
+            --text-dark: #2D3436;
+            --text-light: #636e72;
+            --accent-coral: #E07A5F;
+            --accent-hover: #d4685a;
+            --card-bg: #FFFFFF;
+            --border-light: #e9ecef;
+        }
+        
+        body {
+            font-family: 'Noto Kufi Arabic', 'Inter', sans-serif;
+            background: var(--bg-warm);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+        
+        .container {
+            background: var(--card-bg);
+            border-radius: 24px;
+            max-width: 480px;
+            width: 100%;
+            padding: 40px 32px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+        }
+        
+        /* Profile Section */
+        .profile-section {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+        
+        .profile-photo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            background: linear-gradient(135deg, var(--accent-coral) 0%, #f4a261 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 48px;
+            font-weight: 700;
+            overflow: hidden;
+            box-shadow: 0 8px 24px rgba(224, 122, 95, 0.25);
+        }
+        
+        .profile-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .name {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+        
+        .bio {
+            font-size: 16px;
+            color: var(--text-light);
+            line-height: 1.6;
+            max-width: 90%;
+            margin: 0 auto 20px;
+        }
+        
+        /* Save Contact Button - PROMINENT AT TOP */
+        .save-contact-section {
+            margin-bottom: 32px;
+        }
+        
+        .save-contact {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            width: 100%;
+            padding: 18px 24px;
+            background: var(--accent-coral);
+            color: white;
+            text-decoration: none;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 17px;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(224, 122, 95, 0.35);
+            border: 3px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* Animated gradient background */
+        .save-contact::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s;
+        }
+        
+        .save-contact:hover::before {
+            left: 100%;
+        }
+        
+        .save-contact:hover {
+            background: var(--accent-hover);
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 12px 32px rgba(224, 122, 95, 0.45);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+        
+        .save-contact:active {
+            transform: translateY(-1px) scale(1);
+        }
+        
+        .save-contact i {
+            font-size: 20px;
+        }
+        
+        .save-contact-text {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            line-height: 1.3;
+        }
+        
+        .save-contact-main {
+            font-size: 17px;
+            font-weight: 700;
+        }
+        
+        .save-contact-sub {
+            font-size: 13px;
+            opacity: 0.9;
+            font-weight: 500;
+        }
+        
+        /* English text styling */
+        .name[lang="en"], .bio[lang="en"] {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        /* Contact Buttons */
+        .contact-section {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 32px;
+        }
+        
+        .contact-btn {
+            display: flex;
+            align-items: center;
+            padding: 16px 20px;
+            background: var(--card-bg);
+            border: 2px solid var(--border-light);
+            border-radius: 16px;
+            text-decoration: none;
+            color: var(--text-dark);
+            transition: all 0.25s ease;
+            gap: 16px;
+        }
+        
+        .contact-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+            border-color: var(--accent-coral);
+        }
+        
+        .contact-btn:active {
+            transform: translateY(0);
+        }
+        
+        .contact-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+        
+        .contact-info {
+            flex: 1;
+            text-align: right;
+        }
+        
+        .contact-label {
+            font-size: 12px;
+            color: var(--text-light);
+            margin-bottom: 2px;
+            font-weight: 500;
+        }
+        
+        .contact-value {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-dark);
+            font-family: 'Inter', sans-serif;
+        }
+        
+        /* WhatsApp Special Style */
+        .whatsapp-btn {
+            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+            border: none;
+            color: white;
+        }
+        
+        .whatsapp-btn:hover {
+            background: linear-gradient(135deg, #128C7E 0%, #075E54 100%);
+            border: none;
+        }
+        
+        .whatsapp-btn .contact-icon {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+        
+        .whatsapp-btn .contact-label,
+        .whatsapp-btn .contact-value {
+            color: white;
+        }
+        
+        /* Phone Icon */
+        .phone-icon {
+            background: rgba(224, 122, 95, 0.1);
+            color: var(--accent-coral);
+        }
+        
+        /* Email Icon */
+        .email-icon {
+            background: rgba(52, 152, 219, 0.1);
+            color: #3498db;
+        }
+        
+        /* Social Links */
+        .social-section {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        
+        .social-btn {
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: white;
+            font-size: 22px;
+            transition: all 0.25s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .social-btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .social-btn:active {
+            transform: translateY(-1px) scale(1);
+        }
+        
+        .instagram-btn { 
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); 
+        }
+        
+        .linkedin-btn { 
+            background: #0077b5; 
+        }
+        
+        .twitter-btn { 
+            background: #1DA1F2; 
+        }
+        
+        /* Divider */
+        .divider {
+            height: 1px;
+            background: var(--border-light);
+            margin: 24px 0;
+        }
+        
+        /* Responsive */
+        @media (max-width: 480px) {
+            .container {
+                padding: 32px 24px;
+            }
+            
+            .name {
+                font-size: 24px;
+            }
+            
+            .bio {
+                font-size: 14px;
+            }
+            
+            .contact-btn {
+                padding: 14px 16px;
+            }
+            
+            .profile-photo {
+                width: 100px;
+                height: 100px;
+                font-size: 40px;
+            }
+            
+            .save-contact {
+                padding: 16px 20px;
+                font-size: 16px;
+            }
+            
+            .save-contact-main {
+                font-size: 16px;
+            }
+            
+            .save-contact-sub {
+                font-size: 12px;
             }
         }
-    </script>
-</head>
-<body class="bg-gradient-to-br from-purple-50 via-pink-50 to-blue-50 min-h-screen flex items-center justify-center p-4">
-    
-    <div class="w-full max-w-md">
         
-        <!-- Header بالتدرج -->
-        <div class="gradient-bg rounded-t-3xl p-8 text-center relative overflow-hidden">
-            <div class="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -mr-32 -mt-32"></div>
-            <div class="absolute bottom-0 left-0 w-48 h-48 bg-white/10 rounded-full -ml-24 -mb-24"></div>
-            
-            <div class="relative z-10">
-                <!-- صورة أو أيقونة -->
-                <div class="w-32 h-32 mx-auto mb-4 bg-white rounded-full flex items-center justify-center shadow-2xl ring-4 ring-white/30">
-                    
-                    <img src="./photo.jpg" alt="محمد عبدالله النملان" class="w-full h-full rounded-full object-cover">
-                    
-                    <i class="fas fa-user text-6xl text-primary"></i>
-                    
-                </div>
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .container {
+            animation: fadeIn 0.5s ease;
+        }
+        
+        /* Pulse animation for save button */
+        @keyframes pulse {
+            0%, 100% {
+                box-shadow: 0 8px 20px rgba(224, 122, 95, 0.35);
+            }
+            50% {
+                box-shadow: 0 8px 24px rgba(224, 122, 95, 0.5);
+            }
+        }
+        
+        .save-contact {
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        /* Accessibility */
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        /* New: Split contact button and email circle */
+        .split-contact {
+            display: flex;
+            gap: 0;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 2px solid var(--border-light);
+        }
+
+        .split-contact .split-half {
+            flex: 1 1 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 14px 12px;
+            text-decoration: none;
+            color: white;
+            font-weight: 700;
+            font-size: 15px;
+            transition: background 0.22s ease, transform 0.12s ease;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .split-contact .split-half .icon { font-size: 18px; width: 22px; }
+
+        .split-contact .whatsapp-half {
+            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+            color: #fff;
+        }
+
+        .split-contact .call-half {
+            background: linear-gradient(90deg, rgba(255,255,255,0.95), rgba(255,255,255,0.95));
+            color: var(--text-dark);
+        }
+
+        .split-contact .call-half:hover { background: linear-gradient(90deg, #f7f7f7, #ffffff); }
+        .split-contact .whatsapp-half:hover { filter: brightness(0.95); }
+
+        .split-contact .separator {
+            width: 1px;
+            background: rgba(0,0,0,0.08);
+            align-self: stretch;
+        }
+
+        .phone-number-inline {
+            display: block;
+            text-align: center;
+            margin-top: 8px;
+            font-weight: 600;
+            color: var(--text-dark);
+            font-family: 'Inter', sans-serif;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            direction: ltr;
+        }
+
+        /* Email circle button */
+        .email-circle {
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #3498db 0%, #5dade2 100%);
+            color: #fff;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            font-size: 0; /* hide text, show icon only */
+            position: relative;
+            transition: transform 0.12s ease, box-shadow 0.12s ease;
+        }
+
+        .email-circle .fa-envelope { font-size: 20px; }
+
+        .email-circle:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.12); }
+
+        .email-circle[title]::after {
+            content: attr(title);
+            position: absolute;
+            bottom: calc(100% + 8px);
+            right: 50%;
+            transform: translateX(50%);
+            background: rgba(0,0,0,0.8);
+            color: #fff;
+            padding: 6px 8px;
+            border-radius: 6px;
+            font-size: 13px;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.12s ease, transform 0.12s ease;
+            z-index: 30;
+        }
+
+        .email-circle:hover::after { opacity: 1; transform: translateX(50%) translateY(-4px); }
+
+        /* Toast */
+        .copy-toast {
+            position: fixed;
+            left: 50%;
+            bottom: 24px;
+            transform: translateX(-50%) translateY(20px);
+            background: rgba(0,0,0,0.85);
+            color: #fff;
+            padding: 10px 14px;
+            border-radius: 10px;
+            font-weight: 600;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.18s ease, transform 0.18s ease;
+            z-index: 9999;
+        }
+
+        .copy-toast.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+            pointer-events: auto;
+        }
+
+        /* Ensure ellipsis for long email when displayed */
+        .contact-value.ellipsis {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            display: block;
+            max-width: 100%;
+        }
+
+        .sr-only {
+            position: absolute !important;
+            width: 1px !important;
+            height: 1px !important;
+            padding: 0 !important;
+            margin: -1px !important;
+            overflow: hidden !important;
+            clip: rect(0 0 0 0) !important;
+            white-space: nowrap !important;
+            border: 0 !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Profile Section -->
+        <div class="profile-section">
+            <div class="profile-photo">
                 
-                <h1 class="text-4xl font-black text-white mb-2">محمد عبدالله النملان</h1>
-                <p class="text-white/90 text-lg font-semibold"></p>
+                <img src="./photo.jpg" alt="محمد عبدالله النملان">
+                
+                
             </div>
+            
+            <h1 class="name">محمد عبدالله النملان</h1>
+            
+            
         </div>
         
-        <!-- Body - معلومات الاتصال -->
-        <div class="bg-white rounded-b-3xl shadow-2xl p-6 space-y-3">
-            
-            <!-- رقم الجوال -->
-            
-            <a href="tel:0540601467" 
-               class="flex items-center gap-4 p-4 bg-gradient-to-r from-green-50 to-emerald-50 rounded-2xl hover:shadow-lg transition-all duration-300 hover:scale-[1.02] group border border-green-100">
-                <div class="w-14 h-14 bg-gradient-to-br from-green-400 to-green-600 rounded-xl flex items-center justify-center group-hover:shadow-xl transition-shadow">
-                    <i class="fas fa-phone text-white text-xl"></i>
+        <!-- Save Contact Button - MOVED TO TOP -->
+        <div class="save-contact-section">
+            <a href="./contact.vcf" download class="save-contact">
+                <i class="fas fa-address-card"></i>
+                <div class="save-contact-text">
+                    <span class="save-contact-main">إضافة لجهات الاتصال</span>
+                    <span class="save-contact-sub">Add to Contacts</span>
                 </div>
-                <div class="flex-1 text-right">
-                    <p class="text-gray-500 text-sm font-semibold">اتصل بي</p>
-                    <p class="text-gray-900 font-bold text-lg" dir="ltr">0540601467</p>
+            </a>
+        </div>
+        
+        <!-- Contact Buttons -->
+        <div class="contact-section">
+            
+            <div style="display:flex;flex-direction:column;gap:8px;">
+                <div class="split-contact" role="group" aria-label="خيارات الاتصال">
+                    <a href="https://wa.me/966540601467" class="split-half whatsapp-half" target="_blank" rel="noopener noreferrer" aria-label="واتساب">
+                        <i class="fab fa-whatsapp icon" aria-hidden="true"></i>
+                        <span class="label">واتساب</span>
+                    </a>
+                    <div class="separator" aria-hidden="true"></div>
+                    <a href="tel:+966540601467" class="split-half call-half" aria-label="اتصال">
+                        <i class="fas fa-phone icon" aria-hidden="true"></i>
+                        <span class="label">اتصال</span>
+                    </a>
                 </div>
-                <i class="fas fa-chevron-left text-gray-300 group-hover:text-green-500 transition-colors"></i>
+
+                <div class="phone-number-inline" dir="ltr" aria-label="رقم الهاتف">0540601467</div>
+            </div>
+            
+
+            
+            <div style="display:flex;gap:12px;align-items:center;justify-content:flex-end;">
+                <button type="button" class="email-circle" id="copy-email-btn" data-email="mohammed.alnamlan.q@gmail.com" aria-label="نسخ البريد الإلكتروني" title="mohammed.alnamlan.q@gmail.com">
+                    <i class="fas fa-envelope" aria-hidden="true"></i>
+                    <span class="sr-only">Copy email</span>
+                </button>
+
+                <div style="display:flex;flex-direction:column;align-items:flex-end;gap:2px;min-width:0;">
+                    <div class="contact-label">بريد إلكتروني / Email</div>
+                    <div class="contact-value ellipsis" style="max-width:200px;" dir="ltr" title="mohammed.alnamlan.q@gmail.com">mohammed.alnamlan.q@gmail.com</div>
+                </div>
+            </div>
+            
+        </div>
+        
+        <!-- Social Links -->
+        
+        
+        <div class="social-section">
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <a href="https://github.com/https://github.com/MOHAM-ALT" class="social-btn" style="background: #333333;" target="_blank" aria-label="GitHub">
+                <i class="fab fa-github"></i>
+            </a>
+            
+        </div>
+        
+        <!-- Additional Links Section -->
+        <div style="display: flex; flex-direction: column; gap: 12px; margin-top: 24px;">
+            
+            
+            
+            
+            
+            <a href="./cv.pdf" class="contact-btn" download>
+                <div class="contact-icon email-icon">
+                    <i class="fas fa-file-pdf"></i>
+                </div>
+                <div class="contact-info">
+                    <div class="contact-label">السيرة الذاتية</div>
+                    <div class="contact-value">تحميل</div>
+                </div>
             </a>
             
             
-            <!-- WhatsApp -->
-            
-            <a href="https://wa.me/966540601467" 
-               target="_blank"
-               class="flex items-center gap-4 p-4 bg-gradient-to-r from-emerald-50 to-teal-50 rounded-2xl hover:shadow-lg transition-all duration-300 hover:scale-[1.02] group border border-emerald-100">
-                <div class="w-14 h-14 bg-gradient-to-br from-emerald-400 to-teal-600 rounded-xl flex items-center justify-center group-hover:shadow-xl transition-shadow">
-                    <i class="fab fa-whatsapp text-white text-2xl"></i>
-                </div>
-                <div class="flex-1 text-right">
-                    <p class="text-gray-500 text-sm font-semibold">واتساب</p>
-                    <p class="text-gray-900 font-bold">راسلني</p>
-                </div>
-                <i class="fas fa-chevron-left text-gray-300 group-hover:text-emerald-500 transition-colors"></i>
-            </a>
             
             
-            <!-- البريد الإلكتروني -->
-            
-            <a href="mailto:mohammed.alnamlan.q@gmail.com" 
-               class="flex items-center gap-4 p-4 bg-gradient-to-r from-red-50 to-pink-50 rounded-2xl hover:shadow-lg transition-all duration-300 hover:scale-[1.02] group border border-red-100">
-                <div class="w-14 h-14 bg-gradient-to-br from-red-400 to-pink-600 rounded-xl flex items-center justify-center group-hover:shadow-xl transition-shadow">
-                    <i class="fas fa-envelope text-white text-xl"></i>
-                </div>
-                <div class="flex-1 text-right">
-                    <p class="text-gray-500 text-sm font-semibold">البريد الإلكتروني</p>
-                    <p class="text-gray-900 font-semibold text-sm break-all">mohammed.alnamlan.q@gmail.com</p>
-                </div>
-                <i class="fas fa-chevron-left text-gray-300 group-hover:text-red-500 transition-colors"></i>
-            </a>
-            
-            
-            <!-- Instagram -->
-            
-            
-            <!-- LinkedIn -->
-            
-            
-            <!-- Twitter/X -->
-            
-            
-            <!-- YouTube -->
-            
-            
-            <!-- TikTok -->
-            
-            
-            <!-- Snapchat -->
-            
-            
-            <!-- GitHub -->
-            
-            <a href="https://github.com/https://github.com/MOHAM-ALT" 
-               target="_blank"
-               class="flex items-center gap-4 p-4 bg-gradient-to-r from-gray-50 to-slate-50 rounded-2xl hover:shadow-lg transition-all duration-300 hover:scale-[1.02] group border border-gray-200">
-                <div class="w-14 h-14 bg-gradient-to-br from-gray-900 to-black rounded-xl flex items-center justify-center group-hover:shadow-xl transition-shadow">
-                    <i class="fab fa-github text-white text-xl"></i>
-                </div>
-                <div class="flex-1 text-right">
-                    <p class="text-gray-500 text-sm font-semibold">GitHub</p>
-                    <p class="text-gray-900 font-bold">https://github.com/MOHAM-ALT</p>
-                </div>
-                <i class="fas fa-chevron-left text-gray-300 group-hover:text-gray-900 transition-colors"></i>
-            </a>
-            
-            
-            <!-- Website -->
-            
-            
-            <!-- Custom Link -->
-            
-            
-            <!-- CV Download -->
-            
-            <a href="./cv.pdf" 
-               download
-               class="flex items-center gap-4 p-4 bg-gradient-to-r from-orange-50 to-red-50 rounded-2xl hover:shadow-lg transition-all duration-300 hover:scale-[1.02] group border border-orange-100">
-                <div class="w-14 h-14 bg-gradient-to-br from-orange-500 to-red-600 rounded-xl flex items-center justify-center group-hover:shadow-xl transition-shadow">
-                    <i class="fas fa-file-pdf text-white text-xl"></i>
-                </div>
-                <div class="flex-1 text-right">
-                    <p class="text-gray-500 text-sm font-semibold">السيرة الذاتية</p>
-                    <p class="text-gray-900 font-bold">تحميل</p>
-                </div>
-                <i class="fas fa-chevron-left text-gray-300 group-hover:text-orange-500 transition-colors"></i>
-            </a>
-            
-            
-            <!-- Job Title -->
-            
-            
-            <!-- Company -->
-            
-            
-            <!-- زر حفظ جهة الاتصال -->
-            <button onclick="saveContact()" 
-                    class="w-full bg-gradient-to-r from-primary to-secondary text-white font-bold py-4 rounded-2xl hover:shadow-2xl transition-all duration-300 hover:scale-[1.02] mt-6 flex items-center justify-center gap-2">
-                <i class="fas fa-download"></i>
-                <span>حفظ جهة الاتصال</span>
-            </button>
             
         </div>
         
         <!-- Footer -->
-        <div class="text-center mt-6 pb-4">
-            <p class="text-gray-500 text-sm">مدعوم بواسطة <a href="https://maroof-id.github.io/maroof-cards/" style="color: #667eea; font-weight: 700; text-decoration: none;" target="_blank">معروف</a></p>
+        <div style="text-align: center; margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--border-light);">
+            <p style="color: var(--text-light); font-size: 13px;">مدعوم بواسطة <a href="https://maroof-id.github.io/maroof-cards/" style="color: var(--accent-coral); font-weight: 700; text-decoration: none;" target="_blank">معروف</a></p>
         </div>
-        
     </div>
-    
+
+    <div id="copy-toast" class="copy-toast" role="status" aria-live="polite">تم النسخ!</div>
+
     <script>
-        function saveContact() {
-            const vcard = `BEGIN:VCARD
-VERSION:3.0
-FN:محمد عبدالله النملان
-TEL;TYPE=CELL:0540601467
-EMAIL:mohammed.alnamlan.q@gmail.com
+        (function(){
+            const btn = document.getElementById('copy-email-btn');
+            const toast = document.getElementById('copy-toast');
+            function showToast(text){
+                if(!toast) return;
+                toast.textContent = text || 'تم النسخ!';
+                toast.classList.add('show');
+                clearTimeout(window._toastTimeout);
+                window._toastTimeout = setTimeout(()=> toast.classList.remove('show'), 2000);
+            }
 
+            async function copyText(text){
+                if(!text) return false;
+                try{
+                    if(navigator.clipboard && navigator.clipboard.writeText){
+                        await navigator.clipboard.writeText(text);
+                        return true;
+                    }
+                }catch(e){}
+                try{
+                    const ta = document.createElement('textarea');
+                    ta.value = text;
+                    ta.setAttribute('readonly', '');
+                    ta.style.position = 'absolute';
+                    ta.style.left = '-9999px';
+                    document.body.appendChild(ta);
+                    ta.select();
+                    document.execCommand('copy');
+                    ta.remove();
+                    return true;
+                }catch(e){
+                    return false;
+                }
+            }
 
-END:VCARD`;
-            
-            const blob = new Blob([vcard], { type: 'text/vcard;charset=utf-8' });
-            const url = URL.createObjectURL(blob);
-            const link = document.createElement('a');
-            link.href = url;
-            link.download = 'محمد عبدالله النملان.vcf';
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-            URL.revokeObjectURL(url);
-        }
+            if(btn){
+                btn.addEventListener('click', async function(e){
+                    const email = this.dataset.email || this.getAttribute('data-email') || '';
+                    const ok = await copyText(email);
+                    if(ok){
+                        showToast('تم النسخ!');
+                        try{ this.animate([{transform:'scale(1)'},{transform:'scale(1.06)'},{transform:'scale(1)'}],{duration:260}); }catch(e){}
+                    }else{
+                        showToast('Copy failed');
+                    }
+                });
+            }
+        })();
     </script>
-    
+
 </body>
 </html>

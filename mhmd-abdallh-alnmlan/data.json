@@ -17,10 +17,10 @@
   "BIO": "",
   "PHOTO": "./photo.jpg",
   "CV": "./cv.pdf",
-  "template": "minimal",
+  "template": "modern",
   "created_at": "2026-02-24T11:10:18.465699",
   "source": "admin",
-  "status": "printed",
+  "status": "modified",
   "print_count": 1,
   "print_history": [
     {
